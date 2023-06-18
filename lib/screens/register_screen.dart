@@ -1,7 +1,12 @@
 import 'package:email_validator/email_validator.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
+import 'package:intl_phone_field/countries.dart';
+import 'package:mosiga_users/global/global.dart';
 
 class RegisterScreen extends StatefulWidget {
   const RegisterScreen({super.key});
@@ -21,6 +26,32 @@ class _RegisterScreenState extends State<RegisterScreen> {
   bool _passwordVisible = false;
 
   final _formkey = GlobalKey<FormState>();
+
+  void _submit() async {
+    //validate all form fields
+    if (_formkey.currentState!.validate()) {
+      await firebaseAuth
+          .createUserWithEmailAndPassword(
+              email: emailTextEditingController.text.trim(),
+              password: confirmpasswordTextEditingController.text.trim())
+          .then((auth) async {
+        currentUser = auth.user;
+        if (currentUser != null) {
+          Map userMap = {
+            "id": currentUser!.uid,
+            "name": nameTextEditingController.text.toString(),
+            "email": emailTextEditingController.text.toString(),
+            "phone": phoneTextEditingController.text.toString(),
+            "address": addressTextEditingController.text.toString(),
+          };
+          DatabaseReference userRef =
+              FirebaseDatabase.instance.ref().child("users");
+          userRef.child(currentUser!.uid).set(userMap);
+        }
+        await Fluttertoast.showToast(msg: "Successfully Registered");
+      });
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -128,13 +159,13 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           autovalidateMode: AutovalidateMode.onUserInteraction,
                           validator: (text) {
                             if (text == null || text.isEmpty) {
-                              return "Phone Can't Be Empty";
+                              return "Email Can't Be Empty";
                             }
                             if (EmailValidator.validate(text) == true) {
                               return null;
                             }
                             if (text.length < 2) {
-                              return "Please Enter Valid Phone";
+                              return "Please Enter Valid Email";
                             }
                             if (text.length > 50) {
                               return "Email Can't Be More Than 50";
@@ -148,13 +179,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         SizedBox(
                           height: 20,
                         ),
-                        IntlPhoneField(
-                          showCountryFlag: false,
-                          dropdownIcon: Icon(
-                            Icons.arrow_drop_down,
-                            color:
-                                darkTheme ? Colors.amber.shade400 : Colors.grey,
-                          ),
+                        TextField(
+                          controller: phoneTextEditingController,
+                          keyboardType: TextInputType.phone,
                           decoration: InputDecoration(
                             hintText: "Phone Number",
                             hintStyle: TextStyle(
@@ -171,12 +198,13 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                 style: BorderStyle.none,
                               ),
                             ),
+                            prefixIcon: Icon(
+                              Icons.phone,
+                              color: darkTheme
+                                  ? Colors.amber.shade400
+                                  : Colors.grey,
+                            ),
                           ),
-                          initialCountryCode: 'ID',
-                          onChanged: (text) => setState(() {
-                            phoneTextEditingController.text =
-                                text.completeNumber;
-                          }),
                         )
                       ],
                     ),
@@ -331,7 +359,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         return "Confirm Password Can't Be Empty";
                       }
 
-                      if (text == passwordTextEditingController.text) {
+                      if (text != passwordTextEditingController.text) {
                         return "Password Do Not Match";
                       }
                       if (text.length < 6) {
