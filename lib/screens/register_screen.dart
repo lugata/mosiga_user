@@ -5,9 +5,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:mosiga_users/global/global.dart';
+import 'package:mosiga_users/screens/main_page.dart';
 
 class RegisterScreen extends StatefulWidget {
-  const RegisterScreen({super.key});
+  const RegisterScreen({Key? key}) : super(key: key);
 
   @override
   State<RegisterScreen> createState() => _RegisterScreenState();
@@ -37,17 +38,23 @@ class _RegisterScreenState extends State<RegisterScreen> {
         if (currentUser != null) {
           Map userMap = {
             "id": currentUser!.uid,
-            "name": nameTextEditingController.text.toString(),
-            "email": emailTextEditingController.text.toString(),
-            "phone": phoneTextEditingController.text.toString(),
-            "address": addressTextEditingController.text.toString(),
+            "name": nameTextEditingController.text.trim(),
+            "email": emailTextEditingController.text.trim(),
+            "phone": phoneTextEditingController.text.trim(),
+            "address": addressTextEditingController.text.trim(),
           };
           DatabaseReference userRef =
               FirebaseDatabase.instance.ref().child("users");
           userRef.child(currentUser!.uid).set(userMap);
         }
         await Fluttertoast.showToast(msg: "Successfully Registered");
+        Navigator.push(
+            context, MaterialPageRoute(builder: (c) => MainScreen()));
+      }).catchError((errorMessage) {
+        Fluttertoast.showToast(msg: "Error occured: \n $errorMessage");
       });
+    } else {
+      Fluttertoast.showToast(msg: "Not Fields are Valid !");
     }
   }
 
@@ -76,6 +83,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     height: 20,
                   ),
                   Form(
+                    key: _formkey,
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.center,
@@ -128,6 +136,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           height: 20,
                         ),
                         TextFormField(
+                          keyboardType: TextInputType.emailAddress,
                           inputFormatters: [
                             LengthLimitingTextInputFormatter(100),
                           ],
@@ -177,9 +186,12 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         SizedBox(
                           height: 20,
                         ),
-                        TextField(
-                          controller: phoneTextEditingController,
+                        TextFormField(
                           keyboardType: TextInputType.phone,
+                          inputFormatters: [
+                            FilteringTextInputFormatter.digitsOnly,
+                            LengthLimitingTextInputFormatter(14),
+                          ],
                           decoration: InputDecoration(
                             hintText: "Phone Number",
                             hintStyle: TextStyle(
@@ -203,174 +215,200 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                   : Colors.grey,
                             ),
                           ),
-                        )
+                          autovalidateMode: AutovalidateMode.onUserInteraction,
+                          validator: (text) {
+                            if (text == null || text.isEmpty) {
+                              return "Phone Can't Be Empty";
+                            }
+
+                            if (text.length < 2) {
+                              return "Please Enter Valid Phone";
+                            }
+                            if (text.length > 14) {
+                              return "Phone Can't Be More Than 14";
+                            }
+                            return null;
+                          },
+                          onChanged: (text) => setState(() {
+                            phoneTextEditingController.text = text;
+                          }),
+                        ),
+                        SizedBox(
+                          height: 20,
+                        ),
+                        TextFormField(
+                          inputFormatters: [
+                            LengthLimitingTextInputFormatter(100),
+                          ],
+                          decoration: InputDecoration(
+                            hintText: "Address",
+                            hintStyle: TextStyle(
+                              color: Colors.grey,
+                            ),
+                            filled: true,
+                            fillColor: darkTheme
+                                ? Colors.black45
+                                : Colors.grey.shade200,
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(40),
+                              borderSide: BorderSide(
+                                width: 0,
+                                style: BorderStyle.none,
+                              ),
+                            ),
+                            prefixIcon: Icon(
+                              Icons.home,
+                              color: darkTheme
+                                  ? Colors.amber.shade400
+                                  : Colors.grey,
+                            ),
+                          ),
+                          autovalidateMode: AutovalidateMode.onUserInteraction,
+                          validator: (text) {
+                            if (text == null || text.isEmpty) {
+                              return "Address Can't Be Empty";
+                            }
+
+                            if (text.length < 2) {
+                              return "Please Enter Valid Address";
+                            }
+                            if (text.length > 100) {
+                              return "Address Can't Be More Than 100";
+                            }
+                            return null;
+                          },
+                          onChanged: (text) => setState(() {
+                            addressTextEditingController.text = text;
+                          }),
+                        ),
+                        SizedBox(
+                          height: 20,
+                        ),
+                        TextFormField(
+                          obscureText: !_passwordVisible,
+                          inputFormatters: [
+                            LengthLimitingTextInputFormatter(50),
+                          ],
+                          decoration: InputDecoration(
+                              hintText: "Password",
+                              hintStyle: TextStyle(
+                                color: Colors.grey,
+                              ),
+                              filled: true,
+                              fillColor: darkTheme
+                                  ? Colors.black45
+                                  : Colors.grey.shade200,
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(40),
+                                borderSide: BorderSide(
+                                  width: 0,
+                                  style: BorderStyle.none,
+                                ),
+                              ),
+                              prefixIcon: Icon(
+                                Icons.key,
+                                color: darkTheme
+                                    ? Colors.amber.shade400
+                                    : Colors.grey,
+                              ),
+                              suffixIcon: IconButton(
+                                icon: Icon(
+                                  _passwordVisible
+                                      ? Icons.visibility
+                                      : Icons.visibility_off,
+                                  color: darkTheme
+                                      ? Colors.amber.shade400
+                                      : Colors.grey,
+                                ),
+                                //update state password variable
+                                onPressed: () => setState(() {
+                                  _passwordVisible = !_passwordVisible;
+                                }),
+                              )),
+                          autovalidateMode: AutovalidateMode.onUserInteraction,
+                          validator: (text) {
+                            if (text == null || text.isEmpty) {
+                              return "Password Can't Be Empty";
+                            }
+                            if (text.length < 6) {
+                              return "Please Enter Valid Password";
+                            }
+                            if (text.length > 49) {
+                              return "Password Can't Be More Than 49";
+                            }
+                            return null;
+                          },
+                          onChanged: (text) => setState(() {
+                            passwordTextEditingController.text = text;
+                          }),
+                        ),
+                        SizedBox(
+                          height: 20,
+                        ),
+                        TextFormField(
+                          obscureText: !_passwordVisible,
+                          inputFormatters: [
+                            LengthLimitingTextInputFormatter(50),
+                          ],
+                          decoration: InputDecoration(
+                              hintText: "Confirm Password",
+                              hintStyle: TextStyle(
+                                color: Colors.grey,
+                              ),
+                              filled: true,
+                              fillColor: darkTheme
+                                  ? Colors.black45
+                                  : Colors.grey.shade200,
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(40),
+                                borderSide: BorderSide(
+                                  width: 0,
+                                  style: BorderStyle.none,
+                                ),
+                              ),
+                              prefixIcon: Icon(
+                                Icons.key,
+                                color: darkTheme
+                                    ? Colors.amber.shade400
+                                    : Colors.grey,
+                              ),
+                              suffixIcon: IconButton(
+                                icon: Icon(
+                                  _passwordVisible
+                                      ? Icons.visibility
+                                      : Icons.visibility_off,
+                                  color: darkTheme
+                                      ? Colors.amber.shade400
+                                      : Colors.grey,
+                                ),
+                                //update state password variable
+                                onPressed: () => setState(() {
+                                  _passwordVisible = !_passwordVisible;
+                                }),
+                              )),
+                          autovalidateMode: AutovalidateMode.onUserInteraction,
+                          validator: (text) {
+                            if (text == null || text.isEmpty) {
+                              return "Confirm Password Can't Be Empty";
+                            }
+
+                            if (text != passwordTextEditingController.text) {
+                              return "Password Do Not Match";
+                            }
+                            if (text.length < 6) {
+                              return "Please Enter Valid Password";
+                            }
+                            if (text.length > 49) {
+                              return "Password Can't Be More Than 49";
+                            }
+                            return null;
+                          },
+                          onChanged: (text) => setState(() {
+                            confirmpasswordTextEditingController.text = text;
+                          }),
+                        ),
                       ],
                     ),
-                  ),
-                  SizedBox(
-                    height: 20,
-                  ),
-                  TextFormField(
-                    inputFormatters: [
-                      LengthLimitingTextInputFormatter(100),
-                    ],
-                    decoration: InputDecoration(
-                      hintText: "Address",
-                      hintStyle: TextStyle(
-                        color: Colors.grey,
-                      ),
-                      filled: true,
-                      fillColor:
-                          darkTheme ? Colors.black45 : Colors.grey.shade200,
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(40),
-                        borderSide: BorderSide(
-                          width: 0,
-                          style: BorderStyle.none,
-                        ),
-                      ),
-                      prefixIcon: Icon(
-                        Icons.home,
-                        color: darkTheme ? Colors.amber.shade400 : Colors.grey,
-                      ),
-                    ),
-                    autovalidateMode: AutovalidateMode.onUserInteraction,
-                    validator: (text) {
-                      if (text == null || text.isEmpty) {
-                        return "Address Can't Be Empty";
-                      }
-
-                      if (text.length < 2) {
-                        return "Please Enter Valid Address";
-                      }
-                      if (text.length > 100) {
-                        return "Address Can't Be More Than 100";
-                      }
-                      return null;
-                    },
-                    onChanged: (text) => setState(() {
-                      addressTextEditingController.text = text;
-                    }),
-                  ),
-                  SizedBox(
-                    height: 20,
-                  ),
-                  TextFormField(
-                    obscureText: !_passwordVisible,
-                    inputFormatters: [
-                      LengthLimitingTextInputFormatter(50),
-                    ],
-                    decoration: InputDecoration(
-                        hintText: "Password",
-                        hintStyle: TextStyle(
-                          color: Colors.grey,
-                        ),
-                        filled: true,
-                        fillColor:
-                            darkTheme ? Colors.black45 : Colors.grey.shade200,
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(40),
-                          borderSide: BorderSide(
-                            width: 0,
-                            style: BorderStyle.none,
-                          ),
-                        ),
-                        prefixIcon: Icon(
-                          Icons.key,
-                          color:
-                              darkTheme ? Colors.amber.shade400 : Colors.grey,
-                        ),
-                        suffixIcon: IconButton(
-                          icon: Icon(
-                            _passwordVisible
-                                ? Icons.visibility
-                                : Icons.visibility_off,
-                            color:
-                                darkTheme ? Colors.amber.shade400 : Colors.grey,
-                          ),
-                          //update state password variable
-                          onPressed: () => setState(() {
-                            _passwordVisible = !_passwordVisible;
-                          }),
-                        )),
-                    autovalidateMode: AutovalidateMode.onUserInteraction,
-                    validator: (text) {
-                      if (text == null || text.isEmpty) {
-                        return "Password Can't Be Empty";
-                      }
-                      if (text.length < 6) {
-                        return "Please Enter Valid Password";
-                      }
-                      if (text.length > 49) {
-                        return "Password Can't Be More Than 49";
-                      }
-                      return null;
-                    },
-                    onChanged: (text) => setState(() {
-                      passwordTextEditingController.text = text;
-                    }),
-                  ),
-                  SizedBox(
-                    height: 20,
-                  ),
-                  TextFormField(
-                    obscureText: !_passwordVisible,
-                    inputFormatters: [
-                      LengthLimitingTextInputFormatter(50),
-                    ],
-                    decoration: InputDecoration(
-                        hintText: "Confirm Password",
-                        hintStyle: TextStyle(
-                          color: Colors.grey,
-                        ),
-                        filled: true,
-                        fillColor:
-                            darkTheme ? Colors.black45 : Colors.grey.shade200,
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(40),
-                          borderSide: BorderSide(
-                            width: 0,
-                            style: BorderStyle.none,
-                          ),
-                        ),
-                        prefixIcon: Icon(
-                          Icons.key,
-                          color:
-                              darkTheme ? Colors.amber.shade400 : Colors.grey,
-                        ),
-                        suffixIcon: IconButton(
-                          icon: Icon(
-                            _passwordVisible
-                                ? Icons.visibility
-                                : Icons.visibility_off,
-                            color:
-                                darkTheme ? Colors.amber.shade400 : Colors.grey,
-                          ),
-                          //update state password variable
-                          onPressed: () => setState(() {
-                            _passwordVisible = !_passwordVisible;
-                          }),
-                        )),
-                    autovalidateMode: AutovalidateMode.onUserInteraction,
-                    validator: (text) {
-                      if (text == null || text.isEmpty) {
-                        return "Confirm Password Can't Be Empty";
-                      }
-
-                      if (text != passwordTextEditingController.text) {
-                        return "Password Do Not Match";
-                      }
-                      if (text.length < 6) {
-                        return "Please Enter Valid Password";
-                      }
-                      if (text.length > 49) {
-                        return "Password Can't Be More Than 49";
-                      }
-                      return null;
-                    },
-                    onChanged: (text) => setState(() {
-                      confirmpasswordTextEditingController.text = text;
-                    }),
                   ),
                   SizedBox(
                     height: 20,
@@ -385,7 +423,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           borderRadius: BorderRadius.circular(18),
                         ),
                         minimumSize: Size(double.infinity, 50)),
-                    onPressed: () {},
+                    onPressed: () {
+                      _submit();
+                    },
                     child: Text(
                       "Sign Up",
                       style: TextStyle(
