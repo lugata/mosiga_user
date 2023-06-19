@@ -1,4 +1,5 @@
 import 'package:email_validator/email_validator.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
@@ -27,35 +28,73 @@ class _RegisterScreenState extends State<RegisterScreen> {
   final _formkey = GlobalKey<FormState>();
 
   void _submit() async {
-    //validate all form fields
+    // Validasi semua field formulir
     if (_formkey.currentState!.validate()) {
-      await firebaseAuth
-          .createUserWithEmailAndPassword(
-              email: emailTextEditingController.text.trim(),
-              password: confirmpasswordTextEditingController.text.trim())
-          .then((auth) async {
-        currentUser = auth.user;
-        if (currentUser != null) {
-          Map userMap = {
-            "id": currentUser!.uid,
-            "name": nameTextEditingController.text.trim(),
-            "email": emailTextEditingController.text.trim(),
-            "phone": phoneTextEditingController.text.trim(),
-            "address": addressTextEditingController.text.trim(),
-          };
-          DatabaseReference userRef =
-              FirebaseDatabase.instance.ref().child("users");
-          userRef.child(currentUser!.uid).set(userMap);
-        }
-        await Fluttertoast.showToast(msg: "Successfully Registered");
-        Navigator.push(
-            context, MaterialPageRoute(builder: (c) => MainScreen()));
-      }).catchError((errorMessage) {
-        Fluttertoast.showToast(msg: "Error occured: \n $errorMessage");
-      });
+      // Periksa apakah email sudah terdaftar
+      bool isEmailRegistered = await isEmailAlreadyRegistered(
+          emailTextEditingController.text.trim());
+
+      if (isEmailRegistered) {
+        Fluttertoast.showToast(msg: "Email is already registered");
+      } else {
+        await firebaseAuth
+            .createUserWithEmailAndPassword(
+                email: emailTextEditingController.text.trim(),
+                password: confirmpasswordTextEditingController.text.trim())
+            .then((auth) async {
+          currentUser = auth.user;
+          if (currentUser != null) {
+            Map userMap = {
+              "id": currentUser!.uid,
+              "name": nameTextEditingController.text.trim(),
+              "email": emailTextEditingController.text.trim(),
+              "phone": phoneTextEditingController.text.trim(),
+              "address": addressTextEditingController.text.trim(),
+            };
+            DatabaseReference userRef = FirebaseDatabase.instance.ref();
+            userRef.child("users").child(currentUser!.uid).set(userMap);
+          }
+          await Fluttertoast.showToast(msg: "Successfully Registered :");
+          Navigator.push(
+              context, MaterialPageRoute(builder: (c) => MainScreen()));
+        }).catchError((error) {
+          // Tangkap dan tangani kesalahan yang terjadi
+          Fluttertoast.showToast(msg: 'Error: $error');
+        });
+      }
     } else {
-      Fluttertoast.showToast(msg: "Not Fields are Valid !");
+      Fluttertoast.showToast(msg: "Not all fields are valid!");
     }
+  }
+
+  Future<bool> isEmailAlreadyRegistered(String email) async {
+    bool isRegistered = false;
+
+    try {
+      UserCredential userCredential = await firebaseAuth.signInWithEmailAndPassword(
+          email: email,
+          password:
+              'random_password' // Menggunakan password sembarang untuk melakukan login
+          );
+
+      if (userCredential.user != null) {
+        // Email sudah terdaftar
+        isRegistered = true;
+      }
+
+      await firebaseAuth.signOut(); // Logout setelah verifikasi email
+    } catch (e) {
+      if (e is FirebaseAuthException && e.code == 'user-not-found') {
+        // Email belum terdaftar
+        isRegistered = false;
+      } else {
+        // Terjadi kesalahan saat memeriksa email terdaftar
+        isRegistered =
+            true; // Atur ke true jika tidak dapat memastikan status pendaftaran
+      }
+    }
+
+    return isRegistered;
   }
 
   @override
