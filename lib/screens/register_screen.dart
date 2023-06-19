@@ -378,7 +378,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   ElevatedButton(
                     style: ElevatedButton.styleFrom(
                         primary:
-                            darkTheme ? Colors.amber.shade400 : Colors.grey,
+                            darkTheme ? Colors.amber.shade400 : Colors.blue,
                         onPrimary: darkTheme ? Colors.black : Colors.white,
                         elevation: 0,
                         shape: RoundedRectangleBorder(
