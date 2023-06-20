@@ -54,7 +54,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
             DatabaseReference userRef = FirebaseDatabase.instance.ref();
             userRef.child("users").child(currentUser!.uid).set(userMap);
           }
-          await Fluttertoast.showToast(msg: "Successfully Registered :");
+          await Fluttertoast.showToast(msg: "Successfully Registered");
           Navigator.push(
               context, MaterialPageRoute(builder: (c) => MainScreen()));
         }).catchError((error) {
