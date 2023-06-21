@@ -6,15 +6,15 @@ import 'package:mosiga_users/global/global.dart';
 import 'package:mosiga_users/screens/main_page.dart';
 import 'package:mosiga_users/screens/register_screen.dart';
 
-class LoginScreen extends StatefulWidget {
-  const LoginScreen({Key? key}) : super(key: key);
+class VerificationScreen extends StatefulWidget {
+  const VerificationScreen({super.key});
 
   @override
-  State<LoginScreen> createState() => _LoginScreenState();
+  State<VerificationScreen> createState() => _VerificationScreenState();
 }
 
-class _LoginScreenState extends State<LoginScreen> {
-  final emailTextEditingController = TextEditingController();
+class _VerificationScreenState extends State<VerificationScreen> {
+  final otpTextEditingController = TextEditingController();
   final passwordTextEditingController = TextEditingController();
 
   bool _passwordVisible = false;
@@ -26,7 +26,7 @@ class _LoginScreenState extends State<LoginScreen> {
     if (_formkey.currentState!.validate()) {
       await firebaseAuth
           .signInWithEmailAndPassword(
-              email: emailTextEditingController.text.trim(),
+              email: otpTextEditingController.text.trim(),
               password: passwordTextEditingController.text.trim())
           .then((auth) async {
         currentUser = auth.user;
@@ -47,6 +47,7 @@ class _LoginScreenState extends State<LoginScreen> {
   Widget build(BuildContext context) {
     bool darkTheme =
         MediaQuery.of(context).platformBrightness == Brightness.dark;
+
     return Scaffold(
       body: Center(
         child: SingleChildScrollView(
@@ -112,7 +113,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         return null;
                       },
                       onChanged: (text) => setState(() {
-                        emailTextEditingController.text = text;
+                        otpTextEditingController.text = text;
                       }),
                     ),
                     SizedBox(

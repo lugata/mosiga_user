@@ -56,7 +56,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
             userRef.child("users").child(currentUser!.uid).set(userMap);
           }
           await Fluttertoast.showToast(msg: "Pendaftaran berhasil");
-          Navigator.push(
+          Navigator.pushReplacement(
               context, MaterialPageRoute(builder: (c) => MainScreen()));
         }).catchError((error) {
           // Tangkap dan tangani kesalahan yang terjadi
