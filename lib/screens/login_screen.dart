@@ -5,6 +5,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:mosiga_users/global/global.dart';
 import 'package:mosiga_users/screens/main_page.dart';
 import 'package:mosiga_users/screens/register_screen.dart';
+import 'package:mosiga_users/theme/theme.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -32,7 +33,7 @@ class _LoginScreenState extends State<LoginScreen> {
         currentUser = auth.user;
 
         await Fluttertoast.showToast(msg: "Berhasil Masuk");
-        Navigator.push(
+        Navigator.pushReplacement(
             context, MaterialPageRoute(builder: (c) => MainScreen()));
       }).catchError((error) {
         // Tangkap dan tangani kesalahan yang terjadi
@@ -56,9 +57,9 @@ class _LoginScreenState extends State<LoginScreen> {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Text(
-                "SIGN IN",
+                "L O G I N",
                 style: TextStyle(
-                    color: darkTheme ? Colors.amber.shade400 : Colors.blue,
+                    color: darkTheme ? Colors.amber.shade400 : Colors.black,
                     fontSize: 32,
                     fontWeight: FontWeight.bold),
               ),
@@ -179,8 +180,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                     ElevatedButton(
                       style: ElevatedButton.styleFrom(
-                          primary:
-                              darkTheme ? Colors.amber.shade400 : Colors.blue,
+                          primary: darkTheme ? Colors.amber.shade400 : primary,
                           onPrimary: darkTheme ? Colors.black : Colors.white,
                           elevation: 0,
                           shape: RoundedRectangleBorder(
@@ -193,8 +193,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       child: Text(
                         "Sign In",
                         style: TextStyle(
-                          fontSize: 20,
-                        ),
+                            fontSize: 22, fontFamily: 'Poppins-SemiBold'),
                       ),
                     ),
                     SizedBox(
@@ -214,16 +213,11 @@ class _LoginScreenState extends State<LoginScreen> {
                             "Create An Account",
                             style: TextStyle(
                               fontSize: 18,
-                              color: darkTheme
-                                  ? Colors.amber.shade400
-                                  : Colors.blue,
+                              color: darkTheme ? Colors.white : Colors.black,
                             ),
                           ),
                         ),
                       ],
-                    ),
-                    SizedBox(
-                      height: 20,
                     ),
                   ],
                 ),

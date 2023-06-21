@@ -8,6 +8,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:mosiga_users/global/global.dart';
 import 'package:mosiga_users/screens/login_screen.dart';
 import 'package:mosiga_users/screens/main_page.dart';
+import 'package:mosiga_users/theme/theme.dart';
 
 class RegisterScreen extends StatefulWidget {
   const RegisterScreen({Key? key}) : super(key: key);
@@ -20,7 +21,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
   final nameTextEditingController = TextEditingController();
   final emailTextEditingController = TextEditingController();
   final phoneTextEditingController = TextEditingController();
-  final addressTextEditingController = TextEditingController();
+
   final passwordTextEditingController = TextEditingController();
   final confirmpasswordTextEditingController = TextEditingController();
 
@@ -50,7 +51,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
               "name": nameTextEditingController.text.trim(),
               "email": emailTextEditingController.text.trim(),
               "phone": phoneTextEditingController.text.trim(),
-              "address": addressTextEditingController.text.trim(),
             };
             DatabaseReference userRef = FirebaseDatabase.instance.ref();
             userRef.child("users").child(currentUser!.uid).set(userMap);
@@ -107,396 +107,412 @@ class _RegisterScreenState extends State<RegisterScreen> {
       child: GestureDetector(
         onTap: () => FocusScope.of(context).unfocus(),
         child: Scaffold(
-          body: ListView(
-            padding: EdgeInsets.all(24),
+          backgroundColor: darkTheme ? Colors.amber.shade400 : primary,
+          body: Column(
             children: [
-              Column(
-                children: [
-                  Text(
-                    "SIGN UP",
-                    style: TextStyle(
-                        color: darkTheme ? Colors.amber.shade400 : Colors.blue,
-                        fontSize: 32,
-                        fontWeight: FontWeight.bold),
-                  ),
-                  SizedBox(
-                    height: 20,
-                  ),
-                  Form(
-                    key: _formkey,
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
+              Container(
+                padding: const EdgeInsets.symmetric(vertical: 14),
+                child: Expanded(
+                  child: SingleChildScrollView(
+                    child: Row(
                       crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.start,
                       children: [
-                        TextFormField(
-                          inputFormatters: [
-                            LengthLimitingTextInputFormatter(100),
-                          ],
-                          decoration: InputDecoration(
-                            hintText: "Nama",
-                            hintStyle: TextStyle(
-                              color: Colors.grey,
-                            ),
-                            filled: true,
-                            fillColor: darkTheme
-                                ? Colors.black45
-                                : Colors.grey.shade200,
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(40),
-                              borderSide: BorderSide(
-                                width: 0,
-                                style: BorderStyle.none,
-                              ),
-                            ),
-                            prefixIcon: Icon(
-                              Icons.person,
-                              color: darkTheme
-                                  ? Colors.amber.shade400
-                                  : Colors.grey,
-                            ),
-                          ),
-                          autovalidateMode: AutovalidateMode.onUserInteraction,
-                          validator: (text) {
-                            if (text == null || text.isEmpty) {
-                              return "Nama tidak boleh kosong";
-                            }
-                            if (text.length < 2) {
-                              return "Masukkan Nama yang valid";
-                            }
-                            if (text.length > 50) {
-                              return "Nama tidak boleh lebih dari 50 karakter";
-                            }
-                            return null;
-                          },
-                          onChanged: (text) => setState(() {
-                            nameTextEditingController.text = text;
-                          }),
-                        ),
-                        SizedBox(
-                          height: 20,
-                        ),
-                        TextFormField(
-                          keyboardType: TextInputType.emailAddress,
-                          inputFormatters: [
-                            LengthLimitingTextInputFormatter(100),
-                          ],
-                          decoration: InputDecoration(
-                            hintText: "Email",
-                            hintStyle: TextStyle(
-                              color: Colors.grey,
-                            ),
-                            filled: true,
-                            fillColor: darkTheme
-                                ? Colors.black45
-                                : Colors.grey.shade200,
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(40),
-                              borderSide: BorderSide(
-                                width: 0,
-                                style: BorderStyle.none,
-                              ),
-                            ),
-                            prefixIcon: Icon(
-                              Icons.mail,
-                              color: darkTheme
-                                  ? Colors.amber.shade400
-                                  : Colors.grey,
-                            ),
-                          ),
-                          autovalidateMode: AutovalidateMode.onUserInteraction,
-                          validator: (text) {
-                            if (text == null || text.isEmpty) {
-                              return "Email tidak boleh kosong";
-                            }
-                            if (EmailValidator.validate(text) == true) {
-                              return null;
-                            }
-                            if (text.length < 2) {
-                              return "Masukkan Email yang valid";
-                            }
-                            if (text.length > 50) {
-                              return "Email tidak boleh lebih dari 50 karakter";
-                            }
-                            return null;
-                          },
-                          onChanged: (text) => setState(() {
-                            emailTextEditingController.text = text;
-                          }),
-                        ),
-                        SizedBox(
-                          height: 20,
-                        ),
-                        TextFormField(
-                          keyboardType: TextInputType.phone,
-                          inputFormatters: [
-                            FilteringTextInputFormatter.digitsOnly,
-                            LengthLimitingTextInputFormatter(14),
-                          ],
-                          decoration: InputDecoration(
-                            hintText: "Nomor Telepon",
-                            hintStyle: TextStyle(
-                              color: Colors.grey,
-                            ),
-                            filled: true,
-                            fillColor: darkTheme
-                                ? Colors.black45
-                                : Colors.grey.shade200,
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(40),
-                              borderSide: BorderSide(
-                                width: 0,
-                                style: BorderStyle.none,
-                              ),
-                            ),
-                            prefixIcon: Icon(
-                              Icons.phone,
-                              color: darkTheme
-                                  ? Colors.amber.shade400
-                                  : Colors.grey,
-                            ),
-                          ),
-                          autovalidateMode: AutovalidateMode.onUserInteraction,
-                          validator: (text) {
-                            if (text == null || text.isEmpty) {
-                              return "Nomor Telepon tidak boleh kosong";
-                            }
-                            if (text.length < 2) {
-                              return "Masukkan Nomor Telepon yang valid";
-                            }
-                            if (text.length > 14) {
-                              return "Nomor Telepon tidak boleh lebih dari 14 karakter";
-                            }
-                            return null;
-                          },
-                          onChanged: (text) => setState(() {
-                            phoneTextEditingController.text = text;
-                          }),
-                        ),
-                        SizedBox(
-                          height: 20,
-                        ),
-                        TextFormField(
-                          inputFormatters: [
-                            LengthLimitingTextInputFormatter(100),
-                          ],
-                          decoration: InputDecoration(
-                            hintText: "Alamat",
-                            hintStyle: TextStyle(
-                              color: Colors.grey,
-                            ),
-                            filled: true,
-                            fillColor: darkTheme
-                                ? Colors.black45
-                                : Colors.grey.shade200,
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(40),
-                              borderSide: BorderSide(
-                                width: 0,
-                                style: BorderStyle.none,
-                              ),
-                            ),
-                            prefixIcon: Icon(
-                              Icons.home,
-                              color: darkTheme
-                                  ? Colors.amber.shade400
-                                  : Colors.grey,
-                            ),
-                          ),
-                          autovalidateMode: AutovalidateMode.onUserInteraction,
-                          validator: (text) {
-                            if (text == null || text.isEmpty) {
-                              return "Alamat tidak boleh kosong";
-                            }
-                            if (text.length < 2) {
-                              return "Masukkan Alamat yang valid";
-                            }
-                            if (text.length > 100) {
-                              return "Alamat tidak boleh lebih dari 100 karakter";
-                            }
-                            return null;
-                          },
-                          onChanged: (text) => setState(() {
-                            addressTextEditingController.text = text;
-                          }),
-                        ),
-                        SizedBox(
-                          height: 20,
-                        ),
-                        TextFormField(
-                          obscureText: !_passwordVisible,
-                          inputFormatters: [
-                            LengthLimitingTextInputFormatter(50),
-                          ],
-                          decoration: InputDecoration(
-                              hintText: "Password",
-                              hintStyle: TextStyle(
-                                color: Colors.grey,
-                              ),
-                              filled: true,
-                              fillColor: darkTheme
-                                  ? Colors.black45
-                                  : Colors.grey.shade200,
-                              border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(40),
-                                borderSide: BorderSide(
-                                  width: 0,
-                                  style: BorderStyle.none,
-                                ),
-                              ),
-                              prefixIcon: Icon(
-                                Icons.key,
-                                color: darkTheme
-                                    ? Colors.amber.shade400
-                                    : Colors.grey,
-                              ),
-                              suffixIcon: IconButton(
+                        Stack(
+                          children: [
+                            IconButton(
+                                onPressed: () {
+                                  Navigator.of(context).pop();
+                                },
                                 icon: Icon(
-                                  _passwordVisible
-                                      ? Icons.visibility
-                                      : Icons.visibility_off,
-                                  color: darkTheme
-                                      ? Colors.amber.shade400
-                                      : Colors.grey,
-                                ),
-                                //update state password variable
-                                onPressed: () => setState(() {
-                                  _passwordVisible = !_passwordVisible;
-                                }),
-                              )),
-                          autovalidateMode: AutovalidateMode.onUserInteraction,
-                          validator: (text) {
-                            if (text == null || text.isEmpty) {
-                              return "Password tidak boleh kosong";
-                            }
-                            if (text.length < 6) {
-                              return "Masukkan Password yang valid";
-                            }
-                            if (text.length > 49) {
-                              return "Password tidak boleh lebih dari 49 karakter";
-                            }
-                            return null;
-                          },
-                          onChanged: (text) => setState(() {
-                            passwordTextEditingController.text = text;
-                          }),
-                        ),
-                        SizedBox(
-                          height: 20,
-                        ),
-                        TextFormField(
-                          obscureText: !_passwordVisible,
-                          inputFormatters: [
-                            LengthLimitingTextInputFormatter(50),
+                                  Icons.navigate_before_rounded,
+                                  size: 50,
+                                  color:
+                                      darkTheme ? Colors.black : Colors.white,
+                                )),
+                            Container(
+                              width: MediaQuery.of(context).size.width,
+                              margin: EdgeInsets.only(top: 9),
+                              alignment: Alignment.center,
+                              child: Text(
+                                textAlign: TextAlign.center,
+                                "SIGN UP",
+                                style: TextStyle(
+                                    color:
+                                        darkTheme ? Colors.black : Colors.white,
+                                    fontSize: 32,
+                                    fontWeight: FontWeight.bold),
+                              ),
+                            ),
                           ],
-                          decoration: InputDecoration(
-                              hintText: "Konfirmasi Password",
-                              hintStyle: TextStyle(
-                                color: Colors.grey,
-                              ),
-                              filled: true,
-                              fillColor: darkTheme
-                                  ? Colors.black45
-                                  : Colors.grey.shade200,
-                              border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(40),
-                                borderSide: BorderSide(
-                                  width: 0,
-                                  style: BorderStyle.none,
-                                ),
-                              ),
-                              prefixIcon: Icon(
-                                Icons.key,
-                                color: darkTheme
-                                    ? Colors.amber.shade400
-                                    : Colors.grey,
-                              ),
-                              suffixIcon: IconButton(
-                                icon: Icon(
-                                  _passwordVisible
-                                      ? Icons.visibility
-                                      : Icons.visibility_off,
-                                  color: darkTheme
-                                      ? Colors.amber.shade400
-                                      : Colors.grey,
-                                ),
-                                //update state password variable
-                                onPressed: () => setState(() {
-                                  _passwordVisible = !_passwordVisible;
-                                }),
-                              )),
-                          autovalidateMode: AutovalidateMode.onUserInteraction,
-                          validator: (text) {
-                            if (text == null || text.isEmpty) {
-                              return "Konfirmasi Password tidak boleh kosong";
-                            }
-
-                            if (text != passwordTextEditingController.text) {
-                              return "Password tidak sesuai";
-                            }
-                            if (text.length < 6) {
-                              return "Masukkan Password yang valid";
-                            }
-                            if (text.length > 49) {
-                              return "Password tidak boleh lebih dari 49 karakter";
-                            }
-                            return null;
-                          },
-                          onChanged: (text) => setState(() {
-                            confirmpasswordTextEditingController.text = text;
-                          }),
                         ),
                       ],
                     ),
                   ),
-                  SizedBox(
-                    height: 20,
+                ),
+              ),
+              SizedBox(
+                height: 10,
+              ),
+              Expanded(
+                child: Container(
+                  padding: EdgeInsets.symmetric(horizontal: 24, vertical: 5),
+                  decoration: BoxDecoration(
+                    color: darkTheme ? Colors.grey.shade900 : Colors.white,
+                    borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(42),
+                      topRight: Radius.circular(42),
+                    ),
                   ),
-                  ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                        primary:
-                            darkTheme ? Colors.amber.shade400 : Colors.blue,
-                        onPrimary: darkTheme ? Colors.black : Colors.white,
-                        elevation: 0,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(18),
-                        ),
-                        minimumSize: Size(double.infinity, 50)),
-                    onPressed: () {
-                      _submit();
-                    },
-                    child: Text(
-                      "Sign Up",
-                      style: TextStyle(
-                        fontSize: 20,
+                  child: SingleChildScrollView(
+                    child: Form(
+                      key: _formkey,
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Padding(
+                            padding: EdgeInsets.only(top: 35),
+                            child: TextFormField(
+                              inputFormatters: [
+                                LengthLimitingTextInputFormatter(100),
+                              ],
+                              decoration: InputDecoration(
+                                hintText: "Nama",
+                                hintStyle: TextStyle(
+                                  color: Colors.grey,
+                                ),
+                                filled: true,
+                                fillColor: darkTheme
+                                    ? Colors.black45
+                                    : Colors.grey.shade200,
+                                border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(40),
+                                  borderSide: BorderSide(
+                                    width: 0,
+                                    style: BorderStyle.none,
+                                  ),
+                                ),
+                                prefixIcon: Icon(
+                                  Icons.person,
+                                  color: darkTheme
+                                      ? Colors.amber.shade400
+                                      : Colors.grey,
+                                ),
+                              ),
+                              autovalidateMode:
+                                  AutovalidateMode.onUserInteraction,
+                              validator: (text) {
+                                if (text == null || text.isEmpty) {
+                                  return "Nama tidak boleh kosong";
+                                }
+                                if (text.length < 2) {
+                                  return "Masukkan Nama yang valid";
+                                }
+                                if (text.length > 50) {
+                                  return "Nama tidak boleh lebih dari 50 karakter";
+                                }
+                                return null;
+                              },
+                              onChanged: (text) => setState(() {
+                                nameTextEditingController.text = text;
+                              }),
+                            ),
+                          ),
+                          SizedBox(
+                            height: 20,
+                          ),
+                          TextFormField(
+                            keyboardType: TextInputType.emailAddress,
+                            inputFormatters: [
+                              LengthLimitingTextInputFormatter(100),
+                            ],
+                            decoration: InputDecoration(
+                              hintText: "Email",
+                              hintStyle: TextStyle(
+                                color: Colors.grey,
+                              ),
+                              filled: true,
+                              fillColor: darkTheme
+                                  ? Colors.black45
+                                  : Colors.grey.shade200,
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(40),
+                                borderSide: BorderSide(
+                                  width: 0,
+                                  style: BorderStyle.none,
+                                ),
+                              ),
+                              prefixIcon: Icon(
+                                Icons.mail,
+                                color: darkTheme
+                                    ? Colors.amber.shade400
+                                    : Colors.grey,
+                              ),
+                            ),
+                            autovalidateMode:
+                                AutovalidateMode.onUserInteraction,
+                            validator: (text) {
+                              if (text == null || text.isEmpty) {
+                                return "Email tidak boleh kosong";
+                              }
+                              if (EmailValidator.validate(text) == true) {
+                                return null;
+                              }
+                              if (text.length < 2) {
+                                return "Masukkan Email yang valid";
+                              }
+                              if (text.length > 50) {
+                                return "Email tidak boleh lebih dari 50 karakter";
+                              }
+                              return null;
+                            },
+                            onChanged: (text) => setState(() {
+                              emailTextEditingController.text = text;
+                            }),
+                          ),
+                          SizedBox(
+                            height: 20,
+                          ),
+                          TextFormField(
+                            keyboardType: TextInputType.phone,
+                            inputFormatters: [
+                              FilteringTextInputFormatter.digitsOnly,
+                              LengthLimitingTextInputFormatter(14),
+                            ],
+                            decoration: InputDecoration(
+                              hintText: "Nomor Telepon",
+                              hintStyle: TextStyle(
+                                color: Colors.grey,
+                              ),
+                              filled: true,
+                              fillColor: darkTheme
+                                  ? Colors.black45
+                                  : Colors.grey.shade200,
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(40),
+                                borderSide: BorderSide(
+                                  width: 0,
+                                  style: BorderStyle.none,
+                                ),
+                              ),
+                              prefixIcon: Icon(
+                                Icons.phone,
+                                color: darkTheme
+                                    ? Colors.amber.shade400
+                                    : Colors.grey,
+                              ),
+                            ),
+                            autovalidateMode:
+                                AutovalidateMode.onUserInteraction,
+                            validator: (text) {
+                              if (text == null || text.isEmpty) {
+                                return "Nomor Telepon tidak boleh kosong";
+                              }
+                              if (text.length < 2) {
+                                return "Masukkan Nomor Telepon yang valid";
+                              }
+                              if (text.length > 14) {
+                                return "Nomor Telepon tidak boleh lebih dari 14 karakter";
+                              }
+                              return null;
+                            },
+                            onChanged: (text) => setState(() {
+                              phoneTextEditingController.text = text;
+                            }),
+                          ),
+                          SizedBox(
+                            height: 20,
+                          ),
+                          TextFormField(
+                            obscureText: !_passwordVisible,
+                            inputFormatters: [
+                              LengthLimitingTextInputFormatter(50),
+                            ],
+                            decoration: InputDecoration(
+                                hintText: "Password",
+                                hintStyle: TextStyle(
+                                  color: Colors.grey,
+                                ),
+                                filled: true,
+                                fillColor: darkTheme
+                                    ? Colors.black45
+                                    : Colors.grey.shade200,
+                                border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(40),
+                                  borderSide: BorderSide(
+                                    width: 0,
+                                    style: BorderStyle.none,
+                                  ),
+                                ),
+                                prefixIcon: Icon(
+                                  Icons.key,
+                                  color: darkTheme
+                                      ? Colors.amber.shade400
+                                      : Colors.grey,
+                                ),
+                                suffixIcon: IconButton(
+                                  icon: Icon(
+                                    _passwordVisible
+                                        ? Icons.visibility
+                                        : Icons.visibility_off,
+                                    color: darkTheme
+                                        ? Colors.amber.shade400
+                                        : Colors.grey,
+                                  ),
+                                  //update state password variable
+                                  onPressed: () => setState(() {
+                                    _passwordVisible = !_passwordVisible;
+                                  }),
+                                )),
+                            autovalidateMode:
+                                AutovalidateMode.onUserInteraction,
+                            validator: (text) {
+                              if (text == null || text.isEmpty) {
+                                return "Password tidak boleh kosong";
+                              }
+                              if (text.length < 6) {
+                                return "Masukkan Password yang valid";
+                              }
+                              if (text.length > 49) {
+                                return "Password tidak boleh lebih dari 49 karakter";
+                              }
+                              return null;
+                            },
+                            onChanged: (text) => setState(() {
+                              passwordTextEditingController.text = text;
+                            }),
+                          ),
+                          SizedBox(
+                            height: 20,
+                          ),
+                          TextFormField(
+                            obscureText: !_passwordVisible,
+                            inputFormatters: [
+                              LengthLimitingTextInputFormatter(50),
+                            ],
+                            decoration: InputDecoration(
+                                hintText: "Konfirmasi Password",
+                                hintStyle: TextStyle(
+                                  color: Colors.grey,
+                                ),
+                                filled: true,
+                                fillColor: darkTheme
+                                    ? Colors.black45
+                                    : Colors.grey.shade200,
+                                border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(40),
+                                  borderSide: BorderSide(
+                                    width: 0,
+                                    style: BorderStyle.none,
+                                  ),
+                                ),
+                                prefixIcon: Icon(
+                                  Icons.key,
+                                  color: darkTheme
+                                      ? Colors.amber.shade400
+                                      : Colors.grey,
+                                ),
+                                suffixIcon: IconButton(
+                                  icon: Icon(
+                                    _passwordVisible
+                                        ? Icons.visibility
+                                        : Icons.visibility_off,
+                                    color: darkTheme
+                                        ? Colors.amber.shade400
+                                        : Colors.grey,
+                                  ),
+                                  //update state password variable
+                                  onPressed: () => setState(() {
+                                    _passwordVisible = !_passwordVisible;
+                                  }),
+                                )),
+                            autovalidateMode:
+                                AutovalidateMode.onUserInteraction,
+                            validator: (text) {
+                              if (text == null || text.isEmpty) {
+                                return "Konfirmasi Password tidak boleh kosong";
+                              }
+
+                              if (text != passwordTextEditingController.text) {
+                                return "Password tidak sesuai";
+                              }
+                              if (text.length < 6) {
+                                return "Masukkan Password yang valid";
+                              }
+                              if (text.length > 49) {
+                                return "Password tidak boleh lebih dari 49 karakter";
+                              }
+                              return null;
+                            },
+                            onChanged: (text) => setState(() {
+                              confirmpasswordTextEditingController.text = text;
+                            }),
+                          ),
+                          SizedBox(
+                            height: 20,
+                          ),
+                          ElevatedButton(
+                            style: ElevatedButton.styleFrom(
+                                primary:
+                                    darkTheme ? Colors.amber.shade400 : primary,
+                                onPrimary:
+                                    darkTheme ? Colors.black : Colors.white,
+                                elevation: 0,
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(18),
+                                ),
+                                minimumSize: Size(double.infinity, 50)),
+                            onPressed: () {
+                              _submit();
+                            },
+                            child: Text(
+                              "Sign Up",
+                              style: TextStyle(
+                                  fontSize: 22, fontFamily: 'Poppins-SemiBold'),
+                            ),
+                          ),
+                          SizedBox(
+                            height: 20,
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text(
+                                "Already Have An Account ? ",
+                                style: TextStyle(
+                                  fontSize: 14,
+                                  color:
+                                      darkTheme ? Colors.white : Colors.black,
+                                ),
+                              ),
+                              GestureDetector(
+                                onTap: () {
+                                  Navigator.pushReplacement(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (c) => LoginScreen()));
+                                },
+                                child: Text(
+                                  "Sign In ",
+                                  style: TextStyle(
+                                    fontSize: 14,
+                                    color: darkTheme
+                                        ? Colors.amber.shade400
+                                        : primary,
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                          SizedBox(
+                            height: 20,
+                          ),
+                        ],
                       ),
                     ),
                   ),
-                  SizedBox(
-                    height: 20,
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text("Sudah memiliki akun?"),
-                      SizedBox(
-                        width: 5,
-                      ),
-                      GestureDetector(
-                        onTap: () {
-                          Navigator.push(context,
-                              MaterialPageRoute(builder: (c) => LoginScreen()));
-                        },
-                        child: Text(
-                          "Masuk",
-                          style: TextStyle(
-                            color:
-                                darkTheme ? Colors.amber.shade400 : Colors.blue,
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ],
+                ),
               ),
             ],
           ),
