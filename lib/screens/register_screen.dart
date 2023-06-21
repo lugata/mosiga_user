@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:mosiga_users/global/global.dart';
+import 'package:mosiga_users/screens/login_screen.dart';
 import 'package:mosiga_users/screens/main_page.dart';
 
 class RegisterScreen extends StatefulWidget {
@@ -35,7 +36,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
           emailTextEditingController.text.trim());
 
       if (isEmailRegistered) {
-        Fluttertoast.showToast(msg: "Email is already registered");
+        Fluttertoast.showToast(msg: "Email sudah terdaftar");
       } else {
         await firebaseAuth
             .createUserWithEmailAndPassword(
@@ -54,7 +55,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
             DatabaseReference userRef = FirebaseDatabase.instance.ref();
             userRef.child("users").child(currentUser!.uid).set(userMap);
           }
-          await Fluttertoast.showToast(msg: "Successfully Registered");
+          await Fluttertoast.showToast(msg: "Pendaftaran berhasil");
           Navigator.push(
               context, MaterialPageRoute(builder: (c) => MainScreen()));
         }).catchError((error) {
@@ -63,7 +64,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
         });
       }
     } else {
-      Fluttertoast.showToast(msg: "Not all fields are valid!");
+      Fluttertoast.showToast(msg: "Isi Terlebih Dahulu");
     }
   }
 
@@ -132,7 +133,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                             LengthLimitingTextInputFormatter(100),
                           ],
                           decoration: InputDecoration(
-                            hintText: "Name",
+                            hintText: "Nama",
                             hintStyle: TextStyle(
                               color: Colors.grey,
                             ),
@@ -157,13 +158,13 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           autovalidateMode: AutovalidateMode.onUserInteraction,
                           validator: (text) {
                             if (text == null || text.isEmpty) {
-                              return "Name Can't Be Empty";
+                              return "Nama tidak boleh kosong";
                             }
                             if (text.length < 2) {
-                              return "Please Enter Valid Name";
+                              return "Masukkan Nama yang valid";
                             }
                             if (text.length > 50) {
-                              return "Name Can't Be More Than 50";
+                              return "Nama tidak boleh lebih dari 50 karakter";
                             }
                             return null;
                           },
@@ -205,16 +206,16 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           autovalidateMode: AutovalidateMode.onUserInteraction,
                           validator: (text) {
                             if (text == null || text.isEmpty) {
-                              return "Email Can't Be Empty";
+                              return "Email tidak boleh kosong";
                             }
                             if (EmailValidator.validate(text) == true) {
                               return null;
                             }
                             if (text.length < 2) {
-                              return "Please Enter Valid Email";
+                              return "Masukkan Email yang valid";
                             }
                             if (text.length > 50) {
-                              return "Email Can't Be More Than 50";
+                              return "Email tidak boleh lebih dari 50 karakter";
                             }
                             return null;
                           },
@@ -232,7 +233,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                             LengthLimitingTextInputFormatter(14),
                           ],
                           decoration: InputDecoration(
-                            hintText: "Phone Number",
+                            hintText: "Nomor Telepon",
                             hintStyle: TextStyle(
                               color: Colors.grey,
                             ),
@@ -257,14 +258,13 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           autovalidateMode: AutovalidateMode.onUserInteraction,
                           validator: (text) {
                             if (text == null || text.isEmpty) {
-                              return "Phone Can't Be Empty";
+                              return "Nomor Telepon tidak boleh kosong";
                             }
-
                             if (text.length < 2) {
-                              return "Please Enter Valid Phone";
+                              return "Masukkan Nomor Telepon yang valid";
                             }
                             if (text.length > 14) {
-                              return "Phone Can't Be More Than 14";
+                              return "Nomor Telepon tidak boleh lebih dari 14 karakter";
                             }
                             return null;
                           },
@@ -280,7 +280,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                             LengthLimitingTextInputFormatter(100),
                           ],
                           decoration: InputDecoration(
-                            hintText: "Address",
+                            hintText: "Alamat",
                             hintStyle: TextStyle(
                               color: Colors.grey,
                             ),
@@ -305,14 +305,13 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           autovalidateMode: AutovalidateMode.onUserInteraction,
                           validator: (text) {
                             if (text == null || text.isEmpty) {
-                              return "Address Can't Be Empty";
+                              return "Alamat tidak boleh kosong";
                             }
-
                             if (text.length < 2) {
-                              return "Please Enter Valid Address";
+                              return "Masukkan Alamat yang valid";
                             }
                             if (text.length > 100) {
-                              return "Address Can't Be More Than 100";
+                              return "Alamat tidak boleh lebih dari 100 karakter";
                             }
                             return null;
                           },
@@ -367,13 +366,13 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           autovalidateMode: AutovalidateMode.onUserInteraction,
                           validator: (text) {
                             if (text == null || text.isEmpty) {
-                              return "Password Can't Be Empty";
+                              return "Password tidak boleh kosong";
                             }
                             if (text.length < 6) {
-                              return "Please Enter Valid Password";
+                              return "Masukkan Password yang valid";
                             }
                             if (text.length > 49) {
-                              return "Password Can't Be More Than 49";
+                              return "Password tidak boleh lebih dari 49 karakter";
                             }
                             return null;
                           },
@@ -390,7 +389,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                             LengthLimitingTextInputFormatter(50),
                           ],
                           decoration: InputDecoration(
-                              hintText: "Confirm Password",
+                              hintText: "Konfirmasi Password",
                               hintStyle: TextStyle(
                                 color: Colors.grey,
                               ),
@@ -428,17 +427,17 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           autovalidateMode: AutovalidateMode.onUserInteraction,
                           validator: (text) {
                             if (text == null || text.isEmpty) {
-                              return "Confirm Password Can't Be Empty";
+                              return "Konfirmasi Password tidak boleh kosong";
                             }
 
                             if (text != passwordTextEditingController.text) {
-                              return "Password Do Not Match";
+                              return "Password tidak sesuai";
                             }
                             if (text.length < 6) {
-                              return "Please Enter Valid Password";
+                              return "Masukkan Password yang valid";
                             }
                             if (text.length > 49) {
-                              return "Password Can't Be More Than 49";
+                              return "Password tidak boleh lebih dari 49 karakter";
                             }
                             return null;
                           },
@@ -478,14 +477,17 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Text("Already Have an Account ?"),
+                      Text("Sudah memiliki akun?"),
                       SizedBox(
                         width: 5,
                       ),
                       GestureDetector(
-                        onTap: () {},
+                        onTap: () {
+                          Navigator.push(context,
+                              MaterialPageRoute(builder: (c) => LoginScreen()));
+                        },
                         child: Text(
-                          "Sign In",
+                          "Masuk",
                           style: TextStyle(
                             color:
                                 darkTheme ? Colors.amber.shade400 : Colors.blue,
@@ -495,7 +497,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     ],
                   ),
                 ],
-              )
+              ),
             ],
           ),
         ),
