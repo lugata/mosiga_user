@@ -34,7 +34,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
         await Fluttertoast.showToast(msg: "Berhasil Masuk");
         Navigator.pushReplacement(
-            context, MaterialPageRoute(builder: (c) => MainScreen()));
+            context, MaterialPageRoute(builder: (c) => const MainScreen()));
       }).catchError((error) {
         // Tangkap dan tangani kesalahan yang terjadi
         Fluttertoast.showToast(msg: "Email atau Password Salah");
@@ -51,7 +51,7 @@ class _LoginScreenState extends State<LoginScreen> {
     return Scaffold(
       body: Center(
         child: SingleChildScrollView(
-          padding: EdgeInsets.all(24),
+          padding: const EdgeInsets.all(24),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
@@ -63,7 +63,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     fontSize: 32,
                     fontWeight: FontWeight.bold),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 20,
               ),
               Form(
@@ -77,7 +77,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       ],
                       decoration: InputDecoration(
                         hintText: "Email",
-                        hintStyle: TextStyle(
+                        hintStyle: const TextStyle(
                           color: Colors.grey,
                         ),
                         filled: true,
@@ -85,7 +85,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             darkTheme ? Colors.black45 : Colors.grey.shade200,
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(40),
-                          borderSide: BorderSide(
+                          borderSide: const BorderSide(
                             width: 0,
                             style: BorderStyle.none,
                           ),
@@ -116,7 +116,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         emailTextEditingController.text = text;
                       }),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 20,
                     ),
                     TextFormField(
@@ -126,7 +126,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       ],
                       decoration: InputDecoration(
                           hintText: "Password",
-                          hintStyle: TextStyle(
+                          hintStyle: const TextStyle(
                             color: Colors.grey,
                           ),
                           filled: true,
@@ -134,7 +134,7 @@ class _LoginScreenState extends State<LoginScreen> {
                               darkTheme ? Colors.black45 : Colors.grey.shade200,
                           border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(40),
-                            borderSide: BorderSide(
+                            borderSide: const BorderSide(
                               width: 0,
                               style: BorderStyle.none,
                             ),
@@ -175,7 +175,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         passwordTextEditingController.text = text;
                       }),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 20,
                     ),
                     ElevatedButton(
@@ -186,17 +186,17 @@ class _LoginScreenState extends State<LoginScreen> {
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(18),
                           ),
-                          minimumSize: Size(double.infinity, 50)),
+                          minimumSize: const Size(double.infinity, 50)),
                       onPressed: () {
                         _submit();
                       },
-                      child: Text(
+                      child: const Text(
                         "Sign In",
                         style: TextStyle(
                             fontSize: 22, fontFamily: 'Poppins-SemiBold'),
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 20,
                     ),
                     Row(
@@ -207,7 +207,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (c) => RegisterScreen()));
+                                    builder: (c) => const RegisterScreen()));
                           },
                           child: Text(
                             "Create An Account",

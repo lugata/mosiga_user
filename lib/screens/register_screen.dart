@@ -1,6 +1,5 @@
 import 'package:email_validator/email_validator.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -57,7 +56,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
           }
           await Fluttertoast.showToast(msg: "Pendaftaran berhasil");
           Navigator.pushReplacement(
-              context, MaterialPageRoute(builder: (c) => MainScreen()));
+              context, MaterialPageRoute(builder: (c) => const MainScreen()));
         }).catchError((error) {
           // Tangkap dan tangani kesalahan yang terjadi
           Fluttertoast.showToast(msg: 'Error: $error');
@@ -132,7 +131,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                 )),
                             Container(
                               width: MediaQuery.of(context).size.width,
-                              margin: EdgeInsets.only(top: 9),
+                              margin: const EdgeInsets.only(top: 9),
                               alignment: Alignment.center,
                               child: Text(
                                 textAlign: TextAlign.center,
@@ -151,15 +150,16 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   ),
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 10,
               ),
               Expanded(
                 child: Container(
-                  padding: EdgeInsets.symmetric(horizontal: 24, vertical: 5),
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 24, vertical: 5),
                   decoration: BoxDecoration(
                     color: darkTheme ? Colors.grey.shade900 : Colors.white,
-                    borderRadius: BorderRadius.only(
+                    borderRadius: const BorderRadius.only(
                       topLeft: Radius.circular(42),
                       topRight: Radius.circular(42),
                     ),
@@ -172,14 +172,14 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
                           Padding(
-                            padding: EdgeInsets.only(top: 35),
+                            padding: const EdgeInsets.only(top: 35),
                             child: TextFormField(
                               inputFormatters: [
                                 LengthLimitingTextInputFormatter(100),
                               ],
                               decoration: InputDecoration(
                                 hintText: "Nama",
-                                hintStyle: TextStyle(
+                                hintStyle: const TextStyle(
                                   color: Colors.grey,
                                 ),
                                 filled: true,
@@ -188,7 +188,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                     : Colors.grey.shade200,
                                 border: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(40),
-                                  borderSide: BorderSide(
+                                  borderSide: const BorderSide(
                                     width: 0,
                                     style: BorderStyle.none,
                                   ),
@@ -219,7 +219,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                               }),
                             ),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 20,
                           ),
                           TextFormField(
@@ -229,7 +229,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                             ],
                             decoration: InputDecoration(
                               hintText: "Email",
-                              hintStyle: TextStyle(
+                              hintStyle: const TextStyle(
                                 color: Colors.grey,
                               ),
                               filled: true,
@@ -238,7 +238,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                   : Colors.grey.shade200,
                               border: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(40),
-                                borderSide: BorderSide(
+                                borderSide: const BorderSide(
                                   width: 0,
                                   style: BorderStyle.none,
                                 ),
@@ -271,7 +271,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                               emailTextEditingController.text = text;
                             }),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 20,
                           ),
                           TextFormField(
@@ -282,7 +282,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                             ],
                             decoration: InputDecoration(
                               hintText: "Nomor Telepon",
-                              hintStyle: TextStyle(
+                              hintStyle: const TextStyle(
                                 color: Colors.grey,
                               ),
                               filled: true,
@@ -291,7 +291,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                   : Colors.grey.shade200,
                               border: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(40),
-                                borderSide: BorderSide(
+                                borderSide: const BorderSide(
                                   width: 0,
                                   style: BorderStyle.none,
                                 ),
@@ -321,7 +321,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                               phoneTextEditingController.text = text;
                             }),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 20,
                           ),
                           TextFormField(
@@ -331,7 +331,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                             ],
                             decoration: InputDecoration(
                                 hintText: "Password",
-                                hintStyle: TextStyle(
+                                hintStyle: const TextStyle(
                                   color: Colors.grey,
                                 ),
                                 filled: true,
@@ -340,7 +340,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                     : Colors.grey.shade200,
                                 border: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(40),
-                                  borderSide: BorderSide(
+                                  borderSide: const BorderSide(
                                     width: 0,
                                     style: BorderStyle.none,
                                   ),
@@ -383,7 +383,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                               passwordTextEditingController.text = text;
                             }),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 20,
                           ),
                           TextFormField(
@@ -393,7 +393,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                             ],
                             decoration: InputDecoration(
                                 hintText: "Konfirmasi Password",
-                                hintStyle: TextStyle(
+                                hintStyle: const TextStyle(
                                   color: Colors.grey,
                                 ),
                                 filled: true,
@@ -402,7 +402,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                     : Colors.grey.shade200,
                                 border: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(40),
-                                  borderSide: BorderSide(
+                                  borderSide: const BorderSide(
                                     width: 0,
                                     style: BorderStyle.none,
                                   ),
@@ -449,7 +449,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                               confirmpasswordTextEditingController.text = text;
                             }),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 20,
                           ),
                           ElevatedButton(
@@ -462,17 +462,17 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                 shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(18),
                                 ),
-                                minimumSize: Size(double.infinity, 50)),
+                                minimumSize: const Size(double.infinity, 50)),
                             onPressed: () {
                               _submit();
                             },
-                            child: Text(
+                            child: const Text(
                               "Sign Up",
                               style: TextStyle(
                                   fontSize: 22, fontFamily: 'Poppins-SemiBold'),
                             ),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 20,
                           ),
                           Row(
@@ -491,7 +491,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                   Navigator.pushReplacement(
                                       context,
                                       MaterialPageRoute(
-                                          builder: (c) => LoginScreen()));
+                                          builder: (c) => const LoginScreen()));
                                 },
                                 child: Text(
                                   "Sign In ",
@@ -505,7 +505,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                               ),
                             ],
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 20,
                           ),
                         ],

@@ -1,6 +1,5 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:mosiga_users/screens/login_screen.dart';
 import 'package:mosiga_users/splashScreens/splash_screen.dart';
 import 'package:mosiga_users/theme/theme.dart';
 
@@ -22,7 +21,7 @@ class MyApp extends StatelessWidget {
       theme: MyThemes.lightTheme,
       darkTheme: MyThemes.darkTheme,
       debugShowCheckedModeBanner: false,
-      home: SplashScreen(),
+      home: const SplashScreen(),
     );
   }
 }

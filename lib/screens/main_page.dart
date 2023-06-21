@@ -15,7 +15,7 @@ class _MainScreenState extends State<MainScreen> {
     await firebaseAuth.signOut();
     Navigator.pushReplacement(
       context,
-      MaterialPageRoute(builder: (context) => LoginScreen()),
+      MaterialPageRoute(builder: (context) => const LoginScreen()),
     );
   }
 
@@ -26,7 +26,7 @@ class _MainScreenState extends State<MainScreen> {
     return Scaffold(
       body: Center(
         child: SingleChildScrollView(
-          padding: EdgeInsets.all(24),
+          padding: const EdgeInsets.all(24),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
@@ -38,7 +38,7 @@ class _MainScreenState extends State<MainScreen> {
                     fontSize: 32,
                     fontWeight: FontWeight.bold),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 20,
               ),
               ElevatedButton(
@@ -49,11 +49,11 @@ class _MainScreenState extends State<MainScreen> {
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(18),
                     ),
-                    minimumSize: Size(double.infinity, 50)),
+                    minimumSize: const Size(double.infinity, 50)),
                 onPressed: () {
                   _logout();
                 },
-                child: Text(
+                child: const Text(
                   "Logout",
                   style: TextStyle(
                     fontSize: 20,

@@ -33,7 +33,7 @@ class _VerificationScreenState extends State<VerificationScreen> {
 
         await Fluttertoast.showToast(msg: "Berhasil Masuk");
         Navigator.push(
-            context, MaterialPageRoute(builder: (c) => MainScreen()));
+            context, MaterialPageRoute(builder: (c) => const MainScreen()));
       }).catchError((error) {
         // Tangkap dan tangani kesalahan yang terjadi
         Fluttertoast.showToast(msg: "Email atau Password Salah");
@@ -51,7 +51,7 @@ class _VerificationScreenState extends State<VerificationScreen> {
     return Scaffold(
       body: Center(
         child: SingleChildScrollView(
-          padding: EdgeInsets.all(24),
+          padding: const EdgeInsets.all(24),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
@@ -63,7 +63,7 @@ class _VerificationScreenState extends State<VerificationScreen> {
                     fontSize: 32,
                     fontWeight: FontWeight.bold),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 20,
               ),
               Form(
@@ -77,7 +77,7 @@ class _VerificationScreenState extends State<VerificationScreen> {
                       ],
                       decoration: InputDecoration(
                         hintText: "Email",
-                        hintStyle: TextStyle(
+                        hintStyle: const TextStyle(
                           color: Colors.grey,
                         ),
                         filled: true,
@@ -85,7 +85,7 @@ class _VerificationScreenState extends State<VerificationScreen> {
                             darkTheme ? Colors.black45 : Colors.grey.shade200,
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(40),
-                          borderSide: BorderSide(
+                          borderSide: const BorderSide(
                             width: 0,
                             style: BorderStyle.none,
                           ),
@@ -116,7 +116,7 @@ class _VerificationScreenState extends State<VerificationScreen> {
                         otpTextEditingController.text = text;
                       }),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 20,
                     ),
                     TextFormField(
@@ -126,7 +126,7 @@ class _VerificationScreenState extends State<VerificationScreen> {
                       ],
                       decoration: InputDecoration(
                           hintText: "Password",
-                          hintStyle: TextStyle(
+                          hintStyle: const TextStyle(
                             color: Colors.grey,
                           ),
                           filled: true,
@@ -134,7 +134,7 @@ class _VerificationScreenState extends State<VerificationScreen> {
                               darkTheme ? Colors.black45 : Colors.grey.shade200,
                           border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(40),
-                            borderSide: BorderSide(
+                            borderSide: const BorderSide(
                               width: 0,
                               style: BorderStyle.none,
                             ),
@@ -175,7 +175,7 @@ class _VerificationScreenState extends State<VerificationScreen> {
                         passwordTextEditingController.text = text;
                       }),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 20,
                     ),
                     ElevatedButton(
@@ -187,18 +187,18 @@ class _VerificationScreenState extends State<VerificationScreen> {
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(18),
                           ),
-                          minimumSize: Size(double.infinity, 50)),
+                          minimumSize: const Size(double.infinity, 50)),
                       onPressed: () {
                         _submit();
                       },
-                      child: Text(
+                      child: const Text(
                         "Sign In",
                         style: TextStyle(
                           fontSize: 20,
                         ),
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 20,
                     ),
                     Row(
@@ -209,7 +209,7 @@ class _VerificationScreenState extends State<VerificationScreen> {
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (c) => RegisterScreen()));
+                                    builder: (c) => const RegisterScreen()));
                           },
                           child: Text(
                             "Create An Account",
@@ -223,7 +223,7 @@ class _VerificationScreenState extends State<VerificationScreen> {
                         ),
                       ],
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 20,
                     ),
                   ],

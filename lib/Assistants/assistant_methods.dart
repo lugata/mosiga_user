@@ -1,5 +1,3 @@
-import 'dart:ffi';
-
 import 'package:firebase_database/firebase_database.dart';
 import 'package:mosiga_users/global/global.dart';
 import 'package:mosiga_users/models/user_models.dart';
