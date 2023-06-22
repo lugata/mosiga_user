@@ -157,7 +157,7 @@ class _MainScreenState extends State<MainScreen> {
                             style: TextStyle(
                               fontFamily: 'Poppins',
                               color: Colors.white,
-                              fontSize: 18,
+                              fontSize: 24,
                               fontWeight: FontWeight.w600,
                             ),
                           ),
