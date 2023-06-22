@@ -8,8 +8,6 @@ import '../screens/login_screen.dart';
 import '../screens/main_page.dart';
 
 class SplashScreen extends StatefulWidget {
-  const SplashScreen({super.key});
-
   @override
   _SplashScreenState createState() => _SplashScreenState();
 }
@@ -24,26 +22,26 @@ class _SplashScreenState extends State<SplashScreen>
     super.initState();
     _animationController = AnimationController(
       vsync: this,
-      duration: const Duration(seconds: 3),
+      duration: Duration(seconds: 3),
     );
     _gradientAnimation = ColorTween(
-      begin: const Color.fromARGB(255, 0, 9, 107),
-      end: const Color(0xFF0B0EB3),
+      begin: Color.fromARGB(255, 0, 9, 107),
+      end: Color(0xFF0B0EB3),
     ).animate(_animationController);
 
     _animationController.repeat(reverse: true);
 
-    Timer(const Duration(seconds: 3), () async {
-      if (firebaseAuth.currentUser != null) {
+    Timer(Duration(seconds: 3), () async {
+      if (await firebaseAuth.currentUser != null) {
         firebaseAuth.currentUser != null ? AssistantMethods() : null;
         Navigator.pushReplacement(
           context,
-          MaterialPageRoute(builder: (context) => const MainScreen()),
+          MaterialPageRoute(builder: (context) => MainScreen()),
         );
       } else {
         Navigator.pushReplacement(
           context,
-          MaterialPageRoute(builder: (context) => const LoginScreen()),
+          MaterialPageRoute(builder: (context) => LoginScreen()),
         );
       }
     });
@@ -69,7 +67,7 @@ class _SplashScreenState extends State<SplashScreen>
                 decoration: BoxDecoration(
                   gradient: LinearGradient(
                     colors: [
-                      const Color.fromARGB(255, 21, 3, 185),
+                      Color.fromARGB(255, 21, 3, 185),
                       _gradientAnimation.value!,
                     ],
                   ),

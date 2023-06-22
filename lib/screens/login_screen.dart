@@ -34,7 +34,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
         await Fluttertoast.showToast(msg: "Berhasil Masuk");
         Navigator.pushReplacement(
-            context, MaterialPageRoute(builder: (c) => const MainScreen()));
+            context, MaterialPageRoute(builder: (c) => MainScreen()));
       }).catchError((error) {
         // Tangkap dan tangani kesalahan yang terjadi
         Fluttertoast.showToast(msg: "Email atau Password Salah");
