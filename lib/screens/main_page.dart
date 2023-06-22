@@ -12,12 +12,12 @@ class MainScreen extends StatefulWidget {
 }
 
 class _MainScreenState extends State<MainScreen> {
-  void _logout() async {
-    await firebaseAuth.signOut();
-    Navigator.pushReplacement(
-      context,
-      MaterialPageRoute(builder: (context) => const LoginScreen()),
-    );
+  int _selectedIndex = 0;
+
+  void _onItemTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
   }
 
   @override
@@ -287,12 +287,36 @@ class _MainScreenState extends State<MainScreen> {
                         ),
                       ),
                     ),
-                    SizedBox(height: 20), // Add spacing after the Row
                   ],
                 ),
               ),
             ],
           ),
+        ),
+        bottomNavigationBar: BottomNavigationBar(
+          iconSize: 28,
+          items: const <BottomNavigationBarItem>[
+            BottomNavigationBarItem(
+              icon: Icon(Icons.home_rounded),
+              label: 'Home',
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.history_rounded),
+              label: 'History',
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.chat_rounded),
+              label: 'Chat',
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.person_rounded),
+              label: 'Profile',
+            ),
+          ],
+          currentIndex: _selectedIndex,
+          selectedItemColor: darkTheme ? Colors.white : Colors.grey.shade900,
+          unselectedItemColor: darkTheme ? Colors.white : Colors.grey.shade900,
+          onTap: _onItemTapped,
         ),
       ),
     );
