@@ -30,7 +30,7 @@ class _MainScreenState extends State<MainScreen> {
           child: Stack(
             children: [
               Padding(
-                padding: EdgeInsets.fromLTRB(24, 8, 24, 8),
+                padding: EdgeInsets.fromLTRB(24, 8, 24, 0),
                 child: Column(
                   mainAxisSize: MainAxisSize.max,
                   children: [
@@ -291,7 +291,6 @@ class _MainScreenState extends State<MainScreen> {
           ),
         ),
         bottomNavigationBar: BottomNavigationBar(
-          iconSize: 28,
           items: const <BottomNavigationBarItem>[
             BottomNavigationBarItem(
               icon: Icon(Icons.home_rounded),
@@ -310,9 +309,15 @@ class _MainScreenState extends State<MainScreen> {
               label: 'Profile',
             ),
           ],
+          type: BottomNavigationBarType.fixed,
+          iconSize: 32,
+          backgroundColor: darkTheme ? Colors.amber.shade400 : primary,
+          showSelectedLabels: false,
+          showUnselectedLabels: false,
+          elevation: 0,
           currentIndex: _selectedIndex,
           selectedItemColor: darkTheme ? Colors.white : Colors.grey.shade900,
-          unselectedItemColor: darkTheme ? Colors.white : Colors.grey.shade900,
+          unselectedItemColor: darkTheme ? Colors.grey.shade900 : Colors.white,
           onTap: _onItemTapped,
         ),
       ),
