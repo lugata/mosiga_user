@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:mosiga_users/screens/login_screen.dart';
 import 'package:mosiga_users/theme/theme.dart';
-
-import '../global/global.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({super.key});
