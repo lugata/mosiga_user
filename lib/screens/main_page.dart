@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mosiga_users/presentation/nav_icons_icons.dart';
 import 'package:mosiga_users/theme/theme.dart';
 
 class MainScreen extends StatefulWidget {
@@ -290,35 +291,39 @@ class _MainScreenState extends State<MainScreen> {
             ],
           ),
         ),
-        bottomNavigationBar: BottomNavigationBar(
-          items: const <BottomNavigationBarItem>[
-            BottomNavigationBarItem(
-              icon: Icon(Icons.home_rounded),
-              label: 'Home',
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.history_rounded),
-              label: 'History',
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.chat_rounded),
-              label: 'Chat',
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.person_rounded),
-              label: 'Profile',
-            ),
-          ],
-          type: BottomNavigationBarType.fixed,
-          iconSize: 32,
-          backgroundColor: darkTheme ? Colors.amber.shade400 : primary,
-          showSelectedLabels: false,
-          showUnselectedLabels: false,
-          elevation: 0,
-          currentIndex: _selectedIndex,
-          selectedItemColor: darkTheme ? Colors.white : Colors.grey.shade900,
-          unselectedItemColor: darkTheme ? Colors.grey.shade900 : Colors.white,
-          onTap: _onItemTapped,
+        bottomNavigationBar: SizedBox(
+          height: 80,
+          child: BottomNavigationBar(
+            items: const <BottomNavigationBarItem>[
+              BottomNavigationBarItem(
+                icon: Icon(NavIcons.homeoutlined),
+                label: 'Home',
+              ),
+              BottomNavigationBarItem(
+                icon: Icon(NavIcons.riwayat),
+                label: 'History',
+              ),
+              BottomNavigationBarItem(
+                icon: Icon(NavIcons.pesan),
+                label: 'Chat',
+              ),
+              BottomNavigationBarItem(
+                icon: Icon(NavIcons.orang),
+                label: 'Profile',
+              ),
+            ],
+            type: BottomNavigationBarType.fixed,
+            iconSize: 28,
+            backgroundColor: darkTheme ? Colors.amber.shade400 : primary,
+            showSelectedLabels: false,
+            showUnselectedLabels: false,
+            elevation: 0,
+            currentIndex: _selectedIndex,
+            selectedItemColor: darkTheme ? Colors.white : Colors.grey.shade900,
+            unselectedItemColor:
+                darkTheme ? Colors.grey.shade900 : Colors.white,
+            onTap: _onItemTapped,
+          ),
         ),
       ),
     );

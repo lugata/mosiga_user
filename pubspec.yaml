@@ -90,3 +90,6 @@ flutter:
           weight: 700
         - asset: fonts/Poppins-Italic.ttf
           style: italic
+    - family: NavIcons
+      fonts:
+        - asset: fonts/NavIcons.ttf
