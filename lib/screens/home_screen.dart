@@ -1,5 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:mosiga_users/screens/banyak_masalah_screen.dart';
+import 'package:mosiga_users/screens/bensin_screen.dart';
+import 'package:mosiga_users/screens/derek_screen.dart';
+import 'package:mosiga_users/screens/kunci_hilang_screen.dart';
 import 'package:mosiga_users/screens/profile_screen.dart';
+import 'package:mosiga_users/screens/tambal_ban_screen.dart';
 import '../global/global.dart';
 import '../theme/theme.dart';
 import 'login_screen.dart';
@@ -221,32 +226,48 @@ class _HomeScreenState extends State<HomeScreen> {
                                           context,
                                           MaterialPageRoute(
                                               builder: (context) =>
-                                                  const ProfileScreen()),
+                                                  const TambalBan()),
                                         ),
                                       ),
                                       const SizedBox(height: 18),
-                                      Container(
-                                        width: 100,
-                                        height: 200,
-                                        decoration: BoxDecoration(
-                                          color: darkTheme
-                                              ? Colors.amber.shade400
-                                              : primary,
-                                          borderRadius:
-                                              BorderRadius.circular(24),
+                                      GestureDetector(
+                                        child: Container(
+                                          width: 100,
+                                          height: 200,
+                                          decoration: BoxDecoration(
+                                            color: darkTheme
+                                                ? Colors.amber.shade400
+                                                : primary,
+                                            borderRadius:
+                                                BorderRadius.circular(24),
+                                          ),
+                                        ),
+                                        onTap: () => Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (context) =>
+                                                  const BensinPage()),
                                         ),
                                       ),
                                       const SizedBox(height: 18),
-                                      Container(
-                                        width: 100,
-                                        height: 150,
-                                        decoration: BoxDecoration(
-                                          color: darkTheme
-                                              ? Colors.amber.shade400
-                                              : primary,
-                                          borderRadius:
-                                              BorderRadius.circular(24),
-                                          shape: BoxShape.rectangle,
+                                      GestureDetector(
+                                        child: Container(
+                                          width: 100,
+                                          height: 150,
+                                          decoration: BoxDecoration(
+                                            color: darkTheme
+                                                ? Colors.amber.shade400
+                                                : primary,
+                                            borderRadius:
+                                                BorderRadius.circular(24),
+                                            shape: BoxShape.rectangle,
+                                          ),
+                                        ),
+                                        onTap: () => Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (context) =>
+                                                  const BanyakMasalah()),
                                         ),
                                       ),
                                     ],
@@ -267,41 +288,65 @@ class _HomeScreenState extends State<HomeScreen> {
                                     crossAxisAlignment:
                                         CrossAxisAlignment.stretch,
                                     children: [
-                                      Container(
-                                        width: 100,
-                                        height: 200,
-                                        decoration: BoxDecoration(
-                                          color: darkTheme
-                                              ? Colors.amber.shade400
-                                              : primary,
-                                          borderRadius:
-                                              BorderRadius.circular(24),
-                                          shape: BoxShape.rectangle,
+                                      GestureDetector(
+                                        child: Container(
+                                          width: 100,
+                                          height: 200,
+                                          decoration: BoxDecoration(
+                                            color: darkTheme
+                                                ? Colors.amber.shade400
+                                                : primary,
+                                            borderRadius:
+                                                BorderRadius.circular(24),
+                                            shape: BoxShape.rectangle,
+                                          ),
+                                        ),
+                                        onTap: () => Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (context) =>
+                                                  const DerekPage()),
                                         ),
                                       ),
                                       const SizedBox(height: 18),
-                                      Container(
-                                        width: 100,
-                                        height: 250,
-                                        decoration: BoxDecoration(
-                                          color: darkTheme
-                                              ? Colors.amber.shade400
-                                              : primary,
-                                          borderRadius:
-                                              BorderRadius.circular(24),
+                                      GestureDetector(
+                                        child: Container(
+                                          width: 100,
+                                          height: 250,
+                                          decoration: BoxDecoration(
+                                            color: darkTheme
+                                                ? Colors.amber.shade400
+                                                : primary,
+                                            borderRadius:
+                                                BorderRadius.circular(24),
+                                          ),
+                                        ),
+                                        onTap: () => Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (context) =>
+                                                  const KunciHilang()),
                                         ),
                                       ),
                                       const SizedBox(height: 18),
-                                      Container(
-                                        width: 100,
-                                        height: 150,
-                                        decoration: BoxDecoration(
-                                          color: darkTheme
-                                              ? Colors.amber.shade400
-                                              : primary,
-                                          borderRadius:
-                                              BorderRadius.circular(24),
-                                          shape: BoxShape.rectangle,
+                                      GestureDetector(
+                                        child: Container(
+                                          width: 100,
+                                          height: 150,
+                                          decoration: BoxDecoration(
+                                            color: darkTheme
+                                                ? Colors.amber.shade400
+                                                : primary,
+                                            borderRadius:
+                                                BorderRadius.circular(24),
+                                            shape: BoxShape.rectangle,
+                                          ),
+                                        ),
+                                        onTap: () => Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (context) =>
+                                                  const BanyakMasalah()),
                                         ),
                                       ),
                                     ],
