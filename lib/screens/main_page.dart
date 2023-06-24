@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:mosiga_users/presentation/nav_icons_icons.dart';
 import 'package:mosiga_users/theme/theme.dart';
 
+import '../global/global.dart';
+import 'login_screen.dart';
+
 class MainScreen extends StatefulWidget {
   const MainScreen({super.key});
 
@@ -16,6 +19,14 @@ class _MainScreenState extends State<MainScreen> {
     setState(() {
       _selectedIndex = index;
     });
+  }
+
+  void _logout() async {
+    await firebaseAuth.signOut();
+    Navigator.pushReplacement(
+      context,
+      MaterialPageRoute(builder: (context) => const LoginScreen()),
+    );
   }
 
   @override
@@ -54,8 +65,9 @@ class _MainScreenState extends State<MainScreen> {
                                   width: 50,
                                   height: 50,
                                   decoration: BoxDecoration(
-                                    color:
-                                        Theme.of(context).secondaryHeaderColor,
+                                    color: darkTheme
+                                        ? Colors.black
+                                        : Colors.grey.shade200,
                                     shape: BoxShape.circle,
                                   ),
                                   child: IconButton(
@@ -78,7 +90,9 @@ class _MainScreenState extends State<MainScreen> {
                                   'Hey, Ata 👋',
                                   style: TextStyle(
                                     fontFamily: 'Poppins',
-                                    color: Colors.white,
+                                    color: darkTheme
+                                        ? Colors.white
+                                        : Colors.grey.shade900,
                                     fontSize: 18,
                                     fontWeight: FontWeight.w600,
                                   ),
@@ -92,14 +106,14 @@ class _MainScreenState extends State<MainScreen> {
                                   ),
                                   child: IconButton(
                                     icon: Icon(
-                                      Icons.notifications_rounded,
+                                      Icons.logout_rounded,
                                       color: darkTheme
-                                          ? Colors.amber.shade400
-                                          : primary,
+                                          ? Colors.white
+                                          : Colors.black,
                                       size: 35,
                                     ),
                                     onPressed: () {
-                                      print('IconButton pressed ...');
+                                      _logout();
                                     },
                                   ),
                                 ),
@@ -130,6 +144,19 @@ class _MainScreenState extends State<MainScreen> {
                                         : primary,
                                     borderRadius: BorderRadius.circular(48),
                                   ),
+                                  child: Center(
+                                    child: Text(
+                                      "PROMO",
+                                      style: TextStyle(
+                                        fontFamily: 'Poppins',
+                                        color: darkTheme
+                                            ? Colors.black
+                                            : Colors.white,
+                                        fontSize: 24,
+                                        fontWeight: FontWeight.w600,
+                                      ),
+                                    ),
+                                  ),
                                 ),
                               ),
                             ),
@@ -138,9 +165,9 @@ class _MainScreenState extends State<MainScreen> {
                       ),
                     ),
                     SizedBox(
-                      height: 10,
+                      height: 20,
                     ),
-                    const Align(
+                    Align(
                       alignment: Alignment.center,
                       child: Row(
                         mainAxisSize: MainAxisSize.max,
@@ -154,7 +181,7 @@ class _MainScreenState extends State<MainScreen> {
                             'Layanan Kami',
                             style: TextStyle(
                               fontFamily: 'Poppins',
-                              color: Colors.white,
+                              color: darkTheme ? Colors.white : Colors.black,
                               fontSize: 24,
                               fontWeight: FontWeight.w600,
                             ),
@@ -168,7 +195,7 @@ class _MainScreenState extends State<MainScreen> {
                     Expanded(
                       flex: 4,
                       child: Padding(
-                        padding: const EdgeInsets.all(4.0),
+                        padding: const EdgeInsets.fromLTRB(4, 4, 4, 0),
                         child: Row(
                           mainAxisSize: MainAxisSize.max,
                           mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -293,36 +320,45 @@ class _MainScreenState extends State<MainScreen> {
         ),
         bottomNavigationBar: SizedBox(
           height: 80,
-          child: BottomNavigationBar(
-            items: const <BottomNavigationBarItem>[
-              BottomNavigationBarItem(
-                icon: Icon(NavIcons.homeoutlined),
-                label: 'Home',
-              ),
-              BottomNavigationBarItem(
-                icon: Icon(NavIcons.riwayat),
-                label: 'History',
-              ),
-              BottomNavigationBarItem(
-                icon: Icon(NavIcons.pesan),
-                label: 'Chat',
-              ),
-              BottomNavigationBarItem(
-                icon: Icon(NavIcons.orang),
-                label: 'Profile',
-              ),
-            ],
-            type: BottomNavigationBarType.fixed,
-            iconSize: 28,
-            backgroundColor: darkTheme ? Colors.amber.shade400 : primary,
-            showSelectedLabels: false,
-            showUnselectedLabels: false,
-            elevation: 0,
-            currentIndex: _selectedIndex,
-            selectedItemColor: darkTheme ? Colors.white : Colors.grey.shade900,
-            unselectedItemColor:
-                darkTheme ? Colors.grey.shade900 : Colors.white,
-            onTap: _onItemTapped,
+          child: Container(
+            child: BottomNavigationBar(
+              items: const <BottomNavigationBarItem>[
+                BottomNavigationBarItem(
+                  icon: Padding(
+                    padding: EdgeInsets.only(left: 24),
+                    child: Icon(NavIcons.homeoutlined),
+                  ),
+                  label: 'Home',
+                ),
+                BottomNavigationBarItem(
+                  icon: Icon(NavIcons.riwayat),
+                  label: 'History',
+                ),
+                BottomNavigationBarItem(
+                  icon: Icon(NavIcons.pesan),
+                  label: 'Chat',
+                ),
+                BottomNavigationBarItem(
+                  icon: Padding(
+                    padding: EdgeInsets.only(right: 24),
+                    child: Icon(NavIcons.orang),
+                  ),
+                  label: 'Profile',
+                ),
+              ],
+              type: BottomNavigationBarType.fixed,
+              iconSize: 28,
+              backgroundColor: darkTheme ? Colors.amber.shade400 : primary,
+              showSelectedLabels: false,
+              showUnselectedLabels: false,
+              elevation: 0,
+              currentIndex: _selectedIndex,
+              selectedItemColor:
+                  darkTheme ? Colors.white : Colors.grey.shade900,
+              unselectedItemColor:
+                  darkTheme ? Colors.grey.shade900 : Colors.white,
+              onTap: _onItemTapped,
+            ),
           ),
         ),
       ),
