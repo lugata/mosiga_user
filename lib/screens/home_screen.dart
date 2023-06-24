@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:mosiga_users/screens/banyak_masalah_screen.dart';
 import 'package:mosiga_users/screens/bensin_screen.dart';
 import 'package:mosiga_users/screens/derek_screen.dart';
@@ -75,7 +76,8 @@ class _HomeScreenState extends State<HomeScreen> {
                                       size: 35,
                                     ),
                                     onPressed: () {
-                                      print('IconButton pressed ...');
+                                      Fluttertoast.showToast(
+                                          msg: "Hallo..., Ata 👋");
                                     },
                                   ),
                                 ),
@@ -221,6 +223,47 @@ class _HomeScreenState extends State<HomeScreen> {
                                                 BorderRadius.circular(28),
                                             shape: BoxShape.rectangle,
                                           ),
+                                          child: Stack(
+                                            children: [
+                                              Align(
+                                                alignment:
+                                                    const AlignmentDirectional(
+                                                        1, 1),
+                                                child: Padding(
+                                                  padding:
+                                                      const EdgeInsetsDirectional
+                                                          .fromSTEB(0, 0, 0, 0),
+                                                  child: Image.asset(
+                                                    'images/Tambal Ban.png',
+                                                    width: double.infinity,
+                                                    height: double.infinity,
+                                                    fit: BoxFit.cover,
+                                                  ),
+                                                ),
+                                              ),
+                                              Align(
+                                                alignment: AlignmentDirectional(
+                                                    -1, -1),
+                                                child: Padding(
+                                                  padding: EdgeInsetsDirectional
+                                                      .fromSTEB(22, 22, 0, 0),
+                                                  child: Text(
+                                                    'Tambal\nBan',
+                                                    style: TextStyle(
+                                                      height: 1.3,
+                                                      fontFamily: 'Poppins',
+                                                      color: darkTheme
+                                                          ? Colors.black
+                                                          : Colors.white,
+                                                      fontSize: 24,
+                                                      fontWeight:
+                                                          FontWeight.bold,
+                                                    ),
+                                                  ),
+                                                ),
+                                              ),
+                                            ],
+                                          ),
                                         ),
                                         onTap: () => Navigator.push(
                                           context,
@@ -240,6 +283,47 @@ class _HomeScreenState extends State<HomeScreen> {
                                                 : primary,
                                             borderRadius:
                                                 BorderRadius.circular(24),
+                                          ),
+                                          child: Stack(
+                                            children: [
+                                              Align(
+                                                alignment:
+                                                    const AlignmentDirectional(
+                                                        1, 1),
+                                                child: Padding(
+                                                  padding:
+                                                      const EdgeInsetsDirectional
+                                                          .fromSTEB(0, 0, 0, 0),
+                                                  child: Image.asset(
+                                                    'images/Bensin.png',
+                                                    width: double.infinity,
+                                                    height: double.infinity,
+                                                    fit: BoxFit.cover,
+                                                  ),
+                                                ),
+                                              ),
+                                              Align(
+                                                alignment: AlignmentDirectional(
+                                                    -1, -1),
+                                                child: Padding(
+                                                  padding: EdgeInsetsDirectional
+                                                      .fromSTEB(22, 22, 0, 0),
+                                                  child: Text(
+                                                    'Bensin\n',
+                                                    style: TextStyle(
+                                                      height: 1.3,
+                                                      fontFamily: 'Poppins',
+                                                      color: darkTheme
+                                                          ? Colors.black
+                                                          : Colors.white,
+                                                      fontSize: 24,
+                                                      fontWeight:
+                                                          FontWeight.bold,
+                                                    ),
+                                                  ),
+                                                ),
+                                              ),
+                                            ],
                                           ),
                                         ),
                                         onTap: () => Navigator.push(
@@ -270,6 +354,9 @@ class _HomeScreenState extends State<HomeScreen> {
                                                   const BanyakMasalah()),
                                         ),
                                       ),
+                                      SizedBox(
+                                        height: 14,
+                                      )
                                     ],
                                   ),
                                 ),
@@ -300,6 +387,47 @@ class _HomeScreenState extends State<HomeScreen> {
                                                 BorderRadius.circular(24),
                                             shape: BoxShape.rectangle,
                                           ),
+                                          child: Stack(
+                                            children: [
+                                              Align(
+                                                alignment:
+                                                    const AlignmentDirectional(
+                                                        1, 1),
+                                                child: Padding(
+                                                  padding:
+                                                      const EdgeInsetsDirectional
+                                                          .fromSTEB(0, 0, 0, 0),
+                                                  child: Image.asset(
+                                                    'images/Derek.png',
+                                                    width: double.infinity,
+                                                    height: double.infinity,
+                                                    fit: BoxFit.cover,
+                                                  ),
+                                                ),
+                                              ),
+                                              Align(
+                                                alignment: AlignmentDirectional(
+                                                    -1, -1),
+                                                child: Padding(
+                                                  padding: EdgeInsetsDirectional
+                                                      .fromSTEB(22, 22, 0, 0),
+                                                  child: Text(
+                                                    'Derek',
+                                                    style: TextStyle(
+                                                      height: 1.3,
+                                                      fontFamily: 'Poppins',
+                                                      color: darkTheme
+                                                          ? Colors.black
+                                                          : Colors.white,
+                                                      fontSize: 24,
+                                                      fontWeight:
+                                                          FontWeight.bold,
+                                                    ),
+                                                  ),
+                                                ),
+                                              ),
+                                            ],
+                                          ),
                                         ),
                                         onTap: () => Navigator.push(
                                           context,
@@ -319,6 +447,47 @@ class _HomeScreenState extends State<HomeScreen> {
                                                 : primary,
                                             borderRadius:
                                                 BorderRadius.circular(24),
+                                          ),
+                                          child: Stack(
+                                            children: [
+                                              Align(
+                                                alignment:
+                                                    const AlignmentDirectional(
+                                                        1, 1),
+                                                child: Padding(
+                                                  padding:
+                                                      const EdgeInsetsDirectional
+                                                          .fromSTEB(0, 0, 0, 0),
+                                                  child: Image.asset(
+                                                    'images/Kunci.png',
+                                                    width: double.infinity,
+                                                    height: double.infinity,
+                                                    fit: BoxFit.cover,
+                                                  ),
+                                                ),
+                                              ),
+                                              Align(
+                                                alignment: AlignmentDirectional(
+                                                    -1, -1),
+                                                child: Padding(
+                                                  padding: EdgeInsetsDirectional
+                                                      .fromSTEB(22, 22, 0, 0),
+                                                  child: Text(
+                                                    'Kunci\nHilang',
+                                                    style: TextStyle(
+                                                      height: 1.3,
+                                                      fontFamily: 'Poppins',
+                                                      color: darkTheme
+                                                          ? Colors.black
+                                                          : Colors.white,
+                                                      fontSize: 24,
+                                                      fontWeight:
+                                                          FontWeight.bold,
+                                                    ),
+                                                  ),
+                                                ),
+                                              ),
+                                            ],
                                           ),
                                         ),
                                         onTap: () => Navigator.push(
@@ -348,6 +517,9 @@ class _HomeScreenState extends State<HomeScreen> {
                                               builder: (context) =>
                                                   const BanyakMasalah()),
                                         ),
+                                      ),
+                                      const SizedBox(
+                                        height: 14,
                                       ),
                                     ],
                                   ),
