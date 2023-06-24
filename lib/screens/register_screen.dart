@@ -6,7 +6,7 @@ import 'package:flutter/services.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:mosiga_users/global/global.dart';
 import 'package:mosiga_users/screens/login_screen.dart';
-import 'package:mosiga_users/screens/main_page.dart';
+import 'package:mosiga_users/screens/main_screen.dart';
 import 'package:mosiga_users/theme/theme.dart';
 
 class RegisterScreen extends StatefulWidget {

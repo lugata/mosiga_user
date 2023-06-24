@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:mosiga_users/global/global.dart';
-import 'package:mosiga_users/screens/main_page.dart';
+import 'package:mosiga_users/screens/main_screen.dart';
 import 'package:mosiga_users/screens/register_screen.dart';
 
 class VerificationScreen extends StatefulWidget {

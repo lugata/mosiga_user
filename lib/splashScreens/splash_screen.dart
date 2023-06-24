@@ -5,7 +5,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import '../Assistants/assistant_methods.dart';
 import '../global/global.dart';
 import '../screens/login_screen.dart';
-import '../screens/main_page.dart';
+import '../screens/main_screen.dart';
 
 class SplashScreen extends StatefulWidget {
   @override
