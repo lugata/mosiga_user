@@ -319,15 +319,14 @@ class _MainScreenState extends State<MainScreen> {
           ),
         ),
         bottomNavigationBar: SizedBox(
-          height: 80,
+          height: MediaQuery.of(context).size.height / (1.618 * 4),
           child: Container(
+            color: darkTheme ? Colors.amber.shade400 : primary,
+            padding: const EdgeInsets.symmetric(horizontal: 18),
             child: BottomNavigationBar(
               items: const <BottomNavigationBarItem>[
                 BottomNavigationBarItem(
-                  icon: Padding(
-                    padding: EdgeInsets.only(left: 24),
-                    child: Icon(NavIcons.homeoutlined),
-                  ),
+                  icon: Icon(NavIcons.homeoutlined),
                   label: 'Home',
                 ),
                 BottomNavigationBarItem(
@@ -339,10 +338,7 @@ class _MainScreenState extends State<MainScreen> {
                   label: 'Chat',
                 ),
                 BottomNavigationBarItem(
-                  icon: Padding(
-                    padding: EdgeInsets.only(right: 24),
-                    child: Icon(NavIcons.orang),
-                  ),
+                  icon: Icon(NavIcons.orang),
                   label: 'Profile',
                 ),
               ],
@@ -354,9 +350,9 @@ class _MainScreenState extends State<MainScreen> {
               elevation: 0,
               currentIndex: _selectedIndex,
               selectedItemColor:
-                  darkTheme ? Colors.white : Colors.grey.shade900,
-              unselectedItemColor:
                   darkTheme ? Colors.grey.shade900 : Colors.white,
+              unselectedItemColor:
+                  darkTheme ? Colors.white : Colors.grey.shade900,
               onTap: _onItemTapped,
             ),
           ),
