@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mosiga_users/screens/profile_screen.dart';
 import '../global/global.dart';
 import '../theme/theme.dart';
 import 'login_screen.dart';
@@ -134,7 +135,9 @@ class _HomeScreenState extends State<HomeScreen> {
                                         : primary,
                                     borderRadius: BorderRadius.circular(48),
                                   ),
-                                  child: Center(
+                                  child: Padding(
+                                    padding:
+                                        EdgeInsets.fromLTRB(40, 40, 10, 40),
                                     child: Text(
                                       "PROMO",
                                       style: TextStyle(
@@ -201,16 +204,24 @@ class _HomeScreenState extends State<HomeScreen> {
                                     crossAxisAlignment:
                                         CrossAxisAlignment.stretch,
                                     children: [
-                                      Container(
-                                        width: 100,
-                                        height: 250,
-                                        decoration: BoxDecoration(
-                                          color: darkTheme
-                                              ? Colors.amber.shade400
-                                              : primary,
-                                          borderRadius:
-                                              BorderRadius.circular(28),
-                                          shape: BoxShape.rectangle,
+                                      GestureDetector(
+                                        child: Container(
+                                          width: 100,
+                                          height: 250,
+                                          decoration: BoxDecoration(
+                                            color: darkTheme
+                                                ? Colors.amber.shade400
+                                                : primary,
+                                            borderRadius:
+                                                BorderRadius.circular(28),
+                                            shape: BoxShape.rectangle,
+                                          ),
+                                        ),
+                                        onTap: () => Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (context) =>
+                                                  const ProfileScreen()),
                                         ),
                                       ),
                                       const SizedBox(height: 18),
