@@ -4,7 +4,6 @@ import 'package:mosiga_users/screens/banyak_masalah_screen.dart';
 import 'package:mosiga_users/screens/bensin_screen.dart';
 import 'package:mosiga_users/screens/derek_screen.dart';
 import 'package:mosiga_users/screens/kunci_hilang_screen.dart';
-import 'package:mosiga_users/screens/profile_screen.dart';
 import 'package:mosiga_users/screens/tambal_ban_screen.dart';
 import '../global/global.dart';
 import '../theme/theme.dart';
