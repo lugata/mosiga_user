@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 Color primary = const Color.fromRGBO(25, 21, 247, 1);
+Color bg2 = const Color(0xFF191919);
 
 class MyThemes {
   static final darkTheme = ThemeData(
