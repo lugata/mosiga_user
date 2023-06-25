@@ -1,11 +1,13 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:geocoder2/geocoder2.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:location/location.dart' as loc;
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:mosiga_users/Assistants/assistant_methods.dart';
+import 'package:mosiga_users/global/map_key.dart';
 import 'package:mosiga_users/screens/kendaraan_screen.dart';
-
 import '../theme/theme.dart';
 
 class TambalBan extends StatefulWidget {
@@ -27,8 +29,8 @@ class _TambalBanState extends State<TambalBan> {
   GoogleMapController? newGoogleMapController;
 
   static const CameraPosition _kGooglePlex = CameraPosition(
-    target: LatLng(37.42796133580664, -122.085749655962),
-    zoom: 14.4746,
+    target: LatLng(-7.656990, 112.746170), // Koordinat Pasuruan Bangil Rembang
+    zoom: 14.0,
   );
 
   GlobalKey<ScaffoldState> _scaffoldState = GlobalKey<ScaffoldState>();
@@ -68,6 +70,40 @@ class _TambalBanState extends State<TambalBan> {
 
     newGoogleMapController!
         .animateCamera(CameraUpdate.newCameraPosition(cameraPosition));
+
+    String humanReadableAddress =
+        await AssistantMethods.searchAddressForGeographicCoCoordinates(
+            userCurrentPosition!, context);
+    print("This is our address = " + humanReadableAddress);
+  }
+
+  getAddressFromLatLng() async {
+    try {
+      GeoData data = await Geocoder2.getDataFromCoordinates(
+          latitude: pickLocation!.latitude,
+          longitude: pickLocation!.longitude,
+          googleMapApiKey: mapkey);
+      setState(() {
+        _address = data.address;
+      });
+    } catch (e) {
+      print(e);
+    }
+  }
+
+  checkIfLocationPermissionAllowed() async {
+    _locationPermission = await Geolocator.requestPermission();
+
+    if (_locationPermission == LocationPermission.denied) {
+      _locationPermission = await Geolocator.requestPermission();
+    }
+  }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    checkIfLocationPermissionAllowed();
   }
 
   @override
@@ -84,9 +120,9 @@ class _TambalBanState extends State<TambalBan> {
             children: [
               GoogleMap(
                 mapType: MapType.normal,
-                myLocationButtonEnabled: true,
+                myLocationEnabled: true,
                 zoomGesturesEnabled: true,
-                zoomControlsEnabled: true,
+                zoomControlsEnabled: false,
                 polylines: polylineSet,
                 markers: markerSet,
                 circles: circleSet,
@@ -105,8 +141,19 @@ class _TambalBanState extends State<TambalBan> {
                   }
                 },
                 onCameraIdle: () {
-                  // getAddressFromLatLng();
+                  getAddressFromLatLng();
                 },
+              ),
+              Align(
+                alignment: Alignment.center,
+                child: Padding(
+                  padding: const EdgeInsets.only(bottom: 35),
+                  child: Icon(
+                    Icons.location_on_sharp,
+                    size: 40,
+                    color: Colors.redAccent.shade400,
+                  ),
+                ),
               ),
               Column(
                 mainAxisSize: MainAxisSize.max,
@@ -221,16 +268,24 @@ class _TambalBanState extends State<TambalBan> {
                                       mainAxisAlignment:
                                           MainAxisAlignment.center,
                                       children: [
-                                        const Expanded(
+                                        Expanded(
                                           child: Align(
                                             alignment:
                                                 AlignmentDirectional(0, 0),
-                                            child: Text(
-                                              'Titik Insiden',
-                                              style: TextStyle(
-                                                fontFamily: 'Poppins',
-                                                fontSize: 18,
-                                                fontWeight: FontWeight.w600,
+                                            child: Padding(
+                                              padding:
+                                                  const EdgeInsets.symmetric(
+                                                      horizontal: 24.0),
+                                              child: Text(
+                                                _address ??
+                                                    "Set Your Pickup Location",
+                                                textAlign: TextAlign.center,
+                                                maxLines: 1,
+                                                style: TextStyle(
+                                                  fontFamily: 'Poppins',
+                                                  fontSize: 14,
+                                                  fontWeight: FontWeight.w600,
+                                                ),
                                               ),
                                             ),
                                           ),
