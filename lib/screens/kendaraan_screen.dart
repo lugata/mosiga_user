@@ -64,7 +64,7 @@ class _KendaraanScreenState extends State<KendaraanScreen> {
                                           14, 0, 0, 0),
                                       child: IconButton(
                                         onPressed: () {
-                                          print('IconButton pressed ...');
+                                          Navigator.pop(context);
                                         },
                                         icon: Icon(
                                           Icons.chevron_left_rounded,
@@ -117,9 +117,12 @@ class _KendaraanScreenState extends State<KendaraanScreen> {
                                     boxShadow: [
                                       BoxShadow(
                                         blurRadius: 4,
-                                        color: Color(0x33000000),
-                                        offset: Offset(6, 6),
-                                        spreadRadius: 3,
+                                        color: darkTheme
+                                            ? const Color.fromARGB(
+                                                51, 255, 255, 255)
+                                            : const Color(0x33000000),
+                                        offset: const Offset(5, 3),
+                                        spreadRadius: 2,
                                       )
                                     ],
                                     borderRadius: BorderRadius.circular(48),
