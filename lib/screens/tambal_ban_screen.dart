@@ -6,6 +6,7 @@ import 'package:geolocator/geolocator.dart';
 import 'package:location/location.dart' as loc;
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:mosiga_users/Assistants/assistant_methods.dart';
+import 'package:mosiga_users/global/global.dart';
 import 'package:mosiga_users/global/map_key.dart';
 import 'package:mosiga_users/screens/kendaraan_screen.dart';
 import '../theme/theme.dart';
@@ -50,8 +51,8 @@ class _TambalBanState extends State<TambalBan> {
   Set<Marker> markerSet = {};
   Set<Circle> circleSet = {};
 
-  // String userName = "";
-  // String userEmail = "";
+  String userName = "";
+  String userEmail = "";
 
   bool openNavigationDrawer = true;
   bool activateNearbyDriverKeysLoaded = false;
@@ -75,6 +76,13 @@ class _TambalBanState extends State<TambalBan> {
         await AssistantMethods.searchAddressForGeographicCoCoordinates(
             userCurrentPosition!, context);
     print("This is our address = " + humanReadableAddress);
+
+    userName = userModelCurrentInfo!.name!;
+    userEmail = userModelCurrentInfo!.email!;
+
+    // initializeGeoFireListener();
+
+    // AssistantMethods.readTripsKeyForOnlineUser(context);
   }
 
   getAddressFromLatLng() async {
