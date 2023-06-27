@@ -4,8 +4,10 @@ import 'package:mosiga_users/Assistants/request_assistant.dart';
 import 'package:mosiga_users/global/global.dart';
 import 'package:mosiga_users/models/directions.dart';
 import 'package:mosiga_users/models/user_models.dart';
+import 'package:provider/provider.dart';
 
 import '../global/map_key.dart';
+import '../infoHandler/app_info.dart';
 
 class AssistantMethods {
   static void readCurrentOnlineUserInfo() async {
@@ -36,7 +38,8 @@ class AssistantMethods {
       userPickupAddress.locationLongitude = position.longitude;
       userPickupAddress.locationName = humanReadableAddress;
 
-      // Provider.of<AppInfo>(context, listen:false).updatePickUpLocationAddress(userPickupAddress);
+      Provider.of<AppInfo>(context, listen: false)
+          .updatePickUpLocationAddress(userPickupAddress);
     }
     return humanReadableAddress;
   }

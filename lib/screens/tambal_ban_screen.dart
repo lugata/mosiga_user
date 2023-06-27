@@ -9,6 +9,7 @@ import 'package:mosiga_users/Assistants/assistant_methods.dart';
 import 'package:mosiga_users/global/global.dart';
 import 'package:mosiga_users/global/map_key.dart';
 import 'package:mosiga_users/screens/kendaraan_screen.dart';
+import '../models/directions.dart';
 import '../theme/theme.dart';
 
 class TambalBan extends StatefulWidget {
@@ -92,6 +93,10 @@ class _TambalBanState extends State<TambalBan> {
           longitude: pickLocation!.longitude,
           googleMapApiKey: mapkey);
       setState(() {
+        Directions userPickupAddress = Directions();
+        userPickupAddress.locationLatitude = pickLocation!.latitude;
+        userPickupAddress.locationLongitude = pickLocation!.longitude;
+        userPickupAddress.locationName = data.address;
         _address = data.address;
       });
     } catch (e) {
