@@ -62,8 +62,8 @@ class _HistoryScreenState extends State<HistoryScreen> {
                                     icon: Icon(
                                       Icons.chevron_left_rounded,
                                       color: darkTheme
-                                          ? Colors.white
-                                          : Colors.black,
+                                          ? Colors.black
+                                          : Colors.white,
                                       size: 24,
                                     ),
                                     onPressed: () {
@@ -71,12 +71,15 @@ class _HistoryScreenState extends State<HistoryScreen> {
                                     },
                                   ),
                                 ),
-                                const Align(
+                                Align(
                                   alignment: AlignmentDirectional(0, 0),
                                   child: Text(
                                     'Riwayat',
                                     style: TextStyle(
                                       fontSize: 18,
+                                      color: darkTheme
+                                          ? Colors.black
+                                          : Colors.white,
                                       fontFamily: 'Poppins',
                                       fontWeight: FontWeight.bold,
                                     ),
@@ -175,6 +178,9 @@ class _HistoryScreenState extends State<HistoryScreen> {
                                                         child: Text(
                                                           'Kab. Pasuruan',
                                                           style: TextStyle(
+                                                            color: darkTheme
+                                                                ? Colors.black
+                                                                : Colors.white,
                                                             fontFamily:
                                                                 'Poppins',
                                                             fontSize: 18,
@@ -186,6 +192,9 @@ class _HistoryScreenState extends State<HistoryScreen> {
                                                       Text(
                                                         'Sudah Selesai Diperbaiki',
                                                         style: TextStyle(
+                                                          color: darkTheme
+                                                              ? Colors.black
+                                                              : Colors.white,
                                                           fontFamily: 'Poppins',
                                                           fontSize: 14,
                                                           fontWeight:
@@ -202,6 +211,9 @@ class _HistoryScreenState extends State<HistoryScreen> {
                                                   '11 Juni 2023',
                                                   textAlign: TextAlign.start,
                                                   style: TextStyle(
+                                                    color: darkTheme
+                                                        ? Colors.black
+                                                        : Colors.white,
                                                     fontFamily: 'Poppins',
                                                     fontSize: 14,
                                                     fontWeight:

@@ -31,7 +31,7 @@ class AssistantMethods {
     var requestResponse = await RequestAssistant.receiveRequest(apiUrl);
 
     if (requestResponse != "Error Occured. Failed to Response.") {
-      humanReadableAddress = requestResponse['results'][0]["formatted_address"];
+      humanReadableAddress = requestResponse["results"][0]["formatted_address"];
 
       Directions userPickupAddress = Directions();
       userPickupAddress.locationLatitude = position.latitude;
@@ -41,6 +41,7 @@ class AssistantMethods {
       Provider.of<AppInfo>(context, listen: false)
           .updatePickUpLocationAddress(userPickupAddress);
     }
+
     return humanReadableAddress;
   }
 }

@@ -8,7 +8,9 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:mosiga_users/Assistants/assistant_methods.dart';
 import 'package:mosiga_users/global/global.dart';
 import 'package:mosiga_users/global/map_key.dart';
+import 'package:mosiga_users/infoHandler/app_info.dart';
 import 'package:mosiga_users/screens/kendaraan_screen.dart';
+import 'package:provider/provider.dart';
 import '../models/directions.dart';
 import '../theme/theme.dart';
 
@@ -78,8 +80,8 @@ class _TambalBanState extends State<TambalBan> {
             userCurrentPosition!, context);
     print("This is our address = " + humanReadableAddress);
 
-    userName = userModelCurrentInfo!.name!;
-    userEmail = userModelCurrentInfo!.email!;
+    // userName = userModelCurrentInfo!.name!;
+    // userEmail = userModelCurrentInfo!.email!;
 
     // initializeGeoFireListener();
 
@@ -97,7 +99,9 @@ class _TambalBanState extends State<TambalBan> {
         userPickupAddress.locationLatitude = pickLocation!.latitude;
         userPickupAddress.locationLongitude = pickLocation!.longitude;
         userPickupAddress.locationName = data.address;
-        _address = data.address;
+        Provider.of<AppInfo>(context, listen: false)
+            .updatePickUpLocationAddress(userPickupAddress);
+        // _address = data.address;
       });
     } catch (e) {
       print(e);
@@ -143,7 +147,9 @@ class _TambalBanState extends State<TambalBan> {
                 onMapCreated: (GoogleMapController controller) {
                   _controllerGoogleMap.complete(controller);
                   newGoogleMapController = controller;
-                  setState(() {});
+                  setState(() {
+                    bottomPaddingOfMap = 200;
+                  });
                   locateUserPosition();
                 },
                 onCameraMove: (CameraPosition? position) {
@@ -290,8 +296,16 @@ class _TambalBanState extends State<TambalBan> {
                                                   const EdgeInsets.symmetric(
                                                       horizontal: 24.0),
                                               child: Text(
-                                                _address ??
-                                                    "Set Your Pickup Location",
+                                                Provider.of<AppInfo>(context)
+                                                            .userPickUpLocation !=
+                                                        null
+                                                    ? (Provider.of<AppInfo>(
+                                                                    context)
+                                                                .userPickUpLocation!
+                                                                .locationName!)
+                                                            .substring(0, 36) +
+                                                        "..."
+                                                    : "Not Getting Address ...",
                                                 textAlign: TextAlign.center,
                                                 maxLines: 1,
                                                 style: TextStyle(
