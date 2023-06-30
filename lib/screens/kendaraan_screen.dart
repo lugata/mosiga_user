@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 import '../theme/theme.dart';
 
@@ -10,6 +11,13 @@ class KendaraanScreen extends StatefulWidget {
 }
 
 class _KendaraanScreenState extends State<KendaraanScreen> {
+  static const CameraPosition _kGooglePlex = CameraPosition(
+    target: LatLng(-7.656990, 112.746170), // Koordinat Pasuruan Bangil Rembang
+    zoom: 14.0,
+  );
+
+  Set<Circle> circleSet = {};
+
   @override
   Widget build(BuildContext context) {
     bool darkTheme =
@@ -22,6 +30,16 @@ class _KendaraanScreenState extends State<KendaraanScreen> {
           top: true,
           child: Stack(
             children: [
+              GoogleMap(
+                mapType: MapType.normal,
+                myLocationEnabled: true,
+                tiltGesturesEnabled: false,
+                scrollGesturesEnabled: false,
+                zoomGesturesEnabled: false,
+                zoomControlsEnabled: false,
+                circles: circleSet,
+                initialCameraPosition: _kGooglePlex,
+              ),
               Column(
                 mainAxisSize: MainAxisSize.max,
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
