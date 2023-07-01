@@ -6,7 +6,7 @@ import 'package:geolocator/geolocator.dart';
 import 'package:location/location.dart' as loc;
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:mosiga_users/Assistants/assistant_methods.dart';
-import 'package:mosiga_users/global/global.dart';
+
 import 'package:mosiga_users/global/map_key.dart';
 import 'package:mosiga_users/infoHandler/app_info.dart';
 import 'package:mosiga_users/screens/kendaraan_screen.dart';
@@ -296,16 +296,26 @@ class _TambalBanState extends State<TambalBan> {
                                                   const EdgeInsets.symmetric(
                                                       horizontal: 24.0),
                                               child: Text(
-                                                Provider.of<AppInfo>(context)
-                                                            .userPickUpLocation !=
-                                                        null
+                                                (Provider.of<AppInfo>(context)
+                                                                .userPickUpLocation !=
+                                                            null &&
+                                                        Provider.of<AppInfo>(
+                                                                    context)
+                                                                .userPickUpLocation!
+                                                                .locationName !=
+                                                            null)
                                                     ? (Provider.of<AppInfo>(
                                                                     context)
                                                                 .userPickUpLocation!
-                                                                .locationName!)
-                                                            .substring(0, 36) +
-                                                        "..."
-                                                    : "Not Getting Address ...",
+                                                                .locationName!
+                                                                .length >
+                                                            37)
+                                                        ? '${Provider.of<AppInfo>(context).userPickUpLocation!.locationName!.substring(0, 37)}...'
+                                                        : Provider.of<AppInfo>(
+                                                                context)
+                                                            .userPickUpLocation!
+                                                            .locationName!
+                                                    : 'Not Getting Address ...',
                                                 textAlign: TextAlign.center,
                                                 maxLines: 1,
                                                 style: TextStyle(
