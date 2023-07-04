@@ -55,26 +55,10 @@ class _HistoryScreenState extends State<HistoryScreen> {
                             child: Stack(
                               alignment: AlignmentDirectional(-1, 0),
                               children: [
-                                Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                      14, 0, 0, 0),
-                                  child: IconButton(
-                                    icon: Icon(
-                                      Icons.chevron_left_rounded,
-                                      color: darkTheme
-                                          ? Colors.black
-                                          : Colors.white,
-                                      size: 24,
-                                    ),
-                                    onPressed: () {
-                                      print('IconButton pressed ...');
-                                    },
-                                  ),
-                                ),
                                 Align(
                                   alignment: AlignmentDirectional(0, 0),
                                   child: Text(
-                                    'Riwayat',
+                                    'Riwayat Service',
                                     style: TextStyle(
                                       fontSize: 18,
                                       color: darkTheme

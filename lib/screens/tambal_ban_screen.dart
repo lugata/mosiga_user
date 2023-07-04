@@ -22,6 +22,8 @@ class TambalBan extends StatefulWidget {
 }
 
 class _TambalBanState extends State<TambalBan> {
+  bool _isVisible = true;
+
   LatLng? pickLocation;
   loc.Location location = loc.Location();
 
@@ -174,24 +176,89 @@ class _TambalBanState extends State<TambalBan> {
                   ),
                 ),
               ),
+              Padding(
+                padding: EdgeInsetsDirectional.fromSTEB(22, 22, 22, 22),
+                child: Row(
+                  mainAxisSize: MainAxisSize.max,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Expanded(
+                      child: Padding(
+                        padding: EdgeInsetsDirectional.fromSTEB(8, 18, 8, 18),
+                        child: Container(
+                          width: 100,
+                          height: 65,
+                          decoration: BoxDecoration(
+                            color: darkTheme ? bg2 : Colors.white,
+                            boxShadow: [
+                              BoxShadow(
+                                blurRadius: 4,
+                                color: darkTheme
+                                    ? const Color.fromARGB(51, 255, 255, 255)
+                                    : const Color(0x33000000),
+                                offset: const Offset(5, 3),
+                                spreadRadius: 2,
+                              )
+                            ],
+                            borderRadius: BorderRadius.circular(40),
+                            shape: BoxShape.rectangle,
+                          ),
+                          child: Stack(
+                            alignment: AlignmentDirectional(-1, 0),
+                            children: [
+                              Padding(
+                                padding: const EdgeInsets.fromLTRB(14, 0, 0, 0),
+                                child: IconButton(
+                                  onPressed: () {
+                                    Navigator.pop(context);
+                                  },
+                                  icon: Icon(
+                                    Icons.chevron_left_rounded,
+                                    color:
+                                        darkTheme ? Colors.white : Colors.black,
+                                    size: 24,
+                                  ),
+                                ),
+                              ),
+                              const Align(
+                                alignment: AlignmentDirectional(0, 0),
+                                child: Text(
+                                  'Titik Insiden',
+                                  style: TextStyle(
+                                    fontSize: 18,
+                                    fontFamily: 'Poppins',
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
               Column(
                 mainAxisSize: MainAxisSize.max,
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                mainAxisAlignment: MainAxisAlignment.end,
                 children: [
-                  Flexible(
-                    flex: 1,
-                    child: Padding(
-                      padding: const EdgeInsets.fromLTRB(22, 22, 22, 22),
-                      child: Row(
-                        mainAxisSize: MainAxisSize.max,
-                        children: [
-                          Expanded(
+                  Padding(
+                    padding: EdgeInsetsDirectional.fromSTEB(22, 14, 22, 14),
+                    child: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.end,
+                      children: [
+                        Expanded(
+                          child: Align(
+                            alignment: AlignmentDirectional(0, 0),
                             child: Padding(
                               padding:
-                                  const EdgeInsets.fromLTRB(14, 18, 14, 18),
+                                  EdgeInsetsDirectional.fromSTEB(0, 0, 0, 18),
                               child: Container(
-                                width: 100,
-                                height: 65,
+                                width: double.infinity,
+                                height: 150,
                                 decoration: BoxDecoration(
                                   color: darkTheme ? bg2 : Colors.white,
                                   boxShadow: [
@@ -205,192 +272,113 @@ class _TambalBanState extends State<TambalBan> {
                                       spreadRadius: 2,
                                     ),
                                   ],
-                                  borderRadius: BorderRadius.circular(40),
-                                  shape: BoxShape.rectangle,
+                                  borderRadius: BorderRadius.circular(48),
                                 ),
-                                child: Stack(
-                                  alignment: const AlignmentDirectional(-1, 0),
-                                  children: [
-                                    Padding(
-                                      padding: const EdgeInsets.fromLTRB(
-                                          14, 0, 0, 0),
-                                      child: IconButton(
-                                        onPressed: () {
-                                          Navigator.pop(context);
-                                        },
-                                        icon: Icon(
-                                          Icons.chevron_left_rounded,
-                                          color: darkTheme
-                                              ? Colors.white
-                                              : Colors.black,
-                                          size: 24,
+                                alignment: AlignmentDirectional(0, 0),
+                                child: Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      0, 12, 0, 12),
+                                  child: Column(
+                                    mainAxisSize: MainAxisSize.max,
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Expanded(
+                                        child: Align(
+                                          alignment: AlignmentDirectional(0, 0),
+                                          child: Padding(
+                                            padding: const EdgeInsets.symmetric(
+                                                horizontal: 24.0),
+                                            child: Text(
+                                              (Provider.of<AppInfo>(context)
+                                                              .userPickUpLocation !=
+                                                          null &&
+                                                      Provider.of<AppInfo>(
+                                                                  context)
+                                                              .userPickUpLocation!
+                                                              .locationName !=
+                                                          null)
+                                                  ? (Provider.of<AppInfo>(
+                                                                  context)
+                                                              .userPickUpLocation!
+                                                              .locationName!
+                                                              .length >
+                                                          37)
+                                                      ? '${Provider.of<AppInfo>(context).userPickUpLocation!.locationName!.substring(0, 37)}...'
+                                                      : Provider.of<AppInfo>(
+                                                              context)
+                                                          .userPickUpLocation!
+                                                          .locationName!
+                                                  : 'Not Getting Address ...',
+                                              textAlign: TextAlign.center,
+                                              maxLines: 1,
+                                              style: TextStyle(
+                                                fontFamily: 'Poppins',
+                                                fontSize: 14,
+                                                fontWeight: FontWeight.w600,
+                                              ),
+                                            ),
+                                          ),
                                         ),
                                       ),
-                                    ),
-                                    const Align(
-                                      alignment: AlignmentDirectional(0, 0),
-                                      child: Text(
-                                        'Titik Insiden',
-                                        style: TextStyle(
-                                          fontSize: 18,
-                                          fontFamily: 'Poppins',
-                                          fontWeight: FontWeight.bold,
+                                      Expanded(
+                                        child: Align(
+                                          alignment:
+                                              const AlignmentDirectional(0, -1),
+                                          child: Padding(
+                                            padding: const EdgeInsets.fromLTRB(
+                                                24, 0, 24, 8),
+                                            child: ElevatedButton(
+                                              onPressed: () {
+                                                setState(() {
+                                                  Navigator.push(
+                                                      context,
+                                                      MaterialPageRoute(
+                                                          builder: (c) =>
+                                                              const KendaraanScreen()));
+                                                });
+                                              },
+                                              style: ElevatedButton.styleFrom(
+                                                backgroundColor: primary,
+                                                padding: EdgeInsets.zero,
+                                                elevation: 3,
+                                                shape: RoundedRectangleBorder(
+                                                  borderRadius:
+                                                      BorderRadius.circular(24),
+                                                ),
+                                              ),
+                                              child: Ink(
+                                                decoration: BoxDecoration(
+                                                  borderRadius:
+                                                      BorderRadius.circular(24),
+                                                ),
+                                                child: Container(
+                                                  width: double.infinity,
+                                                  height: 50,
+                                                  alignment: Alignment.center,
+                                                  child: const Text(
+                                                    'Submit',
+                                                    style: TextStyle(
+                                                      fontFamily: 'Poppins',
+                                                      color: Colors.white,
+                                                      fontSize: 16,
+                                                      fontWeight:
+                                                          FontWeight.bold,
+                                                    ),
+                                                  ),
+                                                ),
+                                              ),
+                                            ),
+                                          ),
                                         ),
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                  Align(
-                    alignment: const AlignmentDirectional(0, 0),
-                    child: Padding(
-                      padding: const EdgeInsets.fromLTRB(22, 14, 22, 14),
-                      child: Row(
-                        mainAxisSize: MainAxisSize.max,
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Expanded(
-                            child: Align(
-                              alignment: const AlignmentDirectional(0, 0),
-                              child: Padding(
-                                padding: const EdgeInsets.fromLTRB(0, 0, 0, 18),
-                                child: Container(
-                                  width: double.infinity,
-                                  height: 150,
-                                  decoration: BoxDecoration(
-                                    color: darkTheme ? bg2 : Colors.white,
-                                    boxShadow: [
-                                      BoxShadow(
-                                        blurRadius: 4,
-                                        color: darkTheme
-                                            ? const Color.fromARGB(
-                                                51, 255, 255, 255)
-                                            : const Color(0x33000000),
-                                        offset: const Offset(5, 3),
-                                        spreadRadius: 2,
                                       ),
                                     ],
-                                    borderRadius: BorderRadius.circular(48),
-                                  ),
-                                  alignment: const AlignmentDirectional(0, 0),
-                                  child: Padding(
-                                    padding:
-                                        const EdgeInsets.fromLTRB(0, 12, 0, 12),
-                                    child: Column(
-                                      mainAxisSize: MainAxisSize.max,
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      children: [
-                                        Expanded(
-                                          child: Align(
-                                            alignment:
-                                                AlignmentDirectional(0, 0),
-                                            child: Padding(
-                                              padding:
-                                                  const EdgeInsets.symmetric(
-                                                      horizontal: 24.0),
-                                              child: Text(
-                                                (Provider.of<AppInfo>(context)
-                                                                .userPickUpLocation !=
-                                                            null &&
-                                                        Provider.of<AppInfo>(
-                                                                    context)
-                                                                .userPickUpLocation!
-                                                                .locationName !=
-                                                            null)
-                                                    ? (Provider.of<AppInfo>(
-                                                                    context)
-                                                                .userPickUpLocation!
-                                                                .locationName!
-                                                                .length >
-                                                            37)
-                                                        ? '${Provider.of<AppInfo>(context).userPickUpLocation!.locationName!.substring(0, 37)}...'
-                                                        : Provider.of<AppInfo>(
-                                                                context)
-                                                            .userPickUpLocation!
-                                                            .locationName!
-                                                    : 'Not Getting Address ...',
-                                                textAlign: TextAlign.center,
-                                                maxLines: 1,
-                                                style: TextStyle(
-                                                  fontFamily: 'Poppins',
-                                                  fontSize: 14,
-                                                  fontWeight: FontWeight.w600,
-                                                ),
-                                              ),
-                                            ),
-                                          ),
-                                        ),
-                                        Expanded(
-                                          child: Align(
-                                            alignment:
-                                                const AlignmentDirectional(
-                                                    0, -1),
-                                            child: Padding(
-                                              padding:
-                                                  const EdgeInsets.fromLTRB(
-                                                      24, 0, 24, 8),
-                                              child: ElevatedButton(
-                                                onPressed: () {
-                                                  Navigator.push(
-                                                    context,
-                                                    MaterialPageRoute(
-                                                      builder: (context) =>
-                                                          const KendaraanScreen(),
-                                                    ),
-                                                  );
-                                                },
-                                                style: ElevatedButton.styleFrom(
-                                                  backgroundColor: primary,
-                                                  padding: EdgeInsets.zero,
-                                                  elevation: 3,
-                                                  shape: RoundedRectangleBorder(
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            24),
-                                                  ),
-                                                ),
-                                                child: Ink(
-                                                  decoration: BoxDecoration(
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            24),
-                                                  ),
-                                                  child: Container(
-                                                    width: double.infinity,
-                                                    height: 50,
-                                                    alignment: Alignment.center,
-                                                    child: const Text(
-                                                      'Submit',
-                                                      style: TextStyle(
-                                                        fontFamily: 'Poppins',
-                                                        color: Colors.white,
-                                                        fontSize: 16,
-                                                        fontWeight:
-                                                            FontWeight.bold,
-                                                      ),
-                                                    ),
-                                                  ),
-                                                ),
-                                              ),
-                                            ),
-                                          ),
-                                        ),
-                                      ],
-                                    ),
                                   ),
                                 ),
                               ),
                             ),
                           ),
-                        ],
-                      ),
+                        ),
+                      ],
                     ),
                   ),
                 ],
