@@ -13,8 +13,10 @@ class KendaraanScreen extends StatefulWidget {
 
 class _KendaraanScreenState extends State<KendaraanScreen> {
   bool _isVisible = true;
+  bool isMotorSelected = true;
+  bool isMobilSelected = false;
   int _radioButton = 0;
-  String selectedOption = 'Option 1';
+  String selectedOption = 'Opsi Pembayaran 1';
 
   static const CameraPosition _kGooglePlex = CameraPosition(
     target: LatLng(-7.656990, 112.746170), // Koordinat Pasuruan Bangil Rembang
@@ -83,7 +85,7 @@ class _KendaraanScreenState extends State<KendaraanScreen> {
                                         size: 24,
                                       ),
                                       onPressed: () {
-                                        print('IconButton pressed ...');
+                                        Navigator.pop(context);
                                       },
                                     ),
                                   ),
@@ -123,55 +125,63 @@ class _KendaraanScreenState extends State<KendaraanScreen> {
                               children: [
                                 Expanded(
                                   flex: 1,
-                                  child: Container(
-                                    width: double.infinity,
-                                    height: 150,
-                                    decoration: BoxDecoration(
-                                      color: darkTheme
-                                          ? Colors.white
-                                          : Colors.black,
-                                      borderRadius: BorderRadius.circular(14),
-                                    ),
-                                    alignment: AlignmentDirectional(0, -1),
+                                  child: GestureDetector(
+                                    onTap: () {
+                                      setState(() {
+                                        isMotorSelected = true;
+                                        isMobilSelected = false;
+                                      });
+                                    },
                                     child: Container(
                                       width: double.infinity,
                                       height: 150,
-                                      child: Stack(
-                                        children: [
-                                          Align(
-                                            alignment:
-                                                AlignmentDirectional(-1, 1),
-                                            child: ClipRRect(
-                                              borderRadius:
-                                                  BorderRadius.circular(8),
-                                              child: Image.asset(
-                                                'images/Motor.png',
-                                                width: double.infinity,
-                                                height: 150,
-                                                fit: BoxFit.cover,
-                                              ),
-                                            ),
-                                          ),
-                                          Align(
-                                            alignment:
-                                                AlignmentDirectional(0, -1),
-                                            child: Padding(
-                                              padding: EdgeInsetsDirectional
-                                                  .fromSTEB(0, 8, 0, 0),
-                                              child: Text(
-                                                'Motor',
-                                                style: TextStyle(
-                                                  fontSize: 22,
-                                                  fontFamily: 'Poppins',
-                                                  color: darkTheme
-                                                      ? Colors.black
-                                                      : Colors.white,
-                                                  fontWeight: FontWeight.w600,
+                                      decoration: BoxDecoration(
+                                        color: isMotorSelected
+                                            ? primary
+                                            : Colors.white,
+                                        borderRadius: BorderRadius.circular(14),
+                                      ),
+                                      alignment: AlignmentDirectional(0, -1),
+                                      child: Container(
+                                        width: double.infinity,
+                                        height: 150,
+                                        child: Stack(
+                                          children: [
+                                            Align(
+                                              alignment:
+                                                  AlignmentDirectional(-1, 1),
+                                              child: ClipRRect(
+                                                borderRadius:
+                                                    BorderRadius.circular(8),
+                                                child: Image.asset(
+                                                  'images/Motor.png',
+                                                  width: double.infinity,
+                                                  height: 150,
+                                                  fit: BoxFit.cover,
                                                 ),
                                               ),
                                             ),
-                                          ),
-                                        ],
+                                            Align(
+                                              alignment:
+                                                  AlignmentDirectional(0, -1),
+                                              child: Padding(
+                                                padding: EdgeInsetsDirectional
+                                                    .fromSTEB(0, 8, 0, 0),
+                                                child: Text(
+                                                  'Motor',
+                                                  style: TextStyle(
+                                                    fontSize: 22,
+                                                    fontFamily: 'Poppins',
+                                                    color: darkTheme
+                                                        ? Colors.black
+                                                        : Colors.white,
+                                                    fontWeight: FontWeight.w600,
+                                                  ),
+                                                ),
+                                              ),
+                                            ),
+                                          ],
+                                        ),
                                       ),
                                     ),
                                   ),
@@ -179,55 +189,63 @@ class _KendaraanScreenState extends State<KendaraanScreen> {
                                 SizedBox(width: 14),
                                 Expanded(
                                   flex: 1,
-                                  child: Container(
-                                    width: double.infinity,
-                                    height: 150,
-                                    decoration: BoxDecoration(
-                                      color: darkTheme
-                                          ? Colors.white
-                                          : Colors.black,
-                                      borderRadius: BorderRadius.circular(14),
-                                    ),
-                                    alignment: AlignmentDirectional(0, -1),
+                                  child: GestureDetector(
+                                    onTap: () {
+                                      setState(() {
+                                        isMotorSelected = false;
+                                        isMobilSelected = true;
+                                      });
+                                    },
                                     child: Container(
                                       width: double.infinity,
                                       height: 150,
-                                      child: Stack(
-                                        children: [
-                                          Align(
-                                            alignment:
-                                                AlignmentDirectional(1, 1),
-                                            child: ClipRRect(
-                                              borderRadius:
-                                                  BorderRadius.circular(8),
-                                              child: Image.asset(
-                                                'images/Mobil.png',
-                                                width: 150,
-                                                height: 150,
-                                                fit: BoxFit.cover,
-                                              ),
-                                            ),
-                                          ),
-                                          Align(
-                                            alignment:
-                                                AlignmentDirectional(0, -1),
-                                            child: Padding(
-                                              padding: EdgeInsetsDirectional
-                                                  .fromSTEB(0, 8, 0, 0),
-                                              child: Text(
-                                                'Mobil',
-                                                style: TextStyle(
-                                                  fontSize: 22,
-                                                  fontFamily: 'Poppins',
-                                                  color: darkTheme
-                                                      ? Colors.black
-                                                      : Colors.white,
-                                                  fontWeight: FontWeight.w600,
+                                      decoration: BoxDecoration(
+                                        color: isMobilSelected
+                                            ? primary
+                                            : Colors.white,
+                                        borderRadius: BorderRadius.circular(14),
+                                      ),
+                                      alignment: AlignmentDirectional(0, -1),
+                                      child: Container(
+                                        width: double.infinity,
+                                        height: 150,
+                                        child: Stack(
+                                          children: [
+                                            Align(
+                                              alignment:
+                                                  AlignmentDirectional(1, 1),
+                                              child: ClipRRect(
+                                                borderRadius:
+                                                    BorderRadius.circular(8),
+                                                child: Image.asset(
+                                                  'images/Mobil.png',
+                                                  width: 150,
+                                                  height: 150,
+                                                  fit: BoxFit.cover,
                                                 ),
                                               ),
                                             ),
-                                          ),
-                                        ],
+                                            Align(
+                                              alignment:
+                                                  AlignmentDirectional(0, -1),
+                                              child: Padding(
+                                                padding: EdgeInsetsDirectional
+                                                    .fromSTEB(0, 8, 0, 0),
+                                                child: Text(
+                                                  'Mobil',
+                                                  style: TextStyle(
+                                                    fontSize: 22,
+                                                    fontFamily: 'Poppins',
+                                                    color: darkTheme
+                                                        ? Colors.black
+                                                        : Colors.white,
+                                                    fontWeight: FontWeight.w600,
+                                                  ),
+                                                ),
+                                              ),
+                                            ),
+                                          ],
+                                        ),
                                       ),
                                     ),
                                   ),
@@ -572,7 +590,6 @@ class _KendaraanScreenState extends State<KendaraanScreen> {
                                     onChanged: (text) => setState(() {}),
                                   ),
                                 ),
-                                SizedBox(height: 8),
                                 DropdownButton<String>(
                                   value: selectedOption,
                                   onChanged: (String? newValue) {
@@ -582,16 +599,16 @@ class _KendaraanScreenState extends State<KendaraanScreen> {
                                   },
                                   items: [
                                     DropdownMenuItem<String>(
-                                      value: 'Option 1',
-                                      child: Text('Option 1'),
+                                      value: 'Opsi Pembayaran 1',
+                                      child: Text('Opsi Pembayaran 1'),
                                     ),
                                     DropdownMenuItem<String>(
-                                      value: 'Option 2',
-                                      child: Text('Option 2'),
+                                      value: 'Opsi Pembayaran 2',
+                                      child: Text('Opsi Pembayaran 2'),
                                     ),
                                     DropdownMenuItem<String>(
-                                      value: 'Option 3',
-                                      child: Text('Option 3'),
+                                      value: 'Opsi Pembayaran 3',
+                                      child: Text('Opsi Pembayaran 3'),
                                     ),
                                   ],
                                   isExpanded: true,
@@ -638,13 +655,17 @@ class _KendaraanScreenState extends State<KendaraanScreen> {
                                           style: TextStyle(
                                             fontFamily: 'Poppins',
                                             fontSize: 16,
-                                            color: Colors.white,
+                                            color: darkTheme
+                                                ? Colors.black
+                                                : Colors.white,
                                           ),
                                         ),
                                         Icon(
                                           Icons.keyboard_arrow_right_rounded,
                                           size: 15,
-                                          color: Colors.white,
+                                          color: darkTheme
+                                              ? Colors.black
+                                              : Colors.white,
                                         ),
                                       ],
                                     ),
