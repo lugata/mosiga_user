@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:mosiga_users/screens/mencari_screen.dart';
 import 'package:mosiga_users/screens/tambal_ban_screen.dart';
 
 import '../theme/theme.dart';
@@ -16,7 +17,6 @@ class _KendaraanScreenState extends State<KendaraanScreen> {
   bool isMotorSelected = true;
   bool isMobilSelected = false;
   int _radioButton = 0;
-  String selectedOption = 'Opsi Pembayaran 1';
 
   static const CameraPosition _kGooglePlex = CameraPosition(
     target: LatLng(-7.656990, 112.746170), // Koordinat Pasuruan Bangil Rembang
@@ -35,71 +35,493 @@ class _KendaraanScreenState extends State<KendaraanScreen> {
         backgroundColor: darkTheme ? Colors.grey.shade900 : Colors.white,
         body: SafeArea(
           top: true,
-          child: Padding(
-            padding: const EdgeInsets.only(bottom: 18),
-            child: SingleChildScrollView(
-              child: Column(
-                mainAxisSize: MainAxisSize.max,
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: [
-                  Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(22, 12, 22, 12),
-                    child: Row(
-                      mainAxisSize: MainAxisSize.max,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Expanded(
-                          child: Padding(
-                            padding:
-                                EdgeInsetsDirectional.fromSTEB(8, 18, 8, 18),
-                            child: Container(
-                              width: 100,
-                              height: 65,
-                              decoration: BoxDecoration(
-                                color:
-                                    darkTheme ? Colors.amber.shade300 : primary,
-                                boxShadow: [
-                                  BoxShadow(
-                                    blurRadius: 4,
-                                    color: Color(0x33000000),
-                                    offset: Offset(6, 6),
-                                    spreadRadius: 3,
-                                  )
-                                ],
-                                borderRadius: BorderRadius.circular(40),
-                                shape: BoxShape.rectangle,
+          child: Column(
+            mainAxisSize: MainAxisSize.max,
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              Padding(
+                padding: EdgeInsetsDirectional.fromSTEB(22, 22, 22, 8),
+                child: Row(
+                  mainAxisSize: MainAxisSize.max,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Expanded(
+                      child: Padding(
+                        padding: EdgeInsetsDirectional.fromSTEB(8, 18, 8, 18),
+                        child: Container(
+                          width: 100,
+                          height: 65,
+                          decoration: BoxDecoration(
+                            color: darkTheme ? Colors.amber.shade400 : primary,
+                            boxShadow: [
+                              BoxShadow(
+                                blurRadius: 4,
+                                color: darkTheme
+                                    ? const Color.fromARGB(51, 255, 255, 255)
+                                    : const Color(0x33000000),
+                                offset: const Offset(5, 3),
+                                spreadRadius: 2,
                               ),
-                              child: Stack(
-                                alignment: AlignmentDirectional(-1, 0),
+                            ],
+                            borderRadius: BorderRadius.circular(40),
+                            shape: BoxShape.rectangle,
+                          ),
+                          child: Stack(
+                            alignment: AlignmentDirectional(-1, 0),
+                            children: [
+                              Padding(
+                                padding:
+                                    EdgeInsetsDirectional.fromSTEB(14, 0, 0, 0),
+                                child: IconButton(
+                                  icon: Icon(
+                                    Icons.chevron_left_rounded,
+                                    color:
+                                        darkTheme ? Colors.black : Colors.white,
+                                    size: 24,
+                                  ),
+                                  onPressed: () {
+                                    Navigator.pop(context);
+                                  },
+                                ),
+                              ),
+                              Align(
+                                alignment: AlignmentDirectional(0, 0),
+                                child: Text(
+                                  'Pesan Sekarang',
+                                  style: TextStyle(
+                                    color:
+                                        darkTheme ? Colors.black : Colors.white,
+                                    fontFamily: 'Poppins',
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              Expanded(
+                child: ListView(
+                  padding: EdgeInsets.zero,
+                  shrinkWrap: true,
+                  scrollDirection: Axis.vertical,
+                  children: [
+                    Stack(
+                      children: [
+                        Padding(
+                          padding:
+                              EdgeInsetsDirectional.fromSTEB(24, 0, 24, 14),
+                          child: Container(
+                            width: double.infinity,
+                            height: 300,
+                            decoration: BoxDecoration(
+                              color: darkTheme ? bg2 : Colors.grey,
+                              borderRadius: BorderRadius.circular(24),
+                            ),
+                            child: Padding(
+                              padding: EdgeInsetsDirectional.fromSTEB(
+                                  12, 12, 12, 12),
+                              child: Column(
+                                mainAxisSize: MainAxisSize.min,
                                 children: [
                                   Padding(
                                     padding: EdgeInsetsDirectional.fromSTEB(
-                                        14, 0, 0, 0),
-                                    child: IconButton(
-                                      icon: Icon(
-                                        Icons.chevron_left_rounded,
-                                        color: darkTheme
-                                            ? Colors.black
-                                            : Colors.white,
-                                        size: 24,
-                                      ),
-                                      onPressed: () {
-                                        Navigator.pop(context);
-                                      },
-                                    ),
-                                  ),
-                                  Align(
-                                    alignment: AlignmentDirectional(0, 0),
+                                        8, 8, 8, 14),
                                     child: Text(
                                       'Pilih Kendaraan',
                                       style: TextStyle(
                                         color: darkTheme
-                                            ? Colors.black
-                                            : Colors.white,
+                                            ? Colors.white
+                                            : Colors.black,
                                         fontFamily: 'Poppins',
-                                        fontSize: 16,
+                                        fontSize: 18,
                                         fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                  ),
+                                  Padding(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        14, 0, 14, 0),
+                                    child: Row(
+                                      mainAxisSize: MainAxisSize.max,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Expanded(
+                                          flex: 1,
+                                          child: Container(
+                                            width: double.infinity,
+                                            height: 125,
+                                            decoration: BoxDecoration(
+                                              borderRadius:
+                                                  BorderRadius.circular(14),
+                                            ),
+                                            alignment:
+                                                AlignmentDirectional(0, -1),
+                                            child: GestureDetector(
+                                              onTap: () {
+                                                setState(() {
+                                                  isMotorSelected = true;
+                                                  isMobilSelected = false;
+                                                });
+                                              },
+                                              child: Container(
+                                                width: 200,
+                                                height: 200,
+                                                decoration: BoxDecoration(
+                                                  borderRadius:
+                                                      BorderRadius.circular(14),
+                                                  color: isMotorSelected
+                                                      ? (darkTheme
+                                                          ? Colors
+                                                              .amber.shade400
+                                                          : primary)
+                                                      : (darkTheme
+                                                          ? Colors.grey.shade900
+                                                          : Colors.grey),
+                                                ),
+                                                child: Stack(
+                                                  children: [
+                                                    Align(
+                                                      alignment:
+                                                          AlignmentDirectional(
+                                                              -1, 1),
+                                                      child: ClipRRect(
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(8),
+                                                        child: Image.asset(
+                                                          'images/Motor.png',
+                                                          width:
+                                                              double.infinity,
+                                                          height:
+                                                              double.infinity,
+                                                          fit: BoxFit.cover,
+                                                        ),
+                                                      ),
+                                                    ),
+                                                    Align(
+                                                      alignment:
+                                                          AlignmentDirectional(
+                                                              0, -1),
+                                                      child: Padding(
+                                                        padding:
+                                                            EdgeInsetsDirectional
+                                                                .fromSTEB(
+                                                                    0, 5, 0, 0),
+                                                        child: Text(
+                                                          'Motor',
+                                                          style: TextStyle(
+                                                            fontSize: 20,
+                                                            fontFamily:
+                                                                'Poppins',
+                                                            color: isMotorSelected
+                                                                ? (darkTheme
+                                                                    ? Colors
+                                                                        .black
+                                                                    : Colors
+                                                                        .white)
+                                                                : (darkTheme
+                                                                    ? Colors
+                                                                        .white
+                                                                    : Colors
+                                                                        .black),
+                                                            fontWeight:
+                                                                FontWeight.w600,
+                                                          ),
+                                                        ),
+                                                      ),
+                                                    ),
+                                                  ],
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                        SizedBox(width: 14),
+                                        Expanded(
+                                          flex: 1,
+                                          child: GestureDetector(
+                                            onTap: () {
+                                              setState(() {
+                                                isMotorSelected = false;
+                                                isMobilSelected = true;
+                                              });
+                                            },
+                                            child: Container(
+                                              width: double.infinity,
+                                              height: 125,
+                                              decoration: BoxDecoration(
+                                                color: isMobilSelected
+                                                    ? (darkTheme
+                                                        ? Colors.amber.shade400
+                                                        : primary)
+                                                    : (darkTheme
+                                                        ? Colors.grey.shade900
+                                                        : Colors.grey),
+                                                borderRadius:
+                                                    BorderRadius.circular(14),
+                                              ),
+                                              alignment:
+                                                  AlignmentDirectional(0, -1),
+                                              child: Container(
+                                                width: 200,
+                                                height: 200,
+                                                child: Stack(
+                                                  children: [
+                                                    Align(
+                                                      alignment:
+                                                          AlignmentDirectional(
+                                                              1, 1),
+                                                      child: ClipRRect(
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(8),
+                                                        child: Image.asset(
+                                                          'images/Mobil.png',
+                                                          width:
+                                                              double.infinity,
+                                                          height:
+                                                              double.infinity,
+                                                          fit: BoxFit.cover,
+                                                        ),
+                                                      ),
+                                                    ),
+                                                    SizedBox(width: 10),
+                                                    Align(
+                                                      alignment:
+                                                          AlignmentDirectional(
+                                                              0, -1),
+                                                      child: Padding(
+                                                        padding:
+                                                            EdgeInsetsDirectional
+                                                                .fromSTEB(
+                                                                    0, 5, 0, 0),
+                                                        child: Text(
+                                                          'Mobil',
+                                                          style: TextStyle(
+                                                            fontSize: 20,
+                                                            fontFamily:
+                                                                'Poppins',
+                                                            color: isMobilSelected
+                                                                ? (darkTheme
+                                                                    ? Colors
+                                                                        .black
+                                                                    : Colors
+                                                                        .white)
+                                                                : (darkTheme
+                                                                    ? Colors
+                                                                        .white
+                                                                    : Colors
+                                                                        .black),
+                                                            fontWeight:
+                                                                FontWeight.w600,
+                                                          ),
+                                                        ),
+                                                      ),
+                                                    ),
+                                                  ],
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                  Container(
+                                    width: double.infinity,
+                                    height: 100,
+                                    decoration: BoxDecoration(),
+                                    child: Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          0, 0, 16, 8),
+                                      child: SingleChildScrollView(
+                                        child: Column(
+                                          mainAxisSize: MainAxisSize.max,
+                                          children: [
+                                            Padding(
+                                              padding: EdgeInsetsDirectional
+                                                  .fromSTEB(0, 0, 8, 0),
+                                              child: Row(
+                                                mainAxisSize: MainAxisSize.max,
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment
+                                                        .spaceBetween,
+                                                children: [
+                                                  GestureDetector(
+                                                    onTap: () {
+                                                      setState(() {
+                                                        // Tindakan saat opsi 1 dipilih
+                                                      });
+                                                    },
+                                                    child: Row(
+                                                      children: [
+                                                        Radio(
+                                                          value: 1,
+                                                          groupValue:
+                                                              _radioButton,
+                                                          onChanged: (value) {
+                                                            setState(() {
+                                                              _radioButton =
+                                                                  value!;
+                                                            });
+                                                          },
+                                                          activeColor: darkTheme
+                                                              ? Colors.amber
+                                                                  .shade400
+                                                              : primary,
+                                                        ),
+                                                        Text(
+                                                          'Option 1',
+                                                          style: TextStyle(
+                                                            fontFamily:
+                                                                'Poppins',
+                                                            fontSize: 16,
+                                                            fontWeight:
+                                                                FontWeight
+                                                                    .normal,
+                                                          ),
+                                                        ),
+                                                      ],
+                                                    ),
+                                                  ),
+                                                  Text(
+                                                    'Rp. 10.000',
+                                                    style: TextStyle(
+                                                      fontFamily: 'Poppins',
+                                                      fontSize: 16,
+                                                      fontWeight:
+                                                          FontWeight.normal,
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
+                                            Padding(
+                                              padding: EdgeInsetsDirectional
+                                                  .fromSTEB(0, 0, 8, 0),
+                                              child: Row(
+                                                mainAxisSize: MainAxisSize.max,
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment
+                                                        .spaceBetween,
+                                                children: [
+                                                  GestureDetector(
+                                                    onTap: () {
+                                                      setState(() {
+                                                        // Tindakan saat opsi 1 dipilih
+                                                      });
+                                                    },
+                                                    child: Row(
+                                                      children: [
+                                                        Radio(
+                                                          value: 2,
+                                                          groupValue:
+                                                              _radioButton,
+                                                          onChanged: (value) {
+                                                            setState(() {
+                                                              _radioButton =
+                                                                  value!;
+                                                            });
+                                                          },
+                                                          activeColor: darkTheme
+                                                              ? Colors.amber
+                                                                  .shade400
+                                                              : primary,
+                                                        ),
+                                                        Text(
+                                                          'Option 2',
+                                                          style: TextStyle(
+                                                            fontFamily:
+                                                                'Poppins',
+                                                            fontSize: 16,
+                                                            fontWeight:
+                                                                FontWeight
+                                                                    .normal,
+                                                          ),
+                                                        ),
+                                                      ],
+                                                    ),
+                                                  ),
+                                                  Text(
+                                                    'Rp. 10.000',
+                                                    style: TextStyle(
+                                                      fontFamily: 'Poppins',
+                                                      fontSize: 16,
+                                                      fontWeight:
+                                                          FontWeight.normal,
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
+                                            Padding(
+                                              padding: EdgeInsetsDirectional
+                                                  .fromSTEB(0, 2, 8, 0),
+                                              child: Row(
+                                                mainAxisSize: MainAxisSize.max,
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment
+                                                        .spaceBetween,
+                                                children: [
+                                                  GestureDetector(
+                                                    onTap: () {
+                                                      setState(() {
+                                                        // Tindakan saat opsi 1 dipilih
+                                                      });
+                                                    },
+                                                    child: Row(
+                                                      children: [
+                                                        Radio(
+                                                          value: 3,
+                                                          groupValue:
+                                                              _radioButton,
+                                                          onChanged: (value) {
+                                                            setState(() {
+                                                              _radioButton =
+                                                                  value!;
+                                                            });
+                                                          },
+                                                          activeColor: darkTheme
+                                                              ? Colors.amber
+                                                                  .shade400
+                                                              : primary,
+                                                        ),
+                                                        Text(
+                                                          'Option 3',
+                                                          style: TextStyle(
+                                                            fontFamily:
+                                                                'Poppins',
+                                                            fontSize: 16,
+                                                            fontWeight:
+                                                                FontWeight
+                                                                    .normal,
+                                                          ),
+                                                        ),
+                                                      ],
+                                                    ),
+                                                  ),
+                                                  Text(
+                                                    'Rp. 10.000',
+                                                    style: TextStyle(
+                                                      fontFamily: 'Poppins',
+                                                      fontSize: 16,
+                                                      fontWeight:
+                                                          FontWeight.normal,
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
+                                          ],
+                                        ),
                                       ),
                                     ),
                                   ),
@@ -110,577 +532,412 @@ class _KendaraanScreenState extends State<KendaraanScreen> {
                         ),
                       ],
                     ),
-                  ),
-                  Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(18, 0, 18, 0),
-                    child: SingleChildScrollView(
-                      child: Column(
+                    Row(
+                      mainAxisSize: MainAxisSize.max,
+                      children: [
+                        Flexible(
+                          child: Container(
+                            width: double.infinity,
+                            decoration: BoxDecoration(
+                              color: darkTheme ? bg2 : Colors.white,
+                            ),
+                            child: Padding(
+                              padding: EdgeInsetsDirectional.fromSTEB(
+                                  18, 18, 18, 18),
+                              child: Column(
+                                mainAxisSize: MainAxisSize.max,
+                                children: [
+                                  Row(
+                                    mainAxisSize: MainAxisSize.max,
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Flexible(
+                                        child: Container(
+                                          width: double.infinity,
+                                          height: 65,
+                                          decoration: BoxDecoration(
+                                            color: darkTheme
+                                                ? bg2
+                                                : Colors.grey.shade200,
+                                            borderRadius:
+                                                BorderRadius.circular(18),
+                                            border: Border.all(
+                                              color: darkTheme
+                                                  ? Colors.grey.shade600
+                                                  : Colors.grey.shade400,
+                                              width: 2,
+                                            ),
+                                          ),
+                                          child: Padding(
+                                            padding:
+                                                EdgeInsetsDirectional.fromSTEB(
+                                                    14, 0, 14, 0),
+                                            child: TextFormField(
+                                              keyboardType: TextInputType.text,
+                                              decoration: InputDecoration(
+                                                hintText:
+                                                    "Masukkan Kode Voucher",
+                                                hintStyle: const TextStyle(
+                                                  color: Colors.grey,
+                                                ),
+                                                filled: true,
+                                                fillColor: Colors.transparent,
+                                                border: OutlineInputBorder(
+                                                  borderRadius:
+                                                      BorderRadius.circular(40),
+                                                  borderSide: const BorderSide(
+                                                    width: 0,
+                                                    style: BorderStyle.none,
+                                                  ),
+                                                ),
+                                              ),
+                                              autovalidateMode: AutovalidateMode
+                                                  .onUserInteraction,
+                                              validator: (text) {
+                                                return null;
+                                              },
+                                              onChanged: (text) =>
+                                                  setState(() {}),
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                  SizedBox(height: 8),
+                                  Row(
+                                    mainAxisSize: MainAxisSize.max,
+                                    children: [
+                                      Expanded(
+                                        child: Container(
+                                          width: 100,
+                                          height: 65,
+                                          decoration: BoxDecoration(
+                                            color: darkTheme
+                                                ? Colors.amber.shade400
+                                                : primary,
+                                            borderRadius:
+                                                BorderRadius.circular(8),
+                                          ),
+                                          alignment: AlignmentDirectional(0, 0),
+                                          child: Padding(
+                                            padding:
+                                                EdgeInsetsDirectional.fromSTEB(
+                                                    18, 0, 18, 0),
+                                            child: Row(
+                                              mainAxisSize: MainAxisSize.max,
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment
+                                                      .spaceBetween,
+                                              children: [
+                                                Text(
+                                                  'Metode Pembayaran',
+                                                  style: TextStyle(
+                                                    fontFamily: 'Poppins',
+                                                    fontSize: 16,
+                                                    fontWeight: FontWeight.w600,
+                                                    color: darkTheme
+                                                        ? Colors.black
+                                                        : Colors.white,
+                                                  ),
+                                                ),
+                                                Icon(
+                                                  Icons.navigate_next_rounded,
+                                                  color: darkTheme
+                                                      ? Colors.black
+                                                      : Colors.white,
+                                                  size: 32,
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                    Padding(
+                      padding: EdgeInsetsDirectional.fromSTEB(24, 14, 24, 14),
+                      child: Container(
+                        width: double.infinity,
+                        decoration: BoxDecoration(
+                          color:
+                              darkTheme ? Colors.black45 : Colors.grey.shade200,
+                          borderRadius: BorderRadius.circular(24),
+                        ),
+                        child: Padding(
+                          padding:
+                              EdgeInsetsDirectional.fromSTEB(12, 12, 12, 16),
+                          child: Column(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              Align(
+                                alignment: AlignmentDirectional(0, 0),
+                                child: Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      8, 8, 8, 8),
+                                  child: Text(
+                                    'Rincian Harga',
+                                    textAlign: TextAlign.start,
+                                    style: TextStyle(
+                                      color: darkTheme
+                                          ? Colors.white
+                                          : Colors.black,
+                                      fontFamily: 'Poppins',
+                                      fontSize: 18,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              Container(
+                                width: double.infinity,
+                                decoration: BoxDecoration(),
+                                child: Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      8, 0, 8, 5),
+                                  child: Column(
+                                    mainAxisSize: MainAxisSize.min,
+                                    children: [
+                                      Padding(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                            8, 4, 8, 0),
+                                        child: Row(
+                                          mainAxisSize: MainAxisSize.max,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceBetween,
+                                          children: [
+                                            Text(
+                                              'Tambal Ban',
+                                              style: TextStyle(
+                                                color: darkTheme
+                                                    ? Colors.white
+                                                    : Colors.black,
+                                                fontFamily: 'Poppins',
+                                                fontSize: 16,
+                                                fontWeight: FontWeight.normal,
+                                              ),
+                                            ),
+                                            Text(
+                                              'Rp. 10.000',
+                                              style: TextStyle(
+                                                color: darkTheme
+                                                    ? Colors.white
+                                                    : Colors.black,
+                                                fontFamily: 'Poppins',
+                                                fontSize: 16,
+                                                fontWeight: FontWeight.normal,
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                      Padding(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                            8, 4, 8, 0),
+                                        child: Row(
+                                          mainAxisSize: MainAxisSize.max,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceBetween,
+                                          children: [
+                                            Text(
+                                              'Ongkos Antar',
+                                              style: TextStyle(
+                                                color: darkTheme
+                                                    ? Colors.white
+                                                    : Colors.black,
+                                                fontFamily: 'Poppins',
+                                                fontSize: 16,
+                                                fontWeight: FontWeight.normal,
+                                              ),
+                                            ),
+                                            Text(
+                                              'Rp. 5.000',
+                                              style: TextStyle(
+                                                color: darkTheme
+                                                    ? Colors.white
+                                                    : Colors.black,
+                                                fontFamily: 'Poppins',
+                                                fontSize: 16,
+                                                fontWeight: FontWeight.normal,
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                      Padding(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                            8, 4, 8, 0),
+                                        child: Row(
+                                          mainAxisSize: MainAxisSize.max,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceBetween,
+                                          children: [
+                                            Text(
+                                              'Biaya Admin',
+                                              style: TextStyle(
+                                                color: darkTheme
+                                                    ? Colors.white
+                                                    : Colors.black,
+                                                fontFamily: 'Poppins',
+                                                fontSize: 16,
+                                                fontWeight: FontWeight.normal,
+                                              ),
+                                            ),
+                                            Text(
+                                              'Rp. 1.000',
+                                              style: TextStyle(
+                                                color: darkTheme
+                                                    ? Colors.white
+                                                    : Colors.black,
+                                                fontFamily: 'Poppins',
+                                                fontSize: 16,
+                                                fontWeight: FontWeight.normal,
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                      Padding(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                            8, 5, 8, 0),
+                                        child: Row(
+                                          mainAxisSize: MainAxisSize.max,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceBetween,
+                                          children: [
+                                            Text(
+                                              'Diskon',
+                                              style: TextStyle(
+                                                color: darkTheme
+                                                    ? Colors.white
+                                                    : Colors.black,
+                                                fontFamily: 'Poppins',
+                                                fontSize: 16,
+                                                fontWeight: FontWeight.normal,
+                                              ),
+                                            ),
+                                            Text(
+                                              '-Rp. 5.000',
+                                              style: TextStyle(
+                                                color: darkTheme
+                                                    ? Colors.white
+                                                    : Colors.black,
+                                                fontFamily: 'Poppins',
+                                                fontSize: 16,
+                                                fontWeight: FontWeight.normal,
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              Container(
+                width: double.infinity,
+                height: MediaQuery.of(context).size.height / (1.618 * 5),
+                decoration: BoxDecoration(
+                    color: darkTheme ? Colors.black45 : Colors.grey.shade200),
+                child: Padding(
+                  padding: EdgeInsetsDirectional.fromSTEB(22, 0, 0, 0),
+                  child: Row(
+                    mainAxisSize: MainAxisSize.max,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Column(
                         mainAxisSize: MainAxisSize.max,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Padding(
-                            padding:
-                                EdgeInsetsDirectional.fromSTEB(16, 0, 16, 0),
-                            child: Row(
-                              mainAxisSize: MainAxisSize.max,
-                              children: [
-                                Expanded(
-                                  flex: 1,
-                                  child: GestureDetector(
-                                    onTap: () {
-                                      setState(() {
-                                        isMotorSelected = true;
-                                        isMobilSelected = false;
-                                      });
-                                    },
-                                    child: Container(
-                                      width: double.infinity,
-                                      height: 150,
-                                      decoration: BoxDecoration(
-                                        color: isMotorSelected
-                                            ? primary
-                                            : Colors.white,
-                                        borderRadius: BorderRadius.circular(14),
-                                      ),
-                                      alignment: AlignmentDirectional(0, -1),
-                                      child: Container(
-                                        width: double.infinity,
-                                        height: 150,
-                                        child: Stack(
-                                          children: [
-                                            Align(
-                                              alignment:
-                                                  AlignmentDirectional(-1, 1),
-                                              child: ClipRRect(
-                                                borderRadius:
-                                                    BorderRadius.circular(8),
-                                                child: Image.asset(
-                                                  'images/Motor.png',
-                                                  width: double.infinity,
-                                                  height: 150,
-                                                  fit: BoxFit.cover,
-                                                ),
-                                              ),
-                                            ),
-                                            Align(
-                                              alignment:
-                                                  AlignmentDirectional(0, -1),
-                                              child: Padding(
-                                                padding: EdgeInsetsDirectional
-                                                    .fromSTEB(0, 8, 0, 0),
-                                                child: Text(
-                                                  'Motor',
-                                                  style: TextStyle(
-                                                    fontSize: 22,
-                                                    fontFamily: 'Poppins',
-                                                    color: darkTheme
-                                                        ? Colors.black
-                                                        : Colors.white,
-                                                    fontWeight: FontWeight.w600,
-                                                  ),
-                                                ),
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                                SizedBox(width: 14),
-                                Expanded(
-                                  flex: 1,
-                                  child: GestureDetector(
-                                    onTap: () {
-                                      setState(() {
-                                        isMotorSelected = false;
-                                        isMobilSelected = true;
-                                      });
-                                    },
-                                    child: Container(
-                                      width: double.infinity,
-                                      height: 150,
-                                      decoration: BoxDecoration(
-                                        color: isMobilSelected
-                                            ? primary
-                                            : Colors.white,
-                                        borderRadius: BorderRadius.circular(14),
-                                      ),
-                                      alignment: AlignmentDirectional(0, -1),
-                                      child: Container(
-                                        width: double.infinity,
-                                        height: 150,
-                                        child: Stack(
-                                          children: [
-                                            Align(
-                                              alignment:
-                                                  AlignmentDirectional(1, 1),
-                                              child: ClipRRect(
-                                                borderRadius:
-                                                    BorderRadius.circular(8),
-                                                child: Image.asset(
-                                                  'images/Mobil.png',
-                                                  width: 150,
-                                                  height: 150,
-                                                  fit: BoxFit.cover,
-                                                ),
-                                              ),
-                                            ),
-                                            Align(
-                                              alignment:
-                                                  AlignmentDirectional(0, -1),
-                                              child: Padding(
-                                                padding: EdgeInsetsDirectional
-                                                    .fromSTEB(0, 8, 0, 0),
-                                                child: Text(
-                                                  'Mobil',
-                                                  style: TextStyle(
-                                                    fontSize: 22,
-                                                    fontFamily: 'Poppins',
-                                                    color: darkTheme
-                                                        ? Colors.black
-                                                        : Colors.white,
-                                                    fontWeight: FontWeight.w600,
-                                                  ),
-                                                ),
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              ],
+                          Text(
+                            'Total :',
+                            textAlign: TextAlign.start,
+                            style: TextStyle(
+                              color: darkTheme ? Colors.white : Colors.black,
+                              fontFamily: 'Poppins',
+                              fontSize: 16,
+                              fontWeight: FontWeight.bold,
                             ),
                           ),
-                          Container(
-                            width: double.infinity,
-                            height: 150,
-                            decoration: BoxDecoration(),
-                            child: Padding(
-                              padding:
-                                  EdgeInsetsDirectional.fromSTEB(8, 8, 8, 8),
-                              child: SingleChildScrollView(
-                                child: Column(
-                                  mainAxisSize: MainAxisSize.max,
-                                  children: [
-                                    Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                          0, 0, 24, 0),
-                                      child: Row(
-                                        mainAxisSize: MainAxisSize.max,
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
-                                        children: [
-                                          GestureDetector(
-                                            onTap: () {
-                                              setState(() {
-                                                // Tindakan saat opsi 1 dipilih
-                                              });
-                                            },
-                                            child: Row(
-                                              children: [
-                                                Radio(
-                                                  value: 1,
-                                                  groupValue: _radioButton,
-                                                  onChanged: (value) {
-                                                    setState(() {
-                                                      _radioButton = value!;
-                                                    });
-                                                  },
-                                                  activeColor: darkTheme
-                                                      ? Colors.amber.shade400
-                                                      : primary,
-                                                ),
-                                                Text(
-                                                  'Option 1',
-                                                  style: TextStyle(
-                                                    fontFamily: 'Poppins',
-                                                    fontSize: 16,
-                                                    fontWeight:
-                                                        FontWeight.normal,
-                                                  ),
-                                                ),
-                                              ],
-                                            ),
-                                          ),
-                                          Text(
-                                            'Rp. 10.000',
-                                            style: TextStyle(
-                                              fontFamily: 'Poppins',
-                                              fontSize: 16,
-                                              fontWeight: FontWeight.normal,
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                    Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                          0, 0, 24, 0),
-                                      child: Row(
-                                        mainAxisSize: MainAxisSize.max,
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
-                                        children: [
-                                          GestureDetector(
-                                            onTap: () {
-                                              setState(() {
-                                                // Tindakan saat opsi 1 dipilih
-                                              });
-                                            },
-                                            child: Row(
-                                              children: [
-                                                Radio(
-                                                  value: 2,
-                                                  groupValue: _radioButton,
-                                                  onChanged: (value) {
-                                                    setState(() {
-                                                      _radioButton = value!;
-                                                    });
-                                                  },
-                                                  activeColor: darkTheme
-                                                      ? Colors.amber.shade400
-                                                      : primary,
-                                                ),
-                                                Text(
-                                                  'Option 2',
-                                                  style: TextStyle(
-                                                    fontFamily: 'Poppins',
-                                                    fontSize: 16,
-                                                    fontWeight:
-                                                        FontWeight.normal,
-                                                  ),
-                                                ),
-                                              ],
-                                            ),
-                                          ),
-                                          Text(
-                                            'Rp. 10.000',
-                                            style: TextStyle(
-                                              fontFamily: 'Poppins',
-                                              fontSize: 16,
-                                              fontWeight: FontWeight.normal,
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                    Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                          0, 0, 24, 0),
-                                      child: Row(
-                                        mainAxisSize: MainAxisSize.max,
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
-                                        children: [
-                                          GestureDetector(
-                                            onTap: () {
-                                              setState(() {
-                                                // Tindakan saat opsi 1 dipilih
-                                              });
-                                            },
-                                            child: Row(
-                                              children: [
-                                                Radio(
-                                                  value: 3,
-                                                  groupValue: _radioButton,
-                                                  onChanged: (value) {
-                                                    setState(() {
-                                                      _radioButton = value!;
-                                                    });
-                                                  },
-                                                  activeColor: darkTheme
-                                                      ? Colors.amber.shade400
-                                                      : primary,
-                                                ),
-                                                Text(
-                                                  'Option 3',
-                                                  style: TextStyle(
-                                                    fontFamily: 'Poppins',
-                                                    fontSize: 16,
-                                                    fontWeight:
-                                                        FontWeight.normal,
-                                                  ),
-                                                ),
-                                              ],
-                                            ),
-                                          ),
-                                          Text(
-                                            'Rp. 10.000',
-                                            style: TextStyle(
-                                              fontFamily: 'Poppins',
-                                              fontSize: 16,
-                                              fontWeight: FontWeight.normal,
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                    // Tambahkan kode yang serupa untuk opsi lainnya
-                                  ],
-                                ),
-                              ),
-                            ),
-                          ),
-                          Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(8, 0, 8, 0),
-                            child: Divider(
-                              thickness: 1,
-                              color: Color(0xCC000000),
-                            ),
-                          ),
-                          Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(8, 8, 8, 8),
-                            child: Text(
-                              'Rincian Pesanan',
-                              textAlign: TextAlign.center,
-                              style: TextStyle(
-                                color: darkTheme ? Colors.white : Colors.black,
-                                fontFamily: 'Poppins',
-                                fontSize: 16,
-                                fontWeight: FontWeight.w600,
-                              ),
-                            ),
-                          ),
-                          Container(
-                            width: double.infinity,
-                            height: 100,
-                            decoration: BoxDecoration(),
-                            child: Padding(
-                              padding:
-                                  EdgeInsetsDirectional.fromSTEB(8, 8, 8, 8),
-                              child: SingleChildScrollView(
-                                child: Column(
-                                  mainAxisSize: MainAxisSize.min,
-                                  children: [
-                                    Row(
-                                      mainAxisSize: MainAxisSize.max,
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        Text(
-                                          'Tamban Ban ',
-                                          style: TextStyle(
-                                            color: darkTheme
-                                                ? Colors.white
-                                                : Colors.black,
-                                            fontFamily: 'Poppins',
-                                            fontSize: 16,
-                                            fontWeight: FontWeight.w600,
-                                          ),
-                                        ),
-                                        Text(
-                                          'Rp. 10.000',
-                                          style: TextStyle(
-                                            color: darkTheme
-                                                ? Colors.white
-                                                : Colors.black,
-                                            fontFamily: 'Poppins',
-                                            fontSize: 16,
-                                            fontWeight: FontWeight.w600,
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                    SizedBox(height: 8),
-                                    Row(
-                                      mainAxisSize: MainAxisSize.max,
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        Text(
-                                          'Ongkos Antar',
-                                          style: TextStyle(
-                                            color: darkTheme
-                                                ? Colors.white
-                                                : Colors.black,
-                                            fontFamily: 'Poppins',
-                                            fontSize: 16,
-                                            fontWeight: FontWeight.w600,
-                                          ),
-                                        ),
-                                        Text(
-                                          'Rp. 5.000',
-                                          style: TextStyle(
-                                            color: darkTheme
-                                                ? Colors.white
-                                                : Colors.black,
-                                            fontFamily: 'Poppins',
-                                            fontSize: 16,
-                                            fontWeight: FontWeight.w600,
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                    SizedBox(height: 8),
-                                    Row(
-                                      mainAxisSize: MainAxisSize.max,
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        Text(
-                                          'Biaya Admin',
-                                          style: TextStyle(
-                                            color: darkTheme
-                                                ? Colors.white
-                                                : Colors.black,
-                                            fontFamily: 'Poppins',
-                                            fontSize: 16,
-                                            fontWeight: FontWeight.w600,
-                                          ),
-                                        ),
-                                        Text(
-                                          'Rp. 1.000',
-                                          style: TextStyle(
-                                            color: darkTheme
-                                                ? Colors.white
-                                                : Colors.black,
-                                            fontFamily: 'Poppins',
-                                            fontSize: 16,
-                                            fontWeight: FontWeight.w600,
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ),
-                          ),
-                          Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(8, 0, 8, 0),
-                            child: Divider(
-                              thickness: 1,
-                              color: Color(0xCC000000),
-                            ),
-                          ),
-                          Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(8, 8, 8, 8),
-                            child: Column(
-                              mainAxisSize: MainAxisSize.max,
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              children: [
-                                Container(
-                                  width: double.infinity,
-                                  child: TextFormField(
-                                    keyboardType: TextInputType.text,
-                                    decoration: InputDecoration(
-                                      hintText: "Masukkan Kode Voucher",
-                                      hintStyle: const TextStyle(
-                                        color: Colors.grey,
-                                      ),
-                                      filled: true,
-                                      fillColor: darkTheme
-                                          ? Colors.black45
-                                          : Colors.grey.shade200,
-                                      border: OutlineInputBorder(
-                                        borderRadius: BorderRadius.circular(40),
-                                        borderSide: const BorderSide(
-                                          width: 0,
-                                          style: BorderStyle.none,
-                                        ),
-                                      ),
-                                    ),
-                                    autovalidateMode:
-                                        AutovalidateMode.onUserInteraction,
-                                    validator: (text) {
-                                      return null;
-                                    },
-                                    onChanged: (text) => setState(() {}),
-                                  ),
-                                ),
-                                DropdownButton<String>(
-                                  value: selectedOption,
-                                  onChanged: (String? newValue) {
-                                    setState(() {
-                                      selectedOption = newValue!;
-                                    });
-                                  },
-                                  items: [
-                                    DropdownMenuItem<String>(
-                                      value: 'Opsi Pembayaran 1',
-                                      child: Text('Opsi Pembayaran 1'),
-                                    ),
-                                    DropdownMenuItem<String>(
-                                      value: 'Opsi Pembayaran 2',
-                                      child: Text('Opsi Pembayaran 2'),
-                                    ),
-                                    DropdownMenuItem<String>(
-                                      value: 'Opsi Pembayaran 3',
-                                      child: Text('Opsi Pembayaran 3'),
-                                    ),
-                                  ],
-                                  isExpanded: true,
-                                  underline: Container(
-                                    height: 2,
-                                    color: darkTheme
-                                        ? Colors.amber.shade400
-                                        : primary,
-                                  ),
-                                  icon: Icon(
-                                    Icons.keyboard_arrow_down_rounded,
-                                    color:
-                                        darkTheme ? Colors.white : Colors.black,
-                                    size: 24,
-                                  ),
-                                ),
-                                SizedBox(height: 8),
-                                ElevatedButton(
-                                  onPressed: () {
-                                    print('Button pressed ...');
-                                  },
-                                  style: ElevatedButton.styleFrom(
-                                    padding: EdgeInsets.zero,
-                                    shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(24),
-                                    ),
-                                    elevation: 3,
-                                    primary: darkTheme
-                                        ? Colors.amber.shade400
-                                        : primary,
-                                  ),
-                                  child: Ink(
-                                    width: double.infinity,
-                                    height: 50,
-                                    decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(24),
-                                    ),
-                                    child: Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      children: [
-                                        Text(
-                                          'Pesan Sekarang',
-                                          style: TextStyle(
-                                            fontFamily: 'Poppins',
-                                            fontSize: 16,
-                                            color: darkTheme
-                                                ? Colors.black
-                                                : Colors.white,
-                                          ),
-                                        ),
-                                        Icon(
-                                          Icons.keyboard_arrow_right_rounded,
-                                          size: 15,
-                                          color: darkTheme
-                                              ? Colors.black
-                                              : Colors.white,
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                )
-                              ],
+                          Text(
+                            'Rp. 11.000',
+                            style: TextStyle(
+                              color: Color.fromARGB(255, 0, 255, 34),
+                              fontFamily: 'Poppins',
+                              fontSize: 16,
+                              fontWeight: FontWeight.bold,
                             ),
                           ),
                         ],
                       ),
-                    ),
+                      Column(
+                        mainAxisSize: MainAxisSize.max,
+                        children: [
+                          Expanded(
+                            child: Padding(
+                              padding: EdgeInsets.fromLTRB(0, 24, 24, 24),
+                              child: ElevatedButton(
+                                onPressed: () {
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (c) =>
+                                              const MencariScreen()));
+                                },
+                                style: ElevatedButton.styleFrom(
+                                  primary: darkTheme
+                                      ? Colors.amber.shade400
+                                      : primary,
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(10),
+                                  ),
+                                ),
+                                child: Ink(
+                                  height: 30,
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Text(
+                                        'Order',
+                                        style: TextStyle(
+                                          fontFamily: 'Poppins',
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.w600,
+                                          color: darkTheme
+                                              ? Colors.black
+                                              : Colors.white,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
                   ),
-                ],
+                ),
               ),
-            ),
+            ],
           ),
         ),
       ),

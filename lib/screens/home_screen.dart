@@ -123,48 +123,98 @@ class _HomeScreenState extends State<HomeScreen> {
                     Expanded(
                       flex: 2,
                       child: Align(
-                        alignment: Alignment.center,
-                        child: Row(
-                          mainAxisSize: MainAxisSize.max,
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            Expanded(
-                              child: Align(
-                                alignment: Alignment.center,
-                                child: Container(
-                                  width: double.infinity,
-                                  height: double.infinity,
-                                  decoration: BoxDecoration(
-                                    color: darkTheme
-                                        ? Colors.amber.shade400
-                                        : primary,
-                                    borderRadius: BorderRadius.circular(48),
-                                  ),
-                                  child: Padding(
-                                    padding:
-                                        EdgeInsets.fromLTRB(40, 40, 10, 40),
-                                    child: Text(
-                                      "PROMO",
-                                      style: TextStyle(
-                                        fontFamily: 'Poppins',
-                                        color: darkTheme
-                                            ? Colors.black
-                                            : Colors.white,
-                                        fontSize: 24,
-                                        fontWeight: FontWeight.w600,
+                        child: Container(
+                          decoration: BoxDecoration(
+                            color: darkTheme ? Colors.amber.shade400 : primary,
+                            borderRadius: BorderRadius.circular(40),
+                          ),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.max,
+                            children: [
+                              Flexible(
+                                flex: 1,
+                                child: Column(
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: [
+                                    Expanded(
+                                      child: Align(
+                                        alignment: AlignmentDirectional(-1, 0),
+                                        child: ClipRRect(
+                                          borderRadius:
+                                              BorderRadius.circular(8),
+                                          child: Image.asset(
+                                            'images/promopic.png',
+                                            width: 300,
+                                            height: 200,
+                                            fit: BoxFit.cover,
+                                          ),
+                                        ),
                                       ),
                                     ),
+                                  ],
+                                ),
+                              ),
+                              Flexible(
+                                flex: 1,
+                                child: Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      8, 0, 8, 0),
+                                  child: Column(
+                                    mainAxisSize: MainAxisSize.min,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        'PROMO ',
+                                        textAlign: TextAlign.start,
+                                        style: TextStyle(
+                                          fontFamily: 'Poppins',
+                                          color: darkTheme
+                                              ? Colors.black
+                                              : Colors.white,
+                                          fontSize: 18,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                      Text(
+                                        'TAMBAL BAN',
+                                        textAlign: TextAlign.start,
+                                        style: TextStyle(
+                                          fontFamily: 'Poppins',
+                                          color: darkTheme
+                                              ? Colors.black
+                                              : Colors.white,
+                                          fontSize: 18,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                      Divider(
+                                        thickness: 0,
+                                        color: Colors.transparent,
+                                      ),
+                                      Text(
+                                        'Diskon 5rb untuk pengguna baru, \nKODE : USERMOSIGA',
+                                        textAlign: TextAlign.start,
+                                        style: TextStyle(
+                                          fontFamily: 'Poppins',
+                                          color: darkTheme
+                                              ? Colors.black
+                                              : Colors.white,
+                                          fontSize: 12,
+                                          fontWeight: FontWeight.w600,
+                                        ),
+                                      ),
+                                    ],
                                   ),
                                 ),
                               ),
-                            ),
-                          ],
+                            ],
+                          ),
                         ),
                       ),
                     ),
                     const SizedBox(
-                      height: 20,
+                      height: 14,
                     ),
                     Align(
                       alignment: Alignment.center,
@@ -192,7 +242,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       height: 10,
                     ),
                     Expanded(
-                      flex: 4,
+                      flex: 3,
                       child: Padding(
                         padding: const EdgeInsets.fromLTRB(4, 4, 4, 0),
                         child: Row(
@@ -271,7 +321,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                                   const TambalBan()),
                                         ),
                                       ),
-                                      const SizedBox(height: 18),
+                                      const SizedBox(height: 14),
                                       GestureDetector(
                                         child: Container(
                                           width: 100,
@@ -332,27 +382,6 @@ class _HomeScreenState extends State<HomeScreen> {
                                                   const BensinPage()),
                                         ),
                                       ),
-                                      const SizedBox(height: 18),
-                                      GestureDetector(
-                                        child: Container(
-                                          width: 100,
-                                          height: 150,
-                                          decoration: BoxDecoration(
-                                            color: darkTheme
-                                                ? Colors.amber.shade400
-                                                : primary,
-                                            borderRadius:
-                                                BorderRadius.circular(24),
-                                            shape: BoxShape.rectangle,
-                                          ),
-                                        ),
-                                        onTap: () => Navigator.push(
-                                          context,
-                                          MaterialPageRoute(
-                                              builder: (context) =>
-                                                  const BanyakMasalah()),
-                                        ),
-                                      ),
                                       SizedBox(
                                         height: 14,
                                       )
@@ -363,7 +392,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             ),
                             const SizedBox(
                                 width:
-                                    18), // Add spacing between the two Expanded widgets
+                                    14), // Add spacing between the two Expanded widgets
                             Expanded(
                               flex: 1,
                               child: Align(
@@ -374,6 +403,74 @@ class _HomeScreenState extends State<HomeScreen> {
                                     crossAxisAlignment:
                                         CrossAxisAlignment.stretch,
                                     children: [
+                                      GestureDetector(
+                                        child: Container(
+                                          width: 100,
+                                          height: 100,
+                                          decoration: BoxDecoration(
+                                            color: darkTheme
+                                                ? Colors.amber.shade400
+                                                : primary,
+                                            borderRadius:
+                                                BorderRadius.circular(24),
+                                            shape: BoxShape.rectangle,
+                                          ),
+                                          child: Padding(
+                                            padding: const EdgeInsets.all(8.0),
+                                            child: Row(
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.center,
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.center,
+                                              children: [
+                                                Column(
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment.center,
+                                                  children: [
+                                                    Icon(
+                                                      Icons
+                                                          .add_circle_outline_rounded,
+                                                      size: 42,
+                                                      color: darkTheme
+                                                          ? Colors.black
+                                                          : Colors.white,
+                                                    ),
+                                                  ],
+                                                ),
+                                                SizedBox(
+                                                  width: 8,
+                                                ),
+                                                Column(
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment.center,
+                                                  children: [
+                                                    Text(
+                                                      'Ada \nLagi ?',
+                                                      style: TextStyle(
+                                                        height: 1.1,
+                                                        fontFamily: 'Poppins',
+                                                        color: darkTheme
+                                                            ? Colors.black
+                                                            : Colors.white,
+                                                        fontSize: 18,
+                                                        fontWeight:
+                                                            FontWeight.bold,
+                                                      ),
+                                                    ),
+                                                  ],
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                        ),
+                                        onTap: () => Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (context) =>
+                                                  const BanyakMasalah()),
+                                        ),
+                                      ),
+                                      const SizedBox(height: 14),
                                       GestureDetector(
                                         child: Container(
                                           width: 100,
@@ -435,7 +532,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                                   const DerekPage()),
                                         ),
                                       ),
-                                      const SizedBox(height: 18),
+                                      const SizedBox(height: 14),
                                       GestureDetector(
                                         child: Container(
                                           width: 100,
@@ -494,27 +591,6 @@ class _HomeScreenState extends State<HomeScreen> {
                                           MaterialPageRoute(
                                               builder: (context) =>
                                                   const KunciHilang()),
-                                        ),
-                                      ),
-                                      const SizedBox(height: 18),
-                                      GestureDetector(
-                                        child: Container(
-                                          width: 100,
-                                          height: 150,
-                                          decoration: BoxDecoration(
-                                            color: darkTheme
-                                                ? Colors.amber.shade400
-                                                : primary,
-                                            borderRadius:
-                                                BorderRadius.circular(24),
-                                            shape: BoxShape.rectangle,
-                                          ),
-                                        ),
-                                        onTap: () => Navigator.push(
-                                          context,
-                                          MaterialPageRoute(
-                                              builder: (context) =>
-                                                  const BanyakMasalah()),
                                         ),
                                       ),
                                       const SizedBox(
