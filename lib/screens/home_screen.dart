@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:mosiga_users/screens/banyak_masalah_screen.dart';
 import 'package:mosiga_users/screens/bensin_screen.dart';
+import 'package:mosiga_users/screens/comingsoon_screen.dart';
 import 'package:mosiga_users/screens/derek_screen.dart';
 import 'package:mosiga_users/screens/kunci_hilang_screen.dart';
 import 'package:mosiga_users/screens/tambal_ban_screen.dart';
@@ -379,7 +380,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                           context,
                                           MaterialPageRoute(
                                               builder: (context) =>
-                                                  const BensinPage()),
+                                                  const ComingSoonScreen()),
                                         ),
                                       ),
                                       SizedBox(
@@ -467,7 +468,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                           context,
                                           MaterialPageRoute(
                                               builder: (context) =>
-                                                  const BanyakMasalah()),
+                                                  const ComingSoonScreen()),
                                         ),
                                       ),
                                       const SizedBox(height: 14),
@@ -529,7 +530,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                           context,
                                           MaterialPageRoute(
                                               builder: (context) =>
-                                                  const DerekPage()),
+                                                  const ComingSoonScreen()),
                                         ),
                                       ),
                                       const SizedBox(height: 14),
@@ -590,7 +591,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                           context,
                                           MaterialPageRoute(
                                               builder: (context) =>
-                                                  const KunciHilang()),
+                                                  const ComingSoonScreen()),
                                         ),
                                       ),
                                       const SizedBox(

@@ -20,7 +20,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
   final nameTextEditingController = TextEditingController();
   final emailTextEditingController = TextEditingController();
   final phoneTextEditingController = TextEditingController();
-
   final passwordTextEditingController = TextEditingController();
   final confirmpasswordTextEditingController = TextEditingController();
 

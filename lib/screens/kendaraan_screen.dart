@@ -13,15 +13,9 @@ class KendaraanScreen extends StatefulWidget {
 }
 
 class _KendaraanScreenState extends State<KendaraanScreen> {
-  bool _isVisible = true;
   bool isMotorSelected = true;
   bool isMobilSelected = false;
   int _radioButton = 0;
-
-  static const CameraPosition _kGooglePlex = CameraPosition(
-    target: LatLng(-7.656990, 112.746170), // Koordinat Pasuruan Bangil Rembang
-    zoom: 14.0,
-  );
 
   Set<Circle> circleSet = {};
 

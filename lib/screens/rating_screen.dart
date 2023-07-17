@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mosiga_users/screens/home_screen.dart';
+import 'package:mosiga_users/screens/main_screen.dart';
 import 'package:mosiga_users/theme/theme.dart';
 
 class RatingScreen extends StatefulWidget {
@@ -197,11 +198,12 @@ class _RatingScreenState extends State<RatingScreen> {
                     padding: EdgeInsets.fromLTRB(0, 14, 0, 14),
                     child: ElevatedButton(
                       onPressed: () {
-                        Navigator.pushReplacement(
+                        Navigator.pushAndRemoveUntil(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => const HomeScreen(),
-                          ),
+                              builder: (context) => const MainScreen()),
+                          (route) =>
+                              false, // predicate untuk menghapus semua activity sebelumnya
                         );
                       },
                       style: ElevatedButton.styleFrom(

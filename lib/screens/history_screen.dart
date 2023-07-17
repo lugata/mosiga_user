@@ -145,7 +145,6 @@ class _HistoryScreenState extends State<HistoryScreen> {
                                               children: [
                                                 Container(
                                                   width: double.infinity,
-                                                  height: 50,
                                                   decoration: BoxDecoration(
                                                     color: darkTheme
                                                         ? Colors.amber.shade400

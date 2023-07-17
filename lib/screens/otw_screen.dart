@@ -1,6 +1,20 @@
+import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:mosiga_users/screens/rating_screen.dart';
 import 'package:mosiga_users/theme/theme.dart';
+import 'package:geocoder2/geocoder2.dart';
+import 'package:geolocator/geolocator.dart';
+import 'package:location/location.dart' as loc;
+import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:mosiga_users/Assistants/assistant_methods.dart';
+
+import 'package:mosiga_users/global/map_key.dart';
+import 'package:mosiga_users/infoHandler/app_info.dart';
+import 'package:mosiga_users/screens/kendaraan_screen.dart';
+import 'package:provider/provider.dart';
+import '../models/directions.dart';
+import '../theme/theme.dart';
 
 class OtwScreen extends StatefulWidget {
   const OtwScreen({super.key});
@@ -10,6 +24,110 @@ class OtwScreen extends StatefulWidget {
 }
 
 class _OtwScreenState extends State<OtwScreen> {
+  bool _isVisible = true;
+
+  LatLng? pickLocation;
+  loc.Location location = loc.Location();
+
+  String? _address;
+
+  final Completer<GoogleMapController> _controllerGoogleMap =
+      Completer<GoogleMapController>();
+
+  GoogleMapController? newGoogleMapController;
+
+  static const CameraPosition _kGooglePlex = CameraPosition(
+    target:
+        LatLng(-7.2723078, 112.7476966), // Koordinat Pasuruan Bangil Rembang
+    zoom: 14.0,
+  );
+
+  GlobalKey<ScaffoldState> _scaffoldState = GlobalKey<ScaffoldState>();
+  double searchLocationContainerHeight = 200;
+  double waitingResponsefromDriverContainerHeight = 0;
+  double assignedDriverInfoContainerHeight = 0;
+
+  Position? userCurrentPosition;
+  var geoLocation = Geolocator();
+
+  LocationPermission? _locationPermission;
+  double bottomPaddingOfMap = 0;
+
+  List<LatLng> pLineCoordinatedList = [];
+  Set<Polyline> polylineSet = {};
+
+  Set<Marker> markerSet = {};
+  Set<Circle> circleSet = {};
+
+  String userName = "";
+  String userEmail = "";
+
+  bool openNavigationDrawer = true;
+  bool activateNearbyDriverKeysLoaded = false;
+
+  BitmapDescriptor? activeNearbyIcon;
+
+  locateUserPosition() async {
+    Position cPosition = await Geolocator.getCurrentPosition(
+        desiredAccuracy: LocationAccuracy.high);
+    userCurrentPosition = cPosition;
+
+    LatLng latLngPosition =
+        LatLng(userCurrentPosition!.latitude, userCurrentPosition!.longitude);
+    CameraPosition cameraPosition =
+        CameraPosition(target: latLngPosition, zoom: 14);
+
+    newGoogleMapController!
+        .animateCamera(CameraUpdate.newCameraPosition(cameraPosition));
+
+    String humanReadableAddress =
+        await AssistantMethods.searchAddressForGeographicCoCoordinates(
+            userCurrentPosition!, context);
+    print("This is our address = " + humanReadableAddress);
+
+    // userName = userModelCurrentInfo!.name!;
+    // userEmail = userModelCurrentInfo!.email!;
+
+    // initializeGeoFireListener();
+
+    // AssistantMethods.readTripsKeyForOnlineUser(context);
+  }
+
+  getAddressFromLatLng() async {
+    try {
+      GeoData data = await Geocoder2.getDataFromCoordinates(
+          latitude: pickLocation!.latitude,
+          longitude: pickLocation!.longitude,
+          googleMapApiKey: mapkey);
+      setState(() {
+        Directions userPickupAddress = Directions();
+        userPickupAddress.locationLatitude = pickLocation!.latitude;
+        userPickupAddress.locationLongitude = pickLocation!.longitude;
+        userPickupAddress.locationName = data.address;
+        Provider.of<AppInfo>(context, listen: false)
+            .updatePickUpLocationAddress(userPickupAddress);
+        // _address = data.address;
+      });
+    } catch (e) {
+      print(e);
+    }
+  }
+
+  checkIfLocationPermissionAllowed() async {
+    _locationPermission = await Geolocator.requestPermission();
+
+    if (_locationPermission == LocationPermission.denied) {
+      _locationPermission = await Geolocator.requestPermission();
+    }
+  }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    checkIfLocationPermissionAllowed();
+  }
+
   @override
   Widget build(BuildContext context) {
     bool darkTheme =
@@ -22,6 +140,34 @@ class _OtwScreenState extends State<OtwScreen> {
           top: true,
           child: Stack(
             children: [
+              GoogleMap(
+                mapType: MapType.normal,
+                myLocationEnabled: true,
+                zoomGesturesEnabled: true,
+                zoomControlsEnabled: false,
+                polylines: polylineSet,
+                markers: markerSet,
+                circles: circleSet,
+                initialCameraPosition: _kGooglePlex,
+                onMapCreated: (GoogleMapController controller) {
+                  _controllerGoogleMap.complete(controller);
+                  newGoogleMapController = controller;
+                  setState(() {
+                    bottomPaddingOfMap = 200;
+                  });
+                  locateUserPosition();
+                },
+                onCameraMove: (CameraPosition? position) {
+                  if (pickLocation != position!.target) {
+                    setState(() {
+                      pickLocation = position.target;
+                    });
+                  }
+                },
+                onCameraIdle: () {
+                  getAddressFromLatLng();
+                },
+              ),
               Column(
                 mainAxisSize: MainAxisSize.max,
                 mainAxisAlignment: MainAxisAlignment.end,
@@ -97,7 +243,7 @@ class _OtwScreenState extends State<OtwScreen> {
                                                       CrossAxisAlignment.start,
                                                   children: [
                                                     Text(
-                                                      'Nama Nama',
+                                                      'Nama Montir',
                                                       style: TextStyle(
                                                         fontFamily: 'Poppins',
                                                         fontSize: 20,

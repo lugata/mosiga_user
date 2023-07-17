@@ -37,8 +37,11 @@ class _MencariScreenState extends State<MencariScreen>
       });
     _animationController.forward();
     Future.delayed(Duration(seconds: 3), () {
-      Navigator.pushReplacement(
-          context, MaterialPageRoute(builder: (c) => const OtwScreen()));
+      Navigator.pushAndRemoveUntil(
+        context,
+        MaterialPageRoute(builder: (context) => const OtwScreen()),
+        (route) => false, // predicate untuk menghapus semua activity sebelumnya
+      );
     });
   }
 
