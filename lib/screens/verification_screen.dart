@@ -4,7 +4,6 @@ import 'package:flutter/services.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:mosiga_users/global/global.dart';
 import 'package:mosiga_users/screens/main_screen.dart';
-import 'package:mosiga_users/screens/register_screen.dart';
 
 class VerificationScreen extends StatefulWidget {
   const VerificationScreen({super.key});
@@ -206,10 +205,7 @@ class _VerificationScreenState extends State<VerificationScreen> {
                       children: [
                         GestureDetector(
                           onTap: () {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (c) => const RegisterScreen()));
+                            SystemNavigator.pop();
                           },
                           child: Text(
                             "Create An Account",

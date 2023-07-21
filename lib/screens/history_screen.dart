@@ -27,21 +27,22 @@ class _HistoryScreenState extends State<HistoryScreen> {
               Flexible(
                 flex: 1,
                 child: Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(22, 22, 22, 8),
+                  padding: const EdgeInsetsDirectional.fromSTEB(22, 22, 22, 8),
                   child: Row(
                     mainAxisSize: MainAxisSize.max,
                     children: [
                       Expanded(
                         flex: 1,
                         child: Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(8, 18, 8, 18),
+                          padding: const EdgeInsetsDirectional.fromSTEB(
+                              8, 18, 8, 18),
                           child: Container(
                             width: 100,
                             height: 65,
                             decoration: BoxDecoration(
                               color:
                                   darkTheme ? Colors.amber.shade400 : primary,
-                              boxShadow: [
+                              boxShadow: const [
                                 BoxShadow(
                                   blurRadius: 4,
                                   color: Color(0x33000000),
@@ -53,10 +54,10 @@ class _HistoryScreenState extends State<HistoryScreen> {
                               shape: BoxShape.rectangle,
                             ),
                             child: Stack(
-                              alignment: AlignmentDirectional(-1, 0),
+                              alignment: const AlignmentDirectional(-1, 0),
                               children: [
                                 Align(
-                                  alignment: AlignmentDirectional(0, 0),
+                                  alignment: const AlignmentDirectional(0, 0),
                                   child: Text(
                                     'Riwayat Service',
                                     style: TextStyle(
@@ -85,10 +86,10 @@ class _HistoryScreenState extends State<HistoryScreen> {
                     mainAxisSize: MainAxisSize.max,
                     children: [
                       Align(
-                        alignment: AlignmentDirectional(0, 0),
+                        alignment: const AlignmentDirectional(0, 0),
                         child: Padding(
-                          padding:
-                              EdgeInsetsDirectional.fromSTEB(22, 0, 22, 14),
+                          padding: const EdgeInsetsDirectional.fromSTEB(
+                              22, 0, 22, 14),
                           child: Row(
                             mainAxisSize: MainAxisSize.max,
                             mainAxisAlignment: MainAxisAlignment.center,
@@ -104,8 +105,9 @@ class _HistoryScreenState extends State<HistoryScreen> {
                                     borderRadius: BorderRadius.circular(28),
                                   ),
                                   child: Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
-                                        24, 24, 24, 24),
+                                    padding:
+                                        const EdgeInsetsDirectional.fromSTEB(
+                                            24, 24, 24, 24),
                                     child: Row(
                                       mainAxisSize: MainAxisSize.max,
                                       children: [
@@ -114,7 +116,8 @@ class _HistoryScreenState extends State<HistoryScreen> {
                                           children: [
                                             Align(
                                               alignment:
-                                                  AlignmentDirectional(1, 1),
+                                                  const AlignmentDirectional(
+                                                      1, 1),
                                               child: ClipRRect(
                                                 borderRadius:
                                                     BorderRadius.circular(18),
@@ -133,9 +136,8 @@ class _HistoryScreenState extends State<HistoryScreen> {
                                         ),
                                         Expanded(
                                           child: Padding(
-                                            padding:
-                                                EdgeInsetsDirectional.fromSTEB(
-                                                    14, 0, 0, 0),
+                                            padding: const EdgeInsetsDirectional
+                                                .fromSTEB(14, 0, 0, 0),
                                             child: Column(
                                               mainAxisSize: MainAxisSize.min,
                                               mainAxisAlignment:
@@ -187,7 +189,7 @@ class _HistoryScreenState extends State<HistoryScreen> {
                                                     ],
                                                   ),
                                                 ),
-                                                SizedBox(
+                                                const SizedBox(
                                                   height: 10,
                                                 ),
                                                 Text(

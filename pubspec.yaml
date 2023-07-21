@@ -50,6 +50,7 @@ dependencies:
   smooth_star_rating_null_safety: ^1.0.4+2
   animated_text_kit: ^4.2.2
   provider: ^6.0.5
+  permission_handler: ^10.4.3
 
 dev_dependencies:
   flutter_test:

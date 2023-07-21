@@ -35,14 +35,15 @@ class _KendaraanScreenState extends State<KendaraanScreen> {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(22, 22, 22, 8),
+                padding: const EdgeInsetsDirectional.fromSTEB(22, 22, 22, 8),
                 child: Row(
                   mainAxisSize: MainAxisSize.max,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Expanded(
                       child: Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(8, 18, 8, 18),
+                        padding:
+                            const EdgeInsetsDirectional.fromSTEB(8, 18, 8, 18),
                         child: Container(
                           width: 100,
                           height: 65,
@@ -62,11 +63,11 @@ class _KendaraanScreenState extends State<KendaraanScreen> {
                             shape: BoxShape.rectangle,
                           ),
                           child: Stack(
-                            alignment: AlignmentDirectional(-1, 0),
+                            alignment: const AlignmentDirectional(-1, 0),
                             children: [
                               Padding(
-                                padding:
-                                    EdgeInsetsDirectional.fromSTEB(14, 0, 0, 0),
+                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                    14, 0, 0, 0),
                                 child: IconButton(
                                   icon: Icon(
                                     Icons.chevron_left_rounded,
@@ -80,7 +81,7 @@ class _KendaraanScreenState extends State<KendaraanScreen> {
                                 ),
                               ),
                               Align(
-                                alignment: AlignmentDirectional(0, 0),
+                                alignment: const AlignmentDirectional(0, 0),
                                 child: Text(
                                   'Pesan Sekarang',
                                   style: TextStyle(
@@ -109,8 +110,8 @@ class _KendaraanScreenState extends State<KendaraanScreen> {
                     Stack(
                       children: [
                         Padding(
-                          padding:
-                              EdgeInsetsDirectional.fromSTEB(24, 0, 24, 14),
+                          padding: const EdgeInsetsDirectional.fromSTEB(
+                              24, 0, 24, 14),
                           child: Container(
                             width: double.infinity,
                             height: 300,
@@ -119,14 +120,15 @@ class _KendaraanScreenState extends State<KendaraanScreen> {
                               borderRadius: BorderRadius.circular(24),
                             ),
                             child: Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
                                   12, 12, 12, 12),
                               child: Column(
                                 mainAxisSize: MainAxisSize.min,
                                 children: [
                                   Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
-                                        8, 8, 8, 14),
+                                    padding:
+                                        const EdgeInsetsDirectional.fromSTEB(
+                                            8, 8, 8, 14),
                                     child: Text(
                                       'Pilih Kendaraan',
                                       style: TextStyle(
@@ -140,8 +142,9 @@ class _KendaraanScreenState extends State<KendaraanScreen> {
                                     ),
                                   ),
                                   Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
-                                        14, 0, 14, 0),
+                                    padding:
+                                        const EdgeInsetsDirectional.fromSTEB(
+                                            14, 0, 14, 0),
                                     child: Row(
                                       mainAxisSize: MainAxisSize.max,
                                       mainAxisAlignment:
@@ -157,7 +160,8 @@ class _KendaraanScreenState extends State<KendaraanScreen> {
                                                   BorderRadius.circular(14),
                                             ),
                                             alignment:
-                                                AlignmentDirectional(0, -1),
+                                                const AlignmentDirectional(
+                                                    0, -1),
                                             child: GestureDetector(
                                               onTap: () {
                                                 setState(() {
@@ -184,7 +188,7 @@ class _KendaraanScreenState extends State<KendaraanScreen> {
                                                   children: [
                                                     Align(
                                                       alignment:
-                                                          AlignmentDirectional(
+                                                          const AlignmentDirectional(
                                                               -1, 1),
                                                       child: ClipRRect(
                                                         borderRadius:
@@ -202,13 +206,13 @@ class _KendaraanScreenState extends State<KendaraanScreen> {
                                                     ),
                                                     Align(
                                                       alignment:
-                                                          AlignmentDirectional(
+                                                          const AlignmentDirectional(
                                                               0, -1),
                                                       child: Padding(
                                                         padding:
-                                                            EdgeInsetsDirectional
-                                                                .fromSTEB(
-                                                                    0, 5, 0, 0),
+                                                            const EdgeInsetsDirectional
+                                                                    .fromSTEB(
+                                                                0, 5, 0, 0),
                                                         child: Text(
                                                           'Motor',
                                                           style: TextStyle(
@@ -238,7 +242,7 @@ class _KendaraanScreenState extends State<KendaraanScreen> {
                                             ),
                                           ),
                                         ),
-                                        SizedBox(width: 14),
+                                        const SizedBox(width: 14),
                                         Expanded(
                                           flex: 1,
                                           child: GestureDetector(
@@ -263,7 +267,8 @@ class _KendaraanScreenState extends State<KendaraanScreen> {
                                                     BorderRadius.circular(14),
                                               ),
                                               alignment:
-                                                  AlignmentDirectional(0, -1),
+                                                  const AlignmentDirectional(
+                                                      0, -1),
                                               child: Container(
                                                 width: 200,
                                                 height: 200,
@@ -271,7 +276,7 @@ class _KendaraanScreenState extends State<KendaraanScreen> {
                                                   children: [
                                                     Align(
                                                       alignment:
-                                                          AlignmentDirectional(
+                                                          const AlignmentDirectional(
                                                               1, 1),
                                                       child: ClipRRect(
                                                         borderRadius:
@@ -287,16 +292,16 @@ class _KendaraanScreenState extends State<KendaraanScreen> {
                                                         ),
                                                       ),
                                                     ),
-                                                    SizedBox(width: 10),
+                                                    const SizedBox(width: 10),
                                                     Align(
                                                       alignment:
-                                                          AlignmentDirectional(
+                                                          const AlignmentDirectional(
                                                               0, -1),
                                                       child: Padding(
                                                         padding:
-                                                            EdgeInsetsDirectional
-                                                                .fromSTEB(
-                                                                    0, 5, 0, 0),
+                                                            const EdgeInsetsDirectional
+                                                                    .fromSTEB(
+                                                                0, 5, 0, 0),
                                                         child: Text(
                                                           'Mobil',
                                                           style: TextStyle(
@@ -332,17 +337,19 @@ class _KendaraanScreenState extends State<KendaraanScreen> {
                                   Container(
                                     width: double.infinity,
                                     height: 100,
-                                    decoration: BoxDecoration(),
+                                    decoration: const BoxDecoration(),
                                     child: Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                          0, 0, 16, 8),
+                                      padding:
+                                          const EdgeInsetsDirectional.fromSTEB(
+                                              0, 0, 16, 8),
                                       child: SingleChildScrollView(
                                         child: Column(
                                           mainAxisSize: MainAxisSize.max,
                                           children: [
                                             Padding(
-                                              padding: EdgeInsetsDirectional
-                                                  .fromSTEB(0, 0, 8, 0),
+                                              padding:
+                                                  const EdgeInsetsDirectional
+                                                      .fromSTEB(0, 0, 8, 0),
                                               child: Row(
                                                 mainAxisSize: MainAxisSize.max,
                                                 mainAxisAlignment:
@@ -372,7 +379,7 @@ class _KendaraanScreenState extends State<KendaraanScreen> {
                                                                   .shade400
                                                               : primary,
                                                         ),
-                                                        Text(
+                                                        const Text(
                                                           'Option 1',
                                                           style: TextStyle(
                                                             fontFamily:
@@ -386,7 +393,7 @@ class _KendaraanScreenState extends State<KendaraanScreen> {
                                                       ],
                                                     ),
                                                   ),
-                                                  Text(
+                                                  const Text(
                                                     'Rp. 10.000',
                                                     style: TextStyle(
                                                       fontFamily: 'Poppins',
@@ -399,8 +406,9 @@ class _KendaraanScreenState extends State<KendaraanScreen> {
                                               ),
                                             ),
                                             Padding(
-                                              padding: EdgeInsetsDirectional
-                                                  .fromSTEB(0, 0, 8, 0),
+                                              padding:
+                                                  const EdgeInsetsDirectional
+                                                      .fromSTEB(0, 0, 8, 0),
                                               child: Row(
                                                 mainAxisSize: MainAxisSize.max,
                                                 mainAxisAlignment:
@@ -430,7 +438,7 @@ class _KendaraanScreenState extends State<KendaraanScreen> {
                                                                   .shade400
                                                               : primary,
                                                         ),
-                                                        Text(
+                                                        const Text(
                                                           'Option 2',
                                                           style: TextStyle(
                                                             fontFamily:
@@ -444,7 +452,7 @@ class _KendaraanScreenState extends State<KendaraanScreen> {
                                                       ],
                                                     ),
                                                   ),
-                                                  Text(
+                                                  const Text(
                                                     'Rp. 10.000',
                                                     style: TextStyle(
                                                       fontFamily: 'Poppins',
@@ -457,8 +465,9 @@ class _KendaraanScreenState extends State<KendaraanScreen> {
                                               ),
                                             ),
                                             Padding(
-                                              padding: EdgeInsetsDirectional
-                                                  .fromSTEB(0, 2, 8, 0),
+                                              padding:
+                                                  const EdgeInsetsDirectional
+                                                      .fromSTEB(0, 2, 8, 0),
                                               child: Row(
                                                 mainAxisSize: MainAxisSize.max,
                                                 mainAxisAlignment:
@@ -488,7 +497,7 @@ class _KendaraanScreenState extends State<KendaraanScreen> {
                                                                   .shade400
                                                               : primary,
                                                         ),
-                                                        Text(
+                                                        const Text(
                                                           'Option 3',
                                                           style: TextStyle(
                                                             fontFamily:
@@ -502,7 +511,7 @@ class _KendaraanScreenState extends State<KendaraanScreen> {
                                                       ],
                                                     ),
                                                   ),
-                                                  Text(
+                                                  const Text(
                                                     'Rp. 10.000',
                                                     style: TextStyle(
                                                       fontFamily: 'Poppins',
@@ -536,7 +545,7 @@ class _KendaraanScreenState extends State<KendaraanScreen> {
                               color: darkTheme ? bg2 : Colors.white,
                             ),
                             child: Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
                                   18, 18, 18, 18),
                               child: Column(
                                 mainAxisSize: MainAxisSize.max,
@@ -564,9 +573,8 @@ class _KendaraanScreenState extends State<KendaraanScreen> {
                                             ),
                                           ),
                                           child: Padding(
-                                            padding:
-                                                EdgeInsetsDirectional.fromSTEB(
-                                                    14, 0, 14, 0),
+                                            padding: const EdgeInsetsDirectional
+                                                .fromSTEB(14, 0, 14, 0),
                                             child: TextFormField(
                                               keyboardType: TextInputType.text,
                                               decoration: InputDecoration(
@@ -599,7 +607,7 @@ class _KendaraanScreenState extends State<KendaraanScreen> {
                                       ),
                                     ],
                                   ),
-                                  SizedBox(height: 8),
+                                  const SizedBox(height: 8),
                                   Row(
                                     mainAxisSize: MainAxisSize.max,
                                     children: [
@@ -614,11 +622,11 @@ class _KendaraanScreenState extends State<KendaraanScreen> {
                                             borderRadius:
                                                 BorderRadius.circular(8),
                                           ),
-                                          alignment: AlignmentDirectional(0, 0),
+                                          alignment:
+                                              const AlignmentDirectional(0, 0),
                                           child: Padding(
-                                            padding:
-                                                EdgeInsetsDirectional.fromSTEB(
-                                                    18, 0, 18, 0),
+                                            padding: const EdgeInsetsDirectional
+                                                .fromSTEB(18, 0, 18, 0),
                                             child: Row(
                                               mainAxisSize: MainAxisSize.max,
                                               mainAxisAlignment:
@@ -658,7 +666,8 @@ class _KendaraanScreenState extends State<KendaraanScreen> {
                       ],
                     ),
                     Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(24, 14, 24, 14),
+                      padding:
+                          const EdgeInsetsDirectional.fromSTEB(24, 14, 24, 14),
                       child: Container(
                         width: double.infinity,
                         decoration: BoxDecoration(
@@ -667,15 +676,15 @@ class _KendaraanScreenState extends State<KendaraanScreen> {
                           borderRadius: BorderRadius.circular(24),
                         ),
                         child: Padding(
-                          padding:
-                              EdgeInsetsDirectional.fromSTEB(12, 12, 12, 16),
+                          padding: const EdgeInsetsDirectional.fromSTEB(
+                              12, 12, 12, 16),
                           child: Column(
                             mainAxisSize: MainAxisSize.min,
                             children: [
                               Align(
-                                alignment: AlignmentDirectional(0, 0),
+                                alignment: const AlignmentDirectional(0, 0),
                                 child: Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       8, 8, 8, 8),
                                   child: Text(
                                     'Rincian Harga',
@@ -693,16 +702,16 @@ class _KendaraanScreenState extends State<KendaraanScreen> {
                               ),
                               Container(
                                 width: double.infinity,
-                                decoration: BoxDecoration(),
+                                decoration: const BoxDecoration(),
                                 child: Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       8, 0, 8, 5),
                                   child: Column(
                                     mainAxisSize: MainAxisSize.min,
                                     children: [
                                       Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                            8, 4, 8, 0),
+                                        padding: const EdgeInsetsDirectional
+                                            .fromSTEB(8, 4, 8, 0),
                                         child: Row(
                                           mainAxisSize: MainAxisSize.max,
                                           mainAxisAlignment:
@@ -734,8 +743,8 @@ class _KendaraanScreenState extends State<KendaraanScreen> {
                                         ),
                                       ),
                                       Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                            8, 4, 8, 0),
+                                        padding: const EdgeInsetsDirectional
+                                            .fromSTEB(8, 4, 8, 0),
                                         child: Row(
                                           mainAxisSize: MainAxisSize.max,
                                           mainAxisAlignment:
@@ -767,8 +776,8 @@ class _KendaraanScreenState extends State<KendaraanScreen> {
                                         ),
                                       ),
                                       Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                            8, 4, 8, 0),
+                                        padding: const EdgeInsetsDirectional
+                                            .fromSTEB(8, 4, 8, 0),
                                         child: Row(
                                           mainAxisSize: MainAxisSize.max,
                                           mainAxisAlignment:
@@ -800,8 +809,8 @@ class _KendaraanScreenState extends State<KendaraanScreen> {
                                         ),
                                       ),
                                       Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                            8, 5, 8, 0),
+                                        padding: const EdgeInsetsDirectional
+                                            .fromSTEB(8, 5, 8, 0),
                                         child: Row(
                                           mainAxisSize: MainAxisSize.max,
                                           mainAxisAlignment:
@@ -850,7 +859,7 @@ class _KendaraanScreenState extends State<KendaraanScreen> {
                 decoration: BoxDecoration(
                     color: darkTheme ? Colors.black45 : Colors.grey.shade200),
                 child: Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(22, 0, 0, 0),
+                  padding: const EdgeInsetsDirectional.fromSTEB(22, 0, 0, 0),
                   child: Row(
                     mainAxisSize: MainAxisSize.max,
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -870,7 +879,7 @@ class _KendaraanScreenState extends State<KendaraanScreen> {
                               fontWeight: FontWeight.bold,
                             ),
                           ),
-                          Text(
+                          const Text(
                             'Rp. 11.000',
                             style: TextStyle(
                               color: Color.fromARGB(255, 0, 255, 34),
@@ -886,7 +895,7 @@ class _KendaraanScreenState extends State<KendaraanScreen> {
                         children: [
                           Expanded(
                             child: Padding(
-                              padding: EdgeInsets.fromLTRB(0, 24, 24, 24),
+                              padding: const EdgeInsets.fromLTRB(0, 24, 24, 24),
                               child: ElevatedButton(
                                 onPressed: () {
                                   Navigator.push(

@@ -1,10 +1,15 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:mosiga_users/presentation/nav_icons_icons.dart';
 import 'package:mosiga_users/screens/chat_screen.dart';
 import 'package:mosiga_users/screens/history_screen.dart';
 import 'package:mosiga_users/screens/home_screen.dart';
 import 'package:mosiga_users/screens/profile_screen.dart';
 import 'package:mosiga_users/theme/theme.dart';
+import 'package:geolocator/geolocator.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({super.key});
@@ -27,6 +32,50 @@ class _MainScreenState extends State<MainScreen> {
     setState(() {
       _selectedIndex = index;
     });
+  }
+
+  // Fungsi untuk meminta izin lokasi saat MainScreen diinisialisasi
+  Future<void> requestLocationPermission() async {
+    LocationPermission _locationPermission =
+        await Geolocator.requestPermission();
+
+    if (_locationPermission == LocationPermission.denied ||
+        _locationPermission == LocationPermission.deniedForever) {
+      Fluttertoast.showToast(msg: "Anda Harus Mengizinkan GPS/Lokasi");
+
+      if (Platform.isAndroid) {
+        // Jika perangkat Android, buka pengaturan aplikasi untuk mengizinkan izin lokasi
+        await Geolocator.openAppSettings();
+        // Tunggu sejenak dan periksa lagi izin lokasi
+        Future.delayed(Duration(seconds: 3), () {
+          checkLocationPermissionStatus();
+        });
+      } else if (Platform.isIOS) {
+        // Jika perangkat iOS, buka pengaturan aplikasi untuk mengizinkan izin lokasi
+        await Geolocator.openLocationSettings();
+        // Tunggu sejenak dan periksa lagi izin lokasi
+        Future.delayed(Duration(seconds: 1), () {
+          checkLocationPermissionStatus();
+        });
+      }
+    }
+  }
+
+  // Fungsi untuk memeriksa izin lokasi setelah mengizinkannya di pengaturan
+  Future<void> checkLocationPermissionStatus() async {
+    LocationPermission _locationPermission = await Geolocator.checkPermission();
+
+    if (_locationPermission == LocationPermission.denied ||
+        _locationPermission == LocationPermission.deniedForever) {
+      // Jika izin lokasi tetap ditolak, maka keluar dari aplikasi
+      exit(0);
+    }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    requestLocationPermission(); // Meminta izin lokasi pada saat inisialisasi MainScreen
   }
 
   @override

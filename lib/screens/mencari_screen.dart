@@ -22,7 +22,7 @@ class _MencariScreenState extends State<MencariScreen>
     super.initState();
     _animationController = AnimationController(
       vsync: this,
-      duration: Duration(milliseconds: 1000),
+      duration: const Duration(milliseconds: 1000),
     );
     _animation = Tween<double>(begin: 0, end: 4).animate(
       CurvedAnimation(
@@ -36,7 +36,7 @@ class _MencariScreenState extends State<MencariScreen>
         }
       });
     _animationController.forward();
-    Future.delayed(Duration(seconds: 3), () {
+    Future.delayed(const Duration(seconds: 3), () {
       Navigator.pushAndRemoveUntil(
         context,
         MaterialPageRoute(builder: (context) => const OtwScreen()),
@@ -64,7 +64,7 @@ class _MencariScreenState extends State<MencariScreen>
           child: Stack(
             children: [
               Align(
-                alignment: AlignmentDirectional(0, 0),
+                alignment: const AlignmentDirectional(0, 0),
                 child: Column(
                   mainAxisSize: MainAxisSize.max,
                   mainAxisAlignment: MainAxisAlignment.end,
@@ -77,7 +77,7 @@ class _MencariScreenState extends State<MencariScreen>
                         children: [
                           ClipRRect(
                             borderRadius: BorderRadius.circular(8),
-                            child: Image(
+                            child: const Image(
                               image: AssetImage(
                                 'images/Loading.gif',
                               ),
@@ -87,8 +87,8 @@ class _MencariScreenState extends State<MencariScreen>
                       ),
                     ),
                     Padding(
-                      padding:
-                          EdgeInsets.symmetric(vertical: 14, horizontal: 22),
+                      padding: const EdgeInsets.symmetric(
+                          vertical: 14, horizontal: 22),
                       child: Row(
                         mainAxisSize: MainAxisSize.min,
                         mainAxisAlignment: MainAxisAlignment.center,
@@ -99,7 +99,7 @@ class _MencariScreenState extends State<MencariScreen>
                             child: Align(
                               alignment: AlignmentDirectional.center,
                               child: Padding(
-                                padding: EdgeInsets.only(bottom: 18),
+                                padding: const EdgeInsets.only(bottom: 18),
                                 child: Container(
                                   width: double.infinity,
                                   height: 150,
@@ -107,7 +107,7 @@ class _MencariScreenState extends State<MencariScreen>
                                     color: darkTheme
                                         ? Colors.black12
                                         : Colors.white,
-                                    boxShadow: [
+                                    boxShadow: const [
                                       BoxShadow(
                                         blurRadius: 4,
                                         color: Color(0x33000000),
@@ -119,8 +119,8 @@ class _MencariScreenState extends State<MencariScreen>
                                   ),
                                   alignment: Alignment.center,
                                   child: Padding(
-                                    padding:
-                                        EdgeInsets.symmetric(horizontal: 12),
+                                    padding: const EdgeInsets.symmetric(
+                                        horizontal: 12),
                                     child: Column(
                                       mainAxisSize: MainAxisSize.max,
                                       mainAxisAlignment:
@@ -135,7 +135,7 @@ class _MencariScreenState extends State<MencariScreen>
                                                   Widget? child) {
                                                 return Text(
                                                   'Mencari ${'.' * _animation.value.toInt()}',
-                                                  style: TextStyle(
+                                                  style: const TextStyle(
                                                     fontFamily: 'Poppins',
                                                     fontSize: 18,
                                                     fontWeight: FontWeight.w600,

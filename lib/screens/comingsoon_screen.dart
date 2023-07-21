@@ -26,8 +26,6 @@ class _ComingSoonScreenState extends State<ComingSoonScreen> {
         await documentRef.set({
           'email': email,
         });
-
-        print('Data berhasil ditambahkan ke Firestore');
       } catch (e) {
         print('Error: $e');
       }
@@ -49,7 +47,7 @@ class _ComingSoonScreenState extends State<ComingSoonScreen> {
           child: Stack(
             children: [
               Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(24, 24, 24, 24),
+                padding: const EdgeInsetsDirectional.fromSTEB(24, 24, 24, 24),
                 child: SingleChildScrollView(
                   child: Column(
                     mainAxisSize: MainAxisSize.max,
@@ -59,11 +57,11 @@ class _ComingSoonScreenState extends State<ComingSoonScreen> {
                         width: double.infinity,
                         height: 350,
                         decoration: BoxDecoration(
-                          color: Color(0x4C595959),
+                          color: const Color(0x4C595959),
                           borderRadius: BorderRadius.circular(24),
                         ),
                         child: Align(
-                          alignment: AlignmentDirectional(0, 1),
+                          alignment: const AlignmentDirectional(0, 1),
                           child: ClipRRect(
                             borderRadius: BorderRadius.circular(24),
                             child: Image.asset(
@@ -73,7 +71,7 @@ class _ComingSoonScreenState extends State<ComingSoonScreen> {
                           ),
                         ),
                       ),
-                      Padding(
+                      const Padding(
                         padding: EdgeInsetsDirectional.fromSTEB(14, 14, 14, 14),
                         child: Text(
                           'We still working on it ...',
@@ -160,13 +158,14 @@ class _ComingSoonScreenState extends State<ComingSoonScreen> {
                 ),
               ),
               Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(22, 22, 22, 22),
+                padding: const EdgeInsetsDirectional.fromSTEB(22, 22, 22, 22),
                 child: Row(
                   mainAxisSize: MainAxisSize.max,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(18, 18, 18, 18),
+                      padding:
+                          const EdgeInsetsDirectional.fromSTEB(18, 18, 18, 18),
                       child: GestureDetector(
                         onTap: () {
                           Navigator.pop(context);
@@ -185,7 +184,9 @@ class _ComingSoonScreenState extends State<ComingSoonScreen> {
                               color: darkTheme ? Colors.white : Colors.black,
                               size: 24,
                             ),
-                            onPressed: () {},
+                            onPressed: () {
+                              Navigator.pop(context);
+                            },
                           ),
                         ),
                       ),

@@ -22,12 +22,8 @@ class TambalBan extends StatefulWidget {
 }
 
 class _TambalBanState extends State<TambalBan> {
-  bool _isVisible = true;
-
   LatLng? pickLocation;
   loc.Location location = loc.Location();
-
-  String? _address;
 
   final Completer<GoogleMapController> _controllerGoogleMap =
       Completer<GoogleMapController>();
@@ -72,7 +68,7 @@ class _TambalBanState extends State<TambalBan> {
     LatLng latLngPosition =
         LatLng(userCurrentPosition!.latitude, userCurrentPosition!.longitude);
     CameraPosition cameraPosition =
-        CameraPosition(target: latLngPosition, zoom: 14);
+        CameraPosition(target: latLngPosition, zoom: 15);
 
     newGoogleMapController!
         .animateCamera(CameraUpdate.newCameraPosition(cameraPosition));
@@ -80,7 +76,6 @@ class _TambalBanState extends State<TambalBan> {
     String humanReadableAddress =
         await AssistantMethods.searchAddressForGeographicCoCoordinates(
             userCurrentPosition!, context);
-    print("This is our address = " + humanReadableAddress);
 
     // userName = userModelCurrentInfo!.name!;
     // userEmail = userModelCurrentInfo!.email!;
@@ -110,19 +105,10 @@ class _TambalBanState extends State<TambalBan> {
     }
   }
 
-  checkIfLocationPermissionAllowed() async {
-    _locationPermission = await Geolocator.requestPermission();
-
-    if (_locationPermission == LocationPermission.denied) {
-      _locationPermission = await Geolocator.requestPermission();
-    }
-  }
-
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-    checkIfLocationPermissionAllowed();
   }
 
   @override
@@ -177,14 +163,15 @@ class _TambalBanState extends State<TambalBan> {
                 ),
               ),
               Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(22, 22, 22, 22),
+                padding: const EdgeInsetsDirectional.fromSTEB(22, 22, 22, 22),
                 child: Row(
                   mainAxisSize: MainAxisSize.max,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Expanded(
                       child: Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(8, 18, 8, 18),
+                        padding:
+                            const EdgeInsetsDirectional.fromSTEB(8, 18, 8, 18),
                         child: Container(
                           width: 100,
                           height: 65,
@@ -204,7 +191,7 @@ class _TambalBanState extends State<TambalBan> {
                             shape: BoxShape.rectangle,
                           ),
                           child: Stack(
-                            alignment: AlignmentDirectional(-1, 0),
+                            alignment: const AlignmentDirectional(-1, 0),
                             children: [
                               Padding(
                                 padding: const EdgeInsets.fromLTRB(14, 0, 0, 0),
@@ -244,7 +231,8 @@ class _TambalBanState extends State<TambalBan> {
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
                   Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(22, 14, 22, 14),
+                    padding:
+                        const EdgeInsetsDirectional.fromSTEB(22, 14, 22, 14),
                     child: Row(
                       mainAxisSize: MainAxisSize.min,
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -252,10 +240,10 @@ class _TambalBanState extends State<TambalBan> {
                       children: [
                         Expanded(
                           child: Align(
-                            alignment: AlignmentDirectional(0, 0),
+                            alignment: const AlignmentDirectional(0, 0),
                             child: Padding(
-                              padding:
-                                  EdgeInsetsDirectional.fromSTEB(0, 0, 0, 18),
+                              padding: const EdgeInsetsDirectional.fromSTEB(
+                                  0, 0, 0, 18),
                               child: Container(
                                 width: double.infinity,
                                 height: 150,
@@ -274,9 +262,9 @@ class _TambalBanState extends State<TambalBan> {
                                   ],
                                   borderRadius: BorderRadius.circular(48),
                                 ),
-                                alignment: AlignmentDirectional(0, 0),
+                                alignment: const AlignmentDirectional(0, 0),
                                 child: Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       0, 12, 0, 12),
                                   child: Column(
                                     mainAxisSize: MainAxisSize.max,
@@ -284,7 +272,8 @@ class _TambalBanState extends State<TambalBan> {
                                     children: [
                                       Expanded(
                                         child: Align(
-                                          alignment: AlignmentDirectional(0, 0),
+                                          alignment:
+                                              const AlignmentDirectional(0, 0),
                                           child: Padding(
                                             padding: const EdgeInsets.symmetric(
                                                 horizontal: 24.0),
@@ -311,7 +300,7 @@ class _TambalBanState extends State<TambalBan> {
                                                   : 'Not Getting Address ...',
                                               textAlign: TextAlign.center,
                                               maxLines: 1,
-                                              style: TextStyle(
+                                              style: const TextStyle(
                                                 fontFamily: 'Poppins',
                                                 fontSize: 14,
                                                 fontWeight: FontWeight.w600,

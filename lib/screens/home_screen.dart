@@ -8,7 +8,6 @@ import 'package:mosiga_users/screens/kunci_hilang_screen.dart';
 import 'package:mosiga_users/screens/tambal_ban_screen.dart';
 import '../global/global.dart';
 import '../theme/theme.dart';
-import 'login_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -18,14 +17,6 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  void _logout() async {
-    await firebaseAuth.signOut();
-    Navigator.pushReplacement(
-      context,
-      MaterialPageRoute(builder: (context) => const LoginScreen()),
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     bool darkTheme =
@@ -77,7 +68,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                     ),
                                     onPressed: () {
                                       Fluttertoast.showToast(
-                                          msg: "Hallo..., Ata 👋");
+                                          msg: "Hallo..., User 👋");
                                     },
                                   ),
                                 ),
@@ -85,7 +76,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                   width: 10,
                                 ),
                                 Text(
-                                  'Hey, Ata 👋',
+                                  'Hey, User 👋',
                                   style: TextStyle(
                                     fontFamily: 'Poppins',
                                     color: darkTheme
@@ -104,15 +95,13 @@ class _HomeScreenState extends State<HomeScreen> {
                                   ),
                                   child: IconButton(
                                     icon: Icon(
-                                      Icons.logout_rounded,
+                                      Icons.notifications,
                                       color: darkTheme
                                           ? Colors.white
                                           : Colors.black,
                                       size: 35,
                                     ),
-                                    onPressed: () {
-                                      _logout();
-                                    },
+                                    onPressed: () {},
                                   ),
                                 ),
                               ],
@@ -139,7 +128,8 @@ class _HomeScreenState extends State<HomeScreen> {
                                   children: [
                                     Expanded(
                                       child: Align(
-                                        alignment: AlignmentDirectional(-1, 0),
+                                        alignment:
+                                            const AlignmentDirectional(-1, 0),
                                         child: ClipRRect(
                                           borderRadius:
                                               BorderRadius.circular(8),
@@ -158,7 +148,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               Flexible(
                                 flex: 1,
                                 child: Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       8, 0, 8, 0),
                                   child: Column(
                                     mainAxisSize: MainAxisSize.min,
@@ -189,7 +179,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                           fontWeight: FontWeight.bold,
                                         ),
                                       ),
-                                      Divider(
+                                      const Divider(
                                         thickness: 0,
                                         color: Colors.transparent,
                                       ),
@@ -292,11 +282,14 @@ class _HomeScreenState extends State<HomeScreen> {
                                                 ),
                                               ),
                                               Align(
-                                                alignment: AlignmentDirectional(
-                                                    -1, -1),
+                                                alignment:
+                                                    const AlignmentDirectional(
+                                                        -1, -1),
                                                 child: Padding(
-                                                  padding: EdgeInsetsDirectional
-                                                      .fromSTEB(22, 22, 0, 0),
+                                                  padding:
+                                                      const EdgeInsetsDirectional
+                                                              .fromSTEB(
+                                                          22, 22, 0, 0),
                                                   child: Text(
                                                     'Tambal\nBan',
                                                     style: TextStyle(
@@ -353,11 +346,14 @@ class _HomeScreenState extends State<HomeScreen> {
                                                 ),
                                               ),
                                               Align(
-                                                alignment: AlignmentDirectional(
-                                                    -1, -1),
+                                                alignment:
+                                                    const AlignmentDirectional(
+                                                        -1, -1),
                                                 child: Padding(
-                                                  padding: EdgeInsetsDirectional
-                                                      .fromSTEB(22, 22, 0, 0),
+                                                  padding:
+                                                      const EdgeInsetsDirectional
+                                                              .fromSTEB(
+                                                          22, 22, 0, 0),
                                                   child: Text(
                                                     'Bensin\n',
                                                     style: TextStyle(
@@ -383,7 +379,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                                   const ComingSoonScreen()),
                                         ),
                                       ),
-                                      SizedBox(
+                                      const SizedBox(
                                         height: 14,
                                       )
                                     ],
@@ -438,7 +434,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                                     ),
                                                   ],
                                                 ),
-                                                SizedBox(
+                                                const SizedBox(
                                                   width: 8,
                                                 ),
                                                 Column(
@@ -503,11 +499,14 @@ class _HomeScreenState extends State<HomeScreen> {
                                                 ),
                                               ),
                                               Align(
-                                                alignment: AlignmentDirectional(
-                                                    -1, -1),
+                                                alignment:
+                                                    const AlignmentDirectional(
+                                                        -1, -1),
                                                 child: Padding(
-                                                  padding: EdgeInsetsDirectional
-                                                      .fromSTEB(22, 22, 0, 0),
+                                                  padding:
+                                                      const EdgeInsetsDirectional
+                                                              .fromSTEB(
+                                                          22, 22, 0, 0),
                                                   child: Text(
                                                     'Derek',
                                                     style: TextStyle(
@@ -564,11 +563,14 @@ class _HomeScreenState extends State<HomeScreen> {
                                                 ),
                                               ),
                                               Align(
-                                                alignment: AlignmentDirectional(
-                                                    -1, -1),
+                                                alignment:
+                                                    const AlignmentDirectional(
+                                                        -1, -1),
                                                 child: Padding(
-                                                  padding: EdgeInsetsDirectional
-                                                      .fromSTEB(22, 22, 0, 0),
+                                                  padding:
+                                                      const EdgeInsetsDirectional
+                                                              .fromSTEB(
+                                                          22, 22, 0, 0),
                                                   child: Text(
                                                     'Kunci\nHilang',
                                                     style: TextStyle(

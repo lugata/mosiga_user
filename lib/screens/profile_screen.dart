@@ -19,39 +19,39 @@ class _ProfileScreenState extends State<ProfileScreen> {
         body: SafeArea(
           top: true,
           child: Align(
-            alignment: AlignmentDirectional(0, 0),
+            alignment: const AlignmentDirectional(0, 0),
             child: Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(18, 0, 18, 0),
+              padding: const EdgeInsetsDirectional.fromSTEB(18, 0, 18, 0),
               child: Column(
                 mainAxisSize: MainAxisSize.max,
                 children: [
                   Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(24, 24, 24, 14),
+                    padding:
+                        const EdgeInsetsDirectional.fromSTEB(24, 24, 24, 14),
                     child: Row(
                       mainAxisSize: MainAxisSize.max,
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
                         IconButton(
-                          icon: Icon(
+                          icon: const Icon(
                             Icons.settings_rounded,
                             color: Colors.white,
                             size: 28,
                           ),
-                          onPressed: () {
-                            print('IconButton pressed ...');
-                          },
+                          onPressed: () {},
                         ),
                       ],
                     ),
                   ),
-                  Container(
+                  SizedBox(
                     width: 100,
                     height: 100,
                     child: Stack(
-                      alignment: AlignmentDirectional(0, 0),
+                      alignment: const AlignmentDirectional(0, 0),
                       children: [
                         Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(2, 2, 2, 2),
+                          padding:
+                              const EdgeInsetsDirectional.fromSTEB(2, 2, 2, 2),
                           child: ClipRRect(
                             borderRadius: BorderRadius.circular(28),
                             child: Container(
@@ -69,7 +69,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     ),
                   ),
                   Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(0, 16, 0, 12),
+                    padding: const EdgeInsetsDirectional.fromSTEB(0, 16, 0, 12),
                     child: Text(
                       'Dauw Bastha F L',
                       textAlign: TextAlign.center,
@@ -82,7 +82,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     ),
                   ),
                   Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(24, 8, 24, 8),
+                    padding: const EdgeInsetsDirectional.fromSTEB(24, 8, 24, 8),
                     child: Row(
                       mainAxisSize: MainAxisSize.max,
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -95,11 +95,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                 width: double.infinity,
                                 height: 110,
                                 decoration: BoxDecoration(
-                                  color: Color(0xFF0C9B00),
+                                  color: const Color(0xFF0C9B00),
                                   borderRadius: BorderRadius.circular(28),
                                   shape: BoxShape.rectangle,
                                 ),
-                                alignment: AlignmentDirectional(0, 0),
+                                alignment: const AlignmentDirectional(0, 0),
                                 child: Text(
                                   'Terverifikasi',
                                   textAlign: TextAlign.center,
@@ -120,7 +120,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   ),
                   Expanded(
                     child: Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(28, 0, 28, 0),
+                      padding:
+                          const EdgeInsetsDirectional.fromSTEB(28, 0, 28, 0),
                       child: Container(
                         width: double.infinity,
                         height: double.infinity,
@@ -128,15 +129,15 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           borderRadius: BorderRadius.circular(0),
                         ),
                         child: Padding(
-                          padding:
-                              EdgeInsetsDirectional.fromSTEB(16, 16, 16, 0),
+                          padding: const EdgeInsetsDirectional.fromSTEB(
+                              16, 16, 16, 0),
                           child: SingleChildScrollView(
                             child: Column(
                               mainAxisSize: MainAxisSize.max,
                               crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
                                 Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       0, 0, 0, 16),
                                   child: Row(
                                     mainAxisSize: MainAxisSize.max,
@@ -144,9 +145,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                     children: [
                                       Expanded(
                                         child: Padding(
-                                          padding:
-                                              EdgeInsetsDirectional.fromSTEB(
-                                                  0, 0, 0, 16),
+                                          padding: const EdgeInsetsDirectional
+                                              .fromSTEB(0, 0, 0, 16),
                                           child: Text(
                                             'Settings',
                                             textAlign: TextAlign.start,
@@ -160,7 +160,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                           ),
                                         ),
                                       ),
-                                      Padding(
+                                      const Padding(
                                         padding: EdgeInsetsDirectional.fromSTEB(
                                             0, 0, 0, 16),
                                         child: Icon(
@@ -173,7 +173,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                   ),
                                 ),
                                 Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       0, 0, 0, 16),
                                   child: Row(
                                     mainAxisSize: MainAxisSize.max,
@@ -181,9 +181,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                     children: [
                                       Expanded(
                                         child: Padding(
-                                          padding:
-                                              EdgeInsetsDirectional.fromSTEB(
-                                                  0, 0, 0, 16),
+                                          padding: const EdgeInsetsDirectional
+                                              .fromSTEB(0, 0, 0, 16),
                                           child: Text(
                                             'Metode Pembayaran',
                                             textAlign: TextAlign.start,
@@ -197,7 +196,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                           ),
                                         ),
                                       ),
-                                      Padding(
+                                      const Padding(
                                         padding: EdgeInsetsDirectional.fromSTEB(
                                             0, 0, 0, 16),
                                         child: Icon(
@@ -210,7 +209,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                   ),
                                 ),
                                 Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       0, 0, 0, 16),
                                   child: Row(
                                     mainAxisSize: MainAxisSize.max,
@@ -218,9 +217,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                     children: [
                                       Expanded(
                                         child: Padding(
-                                          padding:
-                                              EdgeInsetsDirectional.fromSTEB(
-                                                  0, 0, 0, 16),
+                                          padding: const EdgeInsetsDirectional
+                                              .fromSTEB(0, 0, 0, 16),
                                           child: Text(
                                             'Pilih Bahasa',
                                             textAlign: TextAlign.start,
@@ -234,7 +232,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                           ),
                                         ),
                                       ),
-                                      Padding(
+                                      const Padding(
                                         padding: EdgeInsetsDirectional.fromSTEB(
                                             0, 0, 0, 16),
                                         child: Icon(
@@ -247,7 +245,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                   ),
                                 ),
                                 Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       0, 0, 0, 16),
                                   child: Row(
                                     mainAxisSize: MainAxisSize.max,
@@ -255,9 +253,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                     children: [
                                       Expanded(
                                         child: Padding(
-                                          padding:
-                                              EdgeInsetsDirectional.fromSTEB(
-                                                  0, 0, 0, 16),
+                                          padding: const EdgeInsetsDirectional
+                                              .fromSTEB(0, 0, 0, 16),
                                           child: Text(
                                             'Riwayat Service',
                                             textAlign: TextAlign.start,
@@ -271,7 +268,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                           ),
                                         ),
                                       ),
-                                      Padding(
+                                      const Padding(
                                         padding: EdgeInsetsDirectional.fromSTEB(
                                             0, 0, 0, 16),
                                         child: Icon(
@@ -284,7 +281,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                   ),
                                 ),
                                 Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       0, 0, 0, 16),
                                   child: Row(
                                     mainAxisSize: MainAxisSize.max,
@@ -292,9 +289,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                     children: [
                                       Expanded(
                                         child: Padding(
-                                          padding:
-                                              EdgeInsetsDirectional.fromSTEB(
-                                                  0, 0, 0, 16),
+                                          padding: const EdgeInsetsDirectional
+                                              .fromSTEB(0, 0, 0, 16),
                                           child: Text(
                                             'Customer Service',
                                             textAlign: TextAlign.start,
@@ -308,7 +304,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                           ),
                                         ),
                                       ),
-                                      Padding(
+                                      const Padding(
                                         padding: EdgeInsetsDirectional.fromSTEB(
                                             0, 0, 0, 16),
                                         child: Icon(
@@ -321,7 +317,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                   ),
                                 ),
                                 Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       0, 0, 0, 16),
                                   child: Row(
                                     mainAxisSize: MainAxisSize.max,
@@ -329,9 +325,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                     children: [
                                       Expanded(
                                         child: Padding(
-                                          padding:
-                                              EdgeInsetsDirectional.fromSTEB(
-                                                  0, 0, 0, 16),
+                                          padding: const EdgeInsetsDirectional
+                                              .fromSTEB(0, 0, 0, 16),
                                           child: Text(
                                             'Logout',
                                             textAlign: TextAlign.start,
@@ -345,7 +340,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                           ),
                                         ),
                                       ),
-                                      Padding(
+                                      const Padding(
                                         padding: EdgeInsetsDirectional.fromSTEB(
                                             0, 0, 0, 16),
                                         child: Icon(

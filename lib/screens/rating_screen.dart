@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:mosiga_users/screens/home_screen.dart';
 import 'package:mosiga_users/screens/main_screen.dart';
 import 'package:mosiga_users/theme/theme.dart';
 
@@ -31,7 +30,7 @@ class _RatingScreenState extends State<RatingScreen> {
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
                   Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 14),
+                    padding: const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 14),
                     child: Container(
                       width: 300,
                       height: 200,
@@ -49,7 +48,7 @@ class _RatingScreenState extends State<RatingScreen> {
                       ),
                     ),
                   ),
-                  Text(
+                  const Text(
                     'Rate your experience',
                     textAlign: TextAlign.center,
                     style: TextStyle(
@@ -63,7 +62,8 @@ class _RatingScreenState extends State<RatingScreen> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(0, 8, 0, 8),
+                        padding:
+                            const EdgeInsetsDirectional.fromSTEB(0, 8, 0, 8),
                         child: InkWell(
                           onTap: () {
                             setState(() {
@@ -80,7 +80,8 @@ class _RatingScreenState extends State<RatingScreen> {
                         ),
                       ),
                       Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(0, 8, 0, 8),
+                        padding:
+                            const EdgeInsetsDirectional.fromSTEB(0, 8, 0, 8),
                         child: InkWell(
                           onTap: () {
                             setState(() {
@@ -97,7 +98,8 @@ class _RatingScreenState extends State<RatingScreen> {
                         ),
                       ),
                       Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(0, 8, 0, 8),
+                        padding:
+                            const EdgeInsetsDirectional.fromSTEB(0, 8, 0, 8),
                         child: InkWell(
                           onTap: () {
                             setState(() {
@@ -114,7 +116,8 @@ class _RatingScreenState extends State<RatingScreen> {
                         ),
                       ),
                       Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(0, 8, 0, 8),
+                        padding:
+                            const EdgeInsetsDirectional.fromSTEB(0, 8, 0, 8),
                         child: InkWell(
                           onTap: () {
                             setState(() {
@@ -131,7 +134,8 @@ class _RatingScreenState extends State<RatingScreen> {
                         ),
                       ),
                       Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(0, 8, 0, 8),
+                        padding:
+                            const EdgeInsetsDirectional.fromSTEB(0, 8, 0, 8),
                         child: InkWell(
                           onTap: () {
                             setState(() {
@@ -150,7 +154,7 @@ class _RatingScreenState extends State<RatingScreen> {
                     ],
                   ),
                   Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(0, 8, 0, 8),
+                    padding: const EdgeInsetsDirectional.fromSTEB(0, 8, 0, 8),
                     child: Container(
                       width: 100,
                       height: 150,
@@ -159,8 +163,9 @@ class _RatingScreenState extends State<RatingScreen> {
                               darkTheme ? Colors.black : Colors.grey.shade200,
                           borderRadius: BorderRadius.circular(24)),
                       child: Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(12, 8, 12, 8),
-                        child: Container(
+                        padding:
+                            const EdgeInsetsDirectional.fromSTEB(12, 8, 12, 8),
+                        child: SizedBox(
                           width: double.infinity,
                           height: 34,
                           child: TextFormField(
@@ -195,7 +200,7 @@ class _RatingScreenState extends State<RatingScreen> {
                     ),
                   ),
                   Padding(
-                    padding: EdgeInsets.fromLTRB(0, 14, 0, 14),
+                    padding: const EdgeInsets.fromLTRB(0, 14, 0, 14),
                     child: ElevatedButton(
                       onPressed: () {
                         Navigator.pushAndRemoveUntil(
@@ -207,14 +212,14 @@ class _RatingScreenState extends State<RatingScreen> {
                         );
                       },
                       style: ElevatedButton.styleFrom(
-                        minimumSize: Size(double.infinity, 50),
-                        padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
+                        minimumSize: const Size(double.infinity, 50),
+                        padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(24),
                         ),
                         primary: primary,
                       ),
-                      child: Text(
+                      child: const Text(
                         'Selesaikan Pesanan',
                         style: TextStyle(
                           fontFamily: 'Poppins',

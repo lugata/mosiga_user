@@ -6,15 +6,12 @@ import 'package:mosiga_users/theme/theme.dart';
 import 'package:geocoder2/geocoder2.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:location/location.dart' as loc;
-import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:mosiga_users/Assistants/assistant_methods.dart';
 
 import 'package:mosiga_users/global/map_key.dart';
 import 'package:mosiga_users/infoHandler/app_info.dart';
-import 'package:mosiga_users/screens/kendaraan_screen.dart';
 import 'package:provider/provider.dart';
 import '../models/directions.dart';
-import '../theme/theme.dart';
 
 class OtwScreen extends StatefulWidget {
   const OtwScreen({super.key});
@@ -24,12 +21,8 @@ class OtwScreen extends StatefulWidget {
 }
 
 class _OtwScreenState extends State<OtwScreen> {
-  bool _isVisible = true;
-
   LatLng? pickLocation;
   loc.Location location = loc.Location();
-
-  String? _address;
 
   final Completer<GoogleMapController> _controllerGoogleMap =
       Completer<GoogleMapController>();
@@ -83,7 +76,6 @@ class _OtwScreenState extends State<OtwScreen> {
     String humanReadableAddress =
         await AssistantMethods.searchAddressForGeographicCoCoordinates(
             userCurrentPosition!, context);
-    print("This is our address = " + humanReadableAddress);
 
     // userName = userModelCurrentInfo!.name!;
     // userEmail = userModelCurrentInfo!.email!;
@@ -173,17 +165,18 @@ class _OtwScreenState extends State<OtwScreen> {
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
                   Align(
-                    alignment: AlignmentDirectional(0, 0),
+                    alignment: const AlignmentDirectional(0, 0),
                     child: Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(22, 14, 22, 14),
+                      padding:
+                          const EdgeInsetsDirectional.fromSTEB(22, 14, 22, 14),
                       child: Row(
                         mainAxisSize: MainAxisSize.max,
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Expanded(
                             child: Padding(
-                              padding:
-                                  EdgeInsetsDirectional.fromSTEB(0, 0, 0, 18),
+                              padding: const EdgeInsetsDirectional.fromSTEB(
+                                  0, 0, 0, 18),
                               child: Container(
                                 width: double.infinity,
                                 height: 300,
@@ -203,7 +196,7 @@ class _OtwScreenState extends State<OtwScreen> {
                                   borderRadius: BorderRadius.circular(48),
                                 ),
                                 child: Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       0, 18, 0, 18),
                                   child: Column(
                                     mainAxisSize: MainAxisSize.max,
@@ -212,9 +205,8 @@ class _OtwScreenState extends State<OtwScreen> {
                                       Expanded(
                                         flex: 2,
                                         child: Padding(
-                                          padding:
-                                              EdgeInsetsDirectional.fromSTEB(
-                                                  18, 0, 18, 0),
+                                          padding: const EdgeInsetsDirectional
+                                              .fromSTEB(18, 0, 18, 0),
                                           child: Row(
                                             mainAxisSize: MainAxisSize.max,
                                             mainAxisAlignment:
@@ -232,8 +224,8 @@ class _OtwScreenState extends State<OtwScreen> {
                                                   fit: BoxFit.cover,
                                                 ),
                                               ),
-                                              SizedBox(width: 20),
-                                              Flexible(
+                                              const SizedBox(width: 20),
+                                              const Flexible(
                                                 child: Column(
                                                   mainAxisSize:
                                                       MainAxisSize.max,
@@ -265,8 +257,8 @@ class _OtwScreenState extends State<OtwScreen> {
                                           ),
                                         ),
                                       ),
-                                      SizedBox(height: 8),
-                                      Flexible(
+                                      const SizedBox(height: 8),
+                                      const Flexible(
                                         flex: 1,
                                         child: Row(
                                           mainAxisSize: MainAxisSize.max,
@@ -301,26 +293,27 @@ class _OtwScreenState extends State<OtwScreen> {
                                           ],
                                         ),
                                       ),
-                                      SizedBox(height: 8),
+                                      const SizedBox(height: 8),
                                       Expanded(
                                         flex: 1,
                                         child: Padding(
-                                          padding:
-                                              EdgeInsets.fromLTRB(24, 0, 24, 0),
+                                          padding: const EdgeInsets.fromLTRB(
+                                              24, 0, 24, 0),
                                           child: ElevatedButton(
                                             onPressed: () {},
                                             style: ElevatedButton.styleFrom(
-                                              minimumSize:
-                                                  Size(double.infinity, 50),
-                                              padding: EdgeInsets.fromLTRB(
-                                                  0, 0, 0, 0),
+                                              minimumSize: const Size(
+                                                  double.infinity, 50),
+                                              padding:
+                                                  const EdgeInsets.fromLTRB(
+                                                      0, 0, 0, 0),
                                               shape: RoundedRectangleBorder(
                                                 borderRadius:
                                                     BorderRadius.circular(24),
                                               ),
-                                              primary: Color(0xFF1FAF38),
+                                              primary: const Color(0xFF1FAF38),
                                             ),
-                                            child: Text(
+                                            child: const Text(
                                               'Chat Sekarang',
                                               style: TextStyle(
                                                 fontFamily: 'Poppins',
@@ -330,12 +323,12 @@ class _OtwScreenState extends State<OtwScreen> {
                                           ),
                                         ),
                                       ),
-                                      SizedBox(height: 8),
+                                      const SizedBox(height: 8),
                                       Expanded(
                                         flex: 1,
                                         child: Padding(
-                                          padding:
-                                              EdgeInsets.fromLTRB(24, 0, 24, 0),
+                                          padding: const EdgeInsets.fromLTRB(
+                                              24, 0, 24, 0),
                                           child: ElevatedButton(
                                             onPressed: () {
                                               Navigator.pushReplacement(
@@ -346,17 +339,18 @@ class _OtwScreenState extends State<OtwScreen> {
                                               );
                                             },
                                             style: ElevatedButton.styleFrom(
-                                              minimumSize:
-                                                  Size(double.infinity, 50),
-                                              padding: EdgeInsets.fromLTRB(
-                                                  0, 0, 0, 0),
+                                              minimumSize: const Size(
+                                                  double.infinity, 50),
+                                              padding:
+                                                  const EdgeInsets.fromLTRB(
+                                                      0, 0, 0, 0),
                                               shape: RoundedRectangleBorder(
                                                 borderRadius:
                                                     BorderRadius.circular(24),
                                               ),
                                               primary: primary,
                                             ),
-                                            child: Text(
+                                            child: const Text(
                                               'Selesaikan Pesanan',
                                               style: TextStyle(
                                                 fontFamily: 'Poppins',
