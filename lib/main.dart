@@ -1,11 +1,18 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:mosiga_users/infoHandler/app_info.dart';
 import 'package:mosiga_users/splashScreens/splash_screen.dart';
 import 'package:mosiga_users/theme/theme.dart';
 import 'package:provider/provider.dart';
 
 Future<void> main() async {
+  // Memastikan aplikasi selalu berjalan dalam mode potret saja
+  WidgetsFlutterBinding.ensureInitialized();
+  SystemChrome.setPreferredOrientations([
+    DeviceOrientation.portraitUp,
+    DeviceOrientation.portraitDown,
+  ]);
   runApp(const MyApp());
 
   WidgetsFlutterBinding.ensureInitialized();
